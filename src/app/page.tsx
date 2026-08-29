@@ -4,6 +4,7 @@ import React, { useRef } from "react";
 import { Navbar } from "@/components/Navbar";
 import { ProblemSection } from "@/components/ProblemSection";
 import { BranchingPathSection } from "@/components/BranchingPathSection";
+import { PedagogySection } from "@/components/PedagogySection";
 import { ThreeRolesSection } from "@/components/ThreeRolesSection";
 import { SafetyNetSection } from "@/components/SafetyNetSection";
 import { EthicalStanceSection } from "@/components/EthicalStanceSection";
@@ -11,9 +12,9 @@ import { OriginsSection } from "@/components/OriginsSection";
 import { ConversionSection } from "@/components/ConversionSection";
 import { Footer } from "@/components/Footer";
 import { SectionConnectingPath } from "@/components/motifs/PathMotif";
-import { StaggeredWords, ScrollHighlightWord } from "@/components/ui/TextReveal";
+import { StaggeredWords } from "@/components/ui/TextReveal";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowDown, ArrowUpRight, Layers, CheckCircle2 } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Layers } from "lucide-react";
 
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -39,11 +40,11 @@ export default function Home() {
           style={{ scale: heroScale, opacity: heroOpacity }}
           className="max-w-4xl flex flex-col items-center z-10"
         >
-          {/* Subtle Category Pill */}
+          {/* Plain Language Category Pill */}
           <div className="flex items-center gap-2 px-3 py-1 rounded-[14px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] mb-8">
             <span className="w-2 h-2 rounded-full bg-[var(--brand-base)]" />
             <span className="text-xs font-semibold text-[var(--text-secondary)]">
-              Adaptive Learning Architecture
+              Built to Adapt
             </span>
           </div>
 
@@ -85,15 +86,13 @@ export default function Home() {
           <div className="mt-12 inline-flex flex-wrap items-center justify-center gap-x-4 gap-y-2 px-4 py-2 rounded-[14px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] text-xs text-[var(--text-secondary)]">
             <span className="flex items-center gap-1.5 font-semibold text-[var(--text-primary)]">
               <Layers className="w-3.5 h-3.5 text-[var(--brand-text)]" />
-              Runs inside the LMS you already use:
+              Opens right inside Canvas, Google Classroom, or Moodle:
             </span>
-            <span className="text-[var(--text-muted)]">Canvas</span>
+            <span className="text-[var(--text-muted)]">No new app</span>
             <span className="text-[var(--border-strong)]">·</span>
-            <span className="text-[var(--text-muted)]">Google Classroom</span>
+            <span className="text-[var(--text-muted)]">No new login</span>
             <span className="text-[var(--border-strong)]">·</span>
-            <span className="text-[var(--text-muted)]">Moodle</span>
-            <span className="text-[var(--border-strong)]">·</span>
-            <span className="text-[var(--text-muted)]">D2L Brightspace</span>
+            <span className="text-[var(--text-muted)]">Zero switching friction</span>
           </div>
         </motion.div>
       </section>
@@ -107,22 +106,31 @@ export default function Home() {
       {/* Path connecting thread down to the signature branch */}
       <SectionConnectingPath />
 
-      {/* 2. The Signature Moment: The Branching Path (Scroll-Linked + Live Real UI) */}
+      {/* 2. The Signature Moment: Two Real Paths (Scroll-Linked + Live Real UI) */}
       <BranchingPathSection />
 
-      {/* 3. Three Roles, One Truth (Unified nervous system) */}
+      {/* Path connecting thread down to the pedagogy spotlight */}
+      <SectionConnectingPath />
+
+      {/* 3. The Pedagogy: Teaching Method (Multiple explanations & graduated support ladder) */}
+      <PedagogySection />
+
+      {/* Path connecting thread down to the three roles */}
+      <SectionConnectingPath />
+
+      {/* 4. Three Roles, One Truth (Unified system) */}
       <ThreeRolesSection />
 
-      {/* 4. The Safety-Net Story (Distress triage & human-in-the-loop care) */}
+      {/* 5. The Safety-Net Story (Distress triage & teacher trust) */}
       <SafetyNetSection />
 
-      {/* 5. The Ethical Stance (No gamification, calm sanctuary) */}
+      {/* 6. The Ethical Stance (No gamification, calm sanctuary) */}
       <EthicalStanceSection />
 
-      {/* 6. Where This Starts, and Where It Goes (South Africa / Teneo pilot -> Global) */}
+      {/* 7. Where This Starts, and Where It Goes (South Africa / Teneo pilot -> Global) */}
       <OriginsSection />
 
-      {/* 7. Convert (Three Tiers) */}
+      {/* 8. Convert (Three Tiers) */}
       <ConversionSection />
 
       {/* Footer */}

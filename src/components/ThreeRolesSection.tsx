@@ -10,7 +10,7 @@ import {
   Maximize2,
   Clock,
   Shield,
-  Layers,
+  FileCheck,
 } from "lucide-react";
 import { LiveIframe } from "./ui/LiveIframe";
 import { StaggeredWords, ScrollHighlightWord } from "./ui/TextReveal";
@@ -31,33 +31,33 @@ const steps: RoleStep[] = [
     id: "student",
     stepNumber: "01",
     roleName: "Student Practice",
-    headline: "The Distress Signal",
+    headline: "The Help Request",
     mechanism:
-      "When a student clicks 'I need help' or enters concerning language in free-form input, the system logs a confidential escalation event and displays an immediate, reassuring message on her screen.",
-    timingTruth: "Instant response on student device; logged immediately to backend.",
-    privacyBoundary: "100% private to the student and her assigned teacher. No peer visibility.",
+      "When a student clicks 'I need help' or enters concerning language in free-form input, the system logs a confidential request and displays an immediate, reassuring message on her screen.",
+    timingTruth: "Instant reassurance on the student device; logged securely to backend.",
+    privacyBoundary: "100% private between the student and her assigned teacher. No peer visibility.",
     iframeUrl: "https://demo.escolent.com/student/today?demo=1",
   },
   {
     id: "teacher",
     stepNumber: "02",
     roleName: "Teacher Escalations",
-    headline: "The Triage Queue",
+    headline: "The Active Queue",
     mechanism:
-      "The teacher's dashboard receives the student's name, timestamp, and trigger context on the active Escalations queue, enabling the teacher to acknowledge and conduct a timely 1-on-1 check-in.",
+      "The teacher's dashboard receives the student's name, timestamp, and specific problem context on the active Escalations queue, enabling the teacher to conduct a timely, personal check-in.",
     timingTruth: "Queue polls the server every 15–20 seconds to balance freshness with network efficiency.",
-    privacyBoundary: "Visible only to authorized educators responsible for that classroom.",
+    privacyBoundary: "Visible only to verified educators responsible for that classroom.",
     iframeUrl: "https://demo.escolent.com/teacher/escalations?demo=1",
   },
   {
     id: "admin",
     stepNumber: "03",
-    roleName: "Admin Briefing",
+    roleName: "Admin Briefing & Governance",
     headline: "Institutional Oversight",
     mechanism:
-      "School leadership sees high-level aggregate indicators: total active escalations and age thresholds (e.g. unresolved items past 30 minutes) to ensure no child slips through the cracks.",
-    timingTruth: "Aggregated institutional metrics compiled for morning and daily briefings.",
-    privacyBoundary: "Zero access to private notes or personal transcripts — purely aggregate counts.",
+      "School leadership sees high-level aggregate indicators: total active escalations and response times (e.g. unresolved items past 30 minutes) to ensure no child slips through the cracks.",
+    timingTruth: "Aggregated oversight compiled for daily briefings; strict data policies enforced.",
+    privacyBoundary: "Zero access to private student notes — leadership sees counts, not personal transcripts.",
     iframeUrl: "https://demo.escolent.com/admin/briefing?demo=1",
   },
 ];
@@ -78,7 +78,7 @@ export function ThreeRolesSection() {
         <div className="text-center max-w-3xl mb-14">
           <div className="flex items-center justify-center gap-2 mb-3">
             <span className="text-xs font-semibold text-[var(--brand-text)]">
-              Unified Architecture
+              Unified System
             </span>
           </div>
 
@@ -156,7 +156,7 @@ export function ThreeRolesSection() {
         </div>
 
         {/* Connected Live Shell Container */}
-        <div className="w-full max-w-5xl rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-medium)] shadow-xl overflow-hidden">
+        <div className="w-full max-w-5xl rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-medium)] shadow-xl overflow-hidden mb-10">
           {/* Header Bar */}
           <div className="p-5 bg-[var(--bg-surface-elevated)] border-b border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-start sm:items-center gap-3">
@@ -234,6 +234,26 @@ export function ThreeRolesSection() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Real Data Governance & Privacy Guarantee */}
+        <div className="w-full max-w-5xl rounded-[22px] p-6 sm:p-7 bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+          <div className="flex items-start gap-3.5">
+            <div className="w-9 h-9 rounded-[10px] bg-[var(--bg-surface-elevated)] border border-[var(--border-medium)] flex items-center justify-center text-[var(--brand-text)] shrink-0 mt-0.5">
+              <FileCheck className="w-5 h-5" />
+            </div>
+            <div>
+              <h4 className="text-sm font-semibold text-[var(--text-primary)]">
+                Strict Institutional Data Governance
+              </h4>
+              <p className="text-xs text-[var(--text-secondary)] mt-1 max-w-2xl leading-relaxed">
+                School data is strictly governed with an enforced 72-hour hold and explicit written confirmation required before any student records can be permanently deleted. Access controls are mathematically enforced at the database level, not merely cosmetically hidden.
+              </p>
+            </div>
+          </div>
+          <span className="text-[11px] font-semibold px-3 py-1 rounded-[8px] bg-[var(--bg-surface-elevated)] text-[var(--text-secondary)] border border-[var(--border-subtle)] shrink-0">
+            Enforced 72-Hour Hold
+          </span>
         </div>
       </div>
     </section>

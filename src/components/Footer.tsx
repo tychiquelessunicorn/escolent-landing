@@ -19,7 +19,7 @@ export function Footer() {
             </span>
           </div>
           <p className="text-[var(--text-secondary)] text-xs max-w-sm">
-            Adaptive learning architecture engineered for cognitive depth, affective safety, and seamless LMS integration.
+            Built to adapt: differentiated instruction, affective safety, and seamless LMS integration.
           </p>
         </div>
 
@@ -62,16 +62,19 @@ export function Footer() {
               The Reality
             </a>
             <a href="#branching-path" className="hover:text-[var(--text-primary)] transition-colors">
-              The Signature Branch
+              Two Real Paths
+            </a>
+            <a href="#pedagogy" className="hover:text-[var(--text-primary)] transition-colors">
+              Teaching Method
             </a>
             <a href="#three-roles" className="hover:text-[var(--text-primary)] transition-colors">
-              Unified Truth
+              Unified System
             </a>
             <a href="#safety-net" className="hover:text-[var(--text-primary)] transition-colors">
               Affective Safety Net
             </a>
             <a href="#philosophy" className="hover:text-[var(--text-primary)] transition-colors">
-              Ethical Stance
+              Ethical Design
             </a>
             <a href="#origins" className="hover:text-[var(--text-primary)] transition-colors">
               South Africa Pilot

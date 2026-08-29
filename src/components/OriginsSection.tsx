@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { MapPin, Globe2, CheckCircle2, ArrowUpRight, Layers } from "lucide-react";
+import { MapPin, Globe2, CheckCircle2, ArrowUpRight, Layers, WifiOff, Zap } from "lucide-react";
 import { StaggeredWords, ScrollHighlightWord } from "./ui/TextReveal";
 
 export function OriginsSection() {
@@ -41,16 +41,19 @@ export function OriginsSection() {
               <Layers className="w-5 h-5" />
             </div>
             <div>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <h3 className="text-base font-semibold text-[var(--text-primary)]">
-                  Runs inside the LMS you already use
+                  Opens right inside Canvas, Google Classroom, or Moodle — no new app, no new login.
                 </h3>
                 <span className="text-[10px] font-semibold px-2 py-0.5 rounded-[8px] bg-[var(--brand-subtle)] text-[var(--brand-highlight)] border border-[var(--brand-border)]">
                   Zero Switching Cost
                 </span>
               </div>
-              <p className="text-xs text-[var(--text-secondary)] mt-1.5 max-w-2xl leading-relaxed">
-                Native LTI 1.3 integration embeds seamlessly inside <strong className="text-[var(--text-primary)]">Canvas, Google Classroom, Moodle, and D2L Brightspace</strong>. No new student passwords, no roster CSV re-uploads, no rip-and-replace of your school's existing digital infrastructure.
+              <p className="text-xs text-[var(--text-secondary)] mt-2 max-w-2xl leading-relaxed">
+                Students and teachers access lessons directly within their existing school portal. No new passwords to remember, no roster CSVs to export and re-upload, and no rip-and-replace of your school's existing IT systems.
+                <span className="block mt-1 text-[11px] text-[var(--text-muted)]">
+                  Technical standard: Native LTI 1.3 / 1.1 compliant integration.
+                </span>
               </p>
             </div>
           </div>
@@ -84,7 +87,7 @@ export function OriginsSection() {
               </div>
 
               <p className="text-sm text-[var(--text-secondary)] mt-6 leading-relaxed">
-                South African classrooms represent one of the most demanding educational proving grounds: wide language diversity, rigorous national curricula (CAPS & IEB), and uneven device accessibility.
+                South African classrooms represent one of the most demanding educational proving grounds: wide language diversity, rigorous national curricula (CAPS & IEB), and uneven connectivity.
               </p>
 
               <div className="mt-6 space-y-3">
@@ -101,13 +104,13 @@ export function OriginsSection() {
                 </div>
 
                 <div className="p-3.5 rounded-[14px] bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] flex items-start gap-3">
-                  <CheckCircle2 className="w-4 h-4 text-[var(--brand-text)] shrink-0 mt-0.5" />
+                  <WifiOff className="w-4 h-4 text-[var(--brand-text)] shrink-0 mt-0.5" />
                   <div>
                     <div className="text-xs font-semibold text-[var(--text-primary)]">
-                      Bandwidth & Latency Conscious Architecture
+                      Works through power cuts and lost connections
                     </div>
                     <div className="text-xs text-[var(--text-muted)] mt-0.5">
-                      Lightweight bytecode payloads ensure real-time scaffolding operates reliably on any connection.
+                      Built for load shedding and spotty 3G. The platform caches state locally and resumes exactly where a student left off without losing a single line of work.
                     </div>
                   </div>
                 </div>
@@ -119,18 +122,18 @@ export function OriginsSection() {
             </div>
           </div>
 
-          {/* Right: The Natural Global Extension (5 cols) */}
+          {/* Right: Where This Goes Next (5 cols) */}
           <div className="lg:col-span-5 rounded-[22px] p-6 sm:p-8 bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between pb-4 border-b border-[var(--border-subtle)]">
                 <div className="flex items-center gap-2">
                   <Globe2 className="w-4 h-4 text-[var(--brand-text)]" />
                   <span className="text-xs font-semibold text-[var(--text-primary)]">
-                    The Universal Vector
+                    Where This Goes Next
                   </span>
                 </div>
                 <span className="text-[10px] font-semibold text-[var(--brand-text)] bg-[var(--brand-subtle)] px-2 py-0.5 rounded-[8px]">
-                  Global Scale
+                  Global Reach
                 </span>
               </div>
 

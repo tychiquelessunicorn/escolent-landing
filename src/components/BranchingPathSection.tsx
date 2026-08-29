@@ -39,7 +39,7 @@ export function BranchingPathSection() {
         <div className="text-center max-w-3xl mb-12 sm:mb-16">
           <div className="flex items-center justify-center gap-2 mb-3">
             <span className="text-xs font-semibold text-[var(--brand-text)]">
-              The Signature Branch
+              Two Real Paths
             </span>
             <SparkMotif size={16} />
           </div>
@@ -55,9 +55,9 @@ export function BranchingPathSection() {
           <p className="mt-4 text-base sm:text-lg text-[var(--text-secondary)] max-w-2xl mx-auto">
             When understanding falters, the interface dynamically constructs a{" "}
             <ScrollHighlightWord targetColor="var(--brand-text)">scaffold ladder</ScrollHighlightWord>.
-            When mastery is instant, it accelerates into{" "}
-            <ScrollHighlightWord targetColor="var(--teal-text)">uninhibited velocity</ScrollHighlightWord>.
-            Real production UI embedded live below.
+            When mastery is instant, a student{" "}
+            <ScrollHighlightWord targetColor="var(--teal-text)">races ahead</ScrollHighlightWord> without waiting.
+            This is the real platform — not a mockup.
           </p>
 
           {/* View Mode Controls */}
@@ -90,7 +90,7 @@ export function BranchingPathSection() {
                   : "text-[var(--text-muted)] hover:text-[var(--text-primary)]"
               }`}
             >
-              Mastery Velocity Path
+              Moving Ahead Path
             </button>
           </div>
         </div>
@@ -109,7 +109,7 @@ export function BranchingPathSection() {
             </p>
           </div>
 
-          {/* Real Branching Path Guide Thread */}
+          {/* Real Connecting Guide Thread */}
           <div className="relative h-14 w-full flex items-center justify-center">
             <motion.div
               style={{ scaleY: forkLineProgress }}
@@ -216,7 +216,7 @@ export function BranchingPathSection() {
                       Path B: Advanced Student
                     </span>
                     <span className="text-xs text-[var(--teal-text)] font-medium ml-2">
-                      (Mastery Flow · Reserved Arrival)
+                      (Mastered — moving to the next skill)
                     </span>
                   </div>
                 </div>

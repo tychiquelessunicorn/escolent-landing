@@ -37,21 +37,24 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-[var(--text-secondary)]">
+        <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-[var(--text-secondary)]">
           <a href="#the-problem" className="hover:text-[var(--text-primary)] transition-colors">
             The Reality
           </a>
           <a href="#branching-path" className="hover:text-[var(--text-primary)] transition-colors">
-            The Branch
+            Two Paths
+          </a>
+          <a href="#pedagogy" className="hover:text-[var(--text-primary)] transition-colors">
+            Teaching Method
           </a>
           <a href="#three-roles" className="hover:text-[var(--text-primary)] transition-colors">
-            Unified Truth
+            Unified System
           </a>
           <a href="#safety-net" className="hover:text-[var(--text-primary)] transition-colors">
             Safety Net
           </a>
           <a href="#philosophy" className="hover:text-[var(--text-primary)] transition-colors">
-            Ethical Stance
+            Ethical Design
           </a>
           <a href="#origins" className="hover:text-[var(--text-primary)] transition-colors">
             Origins
@@ -104,14 +107,21 @@ export function Navbar() {
                 onClick={() => setMobileOpen(false)}
                 className="py-2 hover:text-[var(--text-primary)]"
               >
-                The Branch
+                Two Paths
+              </a>
+              <a
+                href="#pedagogy"
+                onClick={() => setMobileOpen(false)}
+                className="py-2 hover:text-[var(--text-primary)]"
+              >
+                Teaching Method
               </a>
               <a
                 href="#three-roles"
                 onClick={() => setMobileOpen(false)}
                 className="py-2 hover:text-[var(--text-primary)]"
               >
-                Unified Truth
+                Unified System
               </a>
               <a
                 href="#safety-net"
@@ -125,7 +135,7 @@ export function Navbar() {
                 onClick={() => setMobileOpen(false)}
                 className="py-2 hover:text-[var(--text-primary)]"
               >
-                Ethical Stance
+                Ethical Design
               </a>
               <a
                 href="#origins"
