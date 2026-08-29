@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 
@@ -27,13 +28,20 @@ export function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 flex items-center justify-between">
         {/* Brand */}
-        <Link href="/" className="flex items-center gap-3 group">
+        <Link href="/" className="flex items-center gap-2.5 group">
           <motion.div
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.95 }}
-            className="w-8 h-8 rounded-[8px] bg-[var(--brand-base)] flex items-center justify-center text-white font-display font-bold text-base shadow-[0_0_12px_rgba(30,107,255,0.4)]"
+            className="relative flex items-center justify-center shrink-0"
           >
-            E
+            <Image
+              src="/logo-icon.png"
+              alt="Escolent Logo"
+              width={28}
+              height={29}
+              className="w-7 h-auto object-contain drop-shadow-[0_0_12px_rgba(30,107,255,0.4)]"
+              priority
+            />
           </motion.div>
           <span className="text-[var(--text-primary)] font-display font-semibold text-lg tracking-tight">
             Escolent

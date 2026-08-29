@@ -254,7 +254,7 @@ export function ThreeRolesSection() {
               src={activeStep.iframeUrl}
               title={`Live Demo - ${activeStep.roleName}`}
               reloadKey={frameKey}
-              height="h-[360px] sm:h-[400px]"
+              height="h-[520px] sm:h-[560px] md:h-[600px]"
             />
 
             {/* Factual Mechanics & Privacy Footer */}

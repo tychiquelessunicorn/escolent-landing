@@ -273,7 +273,7 @@ export function MisconceptionSection() {
                   src={spacesUrl}
                   title="Live Demo - Teacher Spaces Shell"
                   reloadKey={spacesReloadKey}
-                  height="h-[360px] sm:h-[400px]"
+                  height="h-[520px] sm:h-[560px] md:h-[600px]"
                 />
 
                 {/* Shell Footer Notes */}

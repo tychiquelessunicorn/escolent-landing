@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 
 export function Footer() {
@@ -11,8 +12,14 @@ export function Footer() {
         {/* Brand & Purpose */}
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-2.5">
-            <div className="w-6 h-6 rounded-[8px] bg-[var(--brand-base)] flex items-center justify-center text-white font-display font-bold text-xs">
-              E
+            <div className="relative flex items-center justify-center shrink-0">
+              <Image
+                src="/logo-icon.png"
+                alt="Escolent Logo"
+                width={22}
+                height={23}
+                className="w-5.5 h-auto object-contain"
+              />
             </div>
             <span className="text-sm font-display font-semibold text-[var(--text-primary)] tracking-tight">
               Escolent

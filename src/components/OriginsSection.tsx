@@ -135,7 +135,7 @@ export function OriginsSection() {
                   src={lmsUrl}
                   title="Live Demo - LMS Portal Integration"
                   reloadKey={lmsReloadKey}
-                  height="h-[480px]"
+                  height="h-[520px] sm:h-[560px]"
                 />
               </motion.div>
             )}

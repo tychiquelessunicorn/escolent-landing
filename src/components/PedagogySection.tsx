@@ -555,7 +555,7 @@ export function PedagogySection() {
                 src={learnUrl}
                 title="Live Demo - Student Learn Shell"
                 reloadKey={learnReloadKey}
-                height="h-[380px] sm:h-[420px]"
+                height="h-[520px] sm:h-[560px] md:h-[600px]"
               />
 
               {/* Shell Footer Notes */}
