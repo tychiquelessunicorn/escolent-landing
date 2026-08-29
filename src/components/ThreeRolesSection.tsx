@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   GraduationCap,
@@ -16,9 +16,18 @@ import {
   BarChart3,
   Users,
   EyeOff,
+  MessageSquare,
+  LayoutGrid,
+  Search,
+  Sparkles,
+  Sparkle,
+  ArrowUpRight,
 } from "lucide-react";
 import { LiveIframe } from "./ui/LiveIframe";
 import { StaggeredWords, ScrollHighlightWord } from "./ui/TextReveal";
+import { SparkMotif } from "./motifs/SparkMotif";
+
+const EASING = [0.22, 1, 0.36, 1] as const;
 
 interface RoleStep {
   id: "student" | "teacher" | "admin";
@@ -67,11 +76,40 @@ const steps: RoleStep[] = [
   },
 ];
 
+const mockStudents = [
+  { name: "Amara K.", status: [4, 4, 3, 4, 5] },
+  { name: "Bongani S.", status: [3, 2, 2, 1, 2] },
+  { name: "Chloe V.", status: [5, 5, 4, 5, 5] },
+  { name: "Devon P.", status: [4, 3, 4, 3, 4] },
+];
+
+const statusColors = [
+  "bg-[var(--border-strong)]/40", // 1
+  "bg-[var(--brand-base)]", // 2
+  "bg-[var(--bg-surface-elevated)] border border-[var(--border-medium)]", // 3
+  "bg-[var(--teal-subtle)] border border-[var(--teal-border)]", // 4
+  "bg-[var(--teal-accent)]", // 5
+];
+
 export function ThreeRolesSection() {
   const [activeTab, setActiveTab] = useState<"student" | "teacher" | "admin">("student");
   const [frameKey, setFrameKey] = useState(0);
+  const [queryStep, setQueryStep] = useState(0);
 
   const activeStep = steps.find((s) => s.id === activeTab) || steps[0];
+
+  const queries = [
+    { q: "Who hasn't completed two-step linear equations?", a: "3 students: Bongani S., Devon P., Lerato N." },
+    { q: "Show escalations unresolved past 30 minutes", a: "1 item: Sarah M. (Stuck on Step 3) — Flagged 34m ago" },
+    { q: "Space 'Grade 8 Catch-up' mastery average", a: "Overall 78% durable mastery (+14% this week)" },
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setQueryStep((prev) => (prev + 1) % queries.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [queries.length]);
 
   return (
     <section
@@ -85,6 +123,7 @@ export function ThreeRolesSection() {
             <span className="text-xs font-semibold text-[var(--brand-text)]">
               Unified System
             </span>
+            <SparkMotif size={16} />
           </div>
 
           <StaggeredWords
@@ -108,9 +147,11 @@ export function ThreeRolesSection() {
           {steps.map((step) => {
             const isActive = activeTab === step.id;
             return (
-              <button
+              <motion.button
                 key={step.id}
                 onClick={() => setActiveTab(step.id)}
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.98 }}
                 className={`text-left p-4 sm:p-5 rounded-[18px] border transition-all duration-200 flex flex-col justify-between relative overflow-hidden ${
                   isActive
                     ? "bg-[var(--bg-surface-elevated)] border-[var(--brand-border-strong)] shadow-md"
@@ -153,15 +194,22 @@ export function ThreeRolesSection() {
                   <motion.div
                     layoutId="activeRoleBar"
                     className="absolute bottom-0 left-0 right-0 h-1 bg-[var(--brand-base)]"
+                    transition={{ duration: 0.3, ease: EASING }}
                   />
                 )}
-              </button>
+              </motion.button>
             );
           })}
         </div>
 
         {/* Connected Live Shell Container */}
-        <div className="w-full max-w-5xl rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-medium)] shadow-xl overflow-hidden mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.7, ease: EASING }}
+          className="w-full max-w-5xl rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-medium)] shadow-xl overflow-hidden mb-8"
+        >
           {/* Header Bar */}
           <div className="p-5 bg-[var(--bg-surface-elevated)] border-b border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-start sm:items-center gap-3">
@@ -185,13 +233,14 @@ export function ThreeRolesSection() {
             </div>
 
             <div className="flex items-center gap-2 self-end sm:self-auto shrink-0">
-              <button
+              <motion.button
+                whileTap={{ scale: 0.9, rotate: 180 }}
                 onClick={() => setFrameKey((k) => k + 1)}
                 title="Reload live instance"
                 className="p-2 text-[var(--text-muted)] hover:text-[var(--text-primary)] rounded-[8px] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-highlight)] transition-colors"
               >
                 <RefreshCw className="w-4 h-4" />
-              </button>
+              </motion.button>
               <a
                 href={activeStep.iframeUrl}
                 target="_blank"
@@ -239,61 +288,197 @@ export function ThreeRolesSection() {
               </div>
             </div>
           </div>
+        </motion.div>
+
+        {/* Live Built Features: Mastery Overview Matrix & Natural Language Command Layer */}
+        <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          {/* Card 1: Mastery Overview Matrix with Direct Shell Deep-Link */}
+          <motion.div
+            whileHover={{ y: -3, borderColor: "var(--brand-border)" }}
+            transition={{ duration: 0.2 }}
+            className="p-6 sm:p-7 rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-col justify-between shadow-lg"
+          >
+            <div>
+              <div className="flex items-start gap-3.5">
+                <div className="w-9 h-9 rounded-[10px] bg-[var(--brand-subtle)] border border-[var(--brand-border)] flex items-center justify-center text-[var(--brand-text)] shrink-0 mt-0.5">
+                  <LayoutGrid className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-semibold text-[var(--text-primary)]">
+                    Classroom Mastery Matrix
+                  </h4>
+                  <p className="text-xs text-[var(--text-secondary)] mt-2 leading-relaxed">
+                    Teachers see their entire roster mapped across all syllabus skills on one clean grid. One glance identifies whole-class bottlenecks, individual skill gaps, and candidates for extension without digging through spreadsheets.
+                  </p>
+                </div>
+              </div>
+
+              {/* Animated Mini Mastery Heat Map */}
+              <div className="mt-5 p-3.5 rounded-[14px] bg-[var(--bg-canvas)] border border-[var(--border-subtle)]">
+                <div className="text-[10px] font-semibold text-[var(--text-muted)] mb-2 flex items-center justify-between">
+                  <span>Live Roster Heat Map Preview</span>
+                  <span>5 Syllabus Skills</span>
+                </div>
+                <div className="space-y-2">
+                  {mockStudents.map((s, idx) => (
+                    <div key={s.name} className="flex items-center justify-between text-[11px]">
+                      <span className="text-[var(--text-secondary)] font-medium w-24 truncate">{s.name}</span>
+                      <div className="flex items-center gap-1.5">
+                        {s.status.map((st, i) => (
+                          <motion.div
+                            key={i}
+                            animate={{ opacity: [0.8, 1, 0.8] }}
+                            transition={{ duration: 3, delay: (idx + i) * 0.15, repeat: Infinity }}
+                            className={`w-5 h-4 rounded-[4px] ${statusColors[st - 1]}`}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-5 pt-3.5 border-t border-[var(--border-subtle)] text-[11px] flex items-center justify-between">
+              <span className="text-[var(--brand-text)] font-medium">5-state heat map per student & skill</span>
+              <a
+                href="https://demo.escolent.com/teacher/escalations?embed=1"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--text-secondary)] hover:text-[var(--brand-highlight)] font-semibold inline-flex items-center gap-1"
+              >
+                <span>Open Teacher Shell</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </motion.div>
+
+          {/* Card 2: Grounded Natural-Language Query Layer with Direct Shell Deep-Link */}
+          <motion.div
+            whileHover={{ y: -3, borderColor: "var(--brand-border)" }}
+            transition={{ duration: 0.2 }}
+            className="p-6 sm:p-7 rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-col justify-between shadow-lg"
+          >
+            <div>
+              <div className="flex items-start gap-3.5">
+                <div className="w-9 h-9 rounded-[10px] bg-[var(--bg-surface-elevated)] border border-[var(--border-medium)] flex items-center justify-center text-[var(--brand-text)] shrink-0 mt-0.5">
+                  <MessageSquare className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-semibold text-[var(--text-primary)]">
+                    Ask Your Classroom in Plain English
+                  </h4>
+                  <p className="text-xs text-[var(--text-secondary)] mt-2 leading-relaxed">
+                    Teachers and administrators can ask questions directly: <em>"Who hasn't completed two-step equations?"</em> or <em>"Show open escalations past 30 minutes."</em> Grounded exclusively in live school data with zero hallucination.
+                  </p>
+                </div>
+              </div>
+
+              {/* Animated Interactive Query Simulator */}
+              <div className="mt-5 p-3.5 rounded-[14px] bg-[var(--bg-canvas)] border border-[var(--border-subtle)] min-h-[96px] flex flex-col justify-center">
+                <div className="text-[10px] font-semibold text-[var(--brand-text)] uppercase mb-1 flex items-center gap-1.5">
+                  <Search className="w-3 h-3" />
+                  <span>Grounded Query Simulator:</span>
+                </div>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={queryStep}
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }}
+                    transition={{ duration: 0.3 }}
+                    className="space-y-1.5"
+                  >
+                    <div className="text-xs font-mono text-[var(--text-primary)]">
+                      "{queries[queryStep].q}"
+                    </div>
+                    <div className="text-[11px] text-[var(--teal-text)] bg-[var(--teal-subtle)] px-2.5 py-1 rounded-[8px] border border-[var(--teal-border)]">
+                      ✓ {queries[queryStep].a}
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </div>
+
+            <div className="mt-5 pt-3.5 border-t border-[var(--border-subtle)] text-[11px] flex items-center justify-between">
+              <span className="text-[var(--text-secondary)] font-medium">Grounded AI command layer</span>
+              <a
+                href="https://demo.escolent.com/teacher/escalations?embed=1"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--brand-text)] hover:text-[var(--brand-highlight)] font-semibold inline-flex items-center gap-1"
+              >
+                <span>Test Query Shell</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </motion.div>
         </div>
 
         {/* Dedicated Admin & Institutional Oversight Grid */}
-        <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
-          <div className="p-5 sm:p-6 rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-col justify-between">
-            <div>
-              <div className="w-8 h-8 rounded-[10px] bg-[var(--brand-subtle)] border border-[var(--brand-border)] flex items-center justify-center text-[var(--brand-text)] mb-3">
-                <BarChart3 className="w-4 h-4" />
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.7, ease: EASING }}
+          className="w-full max-w-5xl rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] p-6 sm:p-8 shadow-xl"
+        >
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-[var(--border-subtle)] gap-2">
+            <div className="flex items-center gap-2.5">
+              <Building2 className="w-5 h-5 text-[var(--brand-text)]" />
+              <div>
+                <h3 className="text-sm font-semibold text-[var(--text-primary)]">
+                  School-Wide Oversight & Administrative Controls
+                </h3>
+                <span className="text-xs text-[var(--text-muted)]">Institutional data governance, safety boundaries, and compliance</span>
               </div>
-              <h4 className="text-sm font-semibold text-[var(--text-primary)]">
-                School-Wide Cohort Health
-              </h4>
-              <p className="text-xs text-[var(--text-secondary)] mt-2 leading-relaxed">
-                Aggregates mastery progression and unresolved support queues across all Spaces, giving principals objective clarity without digging into classroom micromanagement.
-              </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-[var(--border-subtle)] text-[11px] text-[var(--text-muted)]">
-              High-level cohort distribution metrics
-            </div>
+            <a
+              href="https://demo.escolent.com/admin/briefing?embed=1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[10px] font-semibold px-2.5 py-1 rounded-[8px] bg-[var(--bg-surface-elevated)] hover:bg-[var(--bg-surface-highlight)] text-[var(--brand-text)] border border-[var(--brand-border)] self-start sm:self-auto inline-flex items-center gap-1 transition-colors"
+            >
+              <span>Open Admin Briefing Shell</span>
+              <ArrowUpRight className="w-3 h-3" />
+            </a>
           </div>
 
-          <div className="p-5 sm:p-6 rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-col justify-between">
-            <div>
-              <div className="w-8 h-8 rounded-[10px] bg-[var(--brand-subtle)] border border-[var(--brand-border)] flex items-center justify-center text-[var(--brand-text)] mb-3">
-                <EyeOff className="w-4 h-4" />
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6 text-xs">
+            {/* Control 1: Aggregated Health Without Privacy Intrusion */}
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-2 text-[var(--text-primary)] font-semibold">
+                <BarChart3 className="w-4 h-4 text-[var(--brand-text)]" />
+                <span>Aggregated School Metrics</span>
               </div>
-              <h4 className="text-sm font-semibold text-[var(--text-primary)]">
-                Student Privacy by Design
-              </h4>
-              <p className="text-xs text-[var(--text-secondary)] mt-2 leading-relaxed">
-                School leadership views aggregate indicators (such as escalations past 30 minutes) but cannot view confidential private messages between a child and their teacher.
+              <p className="text-[var(--text-secondary)] leading-relaxed">
+                Leadership sees overall syllabus progression rates, total active escalations, and average response times across all classes — spotting school-wide bottlenecks without micromanaging teachers.
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-[var(--border-subtle)] text-[11px] text-[var(--text-muted)]">
-              Strict boundary between oversight and private dialogue
-            </div>
-          </div>
 
-          <div className="p-5 sm:p-6 rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-col justify-between">
-            <div>
-              <div className="w-8 h-8 rounded-[10px] bg-[var(--brand-subtle)] border border-[var(--brand-border)] flex items-center justify-center text-[var(--brand-text)] mb-3">
-                <FileCheck className="w-4 h-4" />
+            {/* Control 2: Strict Privacy Boundaries */}
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-2 text-[var(--text-primary)] font-semibold">
+                <EyeOff className="w-4 h-4 text-[var(--brand-text)]" />
+                <span>Enforced Privacy Boundaries</span>
               </div>
-              <h4 className="text-sm font-semibold text-[var(--text-primary)]">
-                Enforced 72-Hour Data Hold
-              </h4>
-              <p className="text-xs text-[var(--text-secondary)] mt-2 leading-relaxed">
-                All record deletions require explicit written confirmation and trigger an enforced 72-hour hold period. Access controls are mathematically enforced at the database level.
+              <p className="text-[var(--text-secondary)] leading-relaxed">
+                School leaders see escalation age and counts, but never private student dialogue or diagnostic notes. Confidentiality between student and educator is protected by hardcoded access controls.
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-[var(--border-subtle)] text-[11px] text-[var(--text-muted)]">
-              Audited data-governance policy
+
+            {/* Control 3: Data Deletion & Audit Controls */}
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-2 text-[var(--text-primary)] font-semibold">
+                <Lock className="w-4 h-4 text-[var(--brand-text)]" />
+                <span>Strict 72-Hour Hold on Deletion</span>
+              </div>
+              <p className="text-[var(--text-secondary)] leading-relaxed">
+                Student data is protected by a mandatory 72-hour hold buffer and requires explicit written confirmation for permanent deletion. Full POPIA/GDPR compliance with machine-readable audit trails.
+              </p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

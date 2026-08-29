@@ -24,7 +24,11 @@ export function PathMotif({
         const size = isDestination ? "w-3 h-3" : "w-1.5 h-1.5";
         return (
           <React.Fragment key={i}>
-            <div
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0.5 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
               className={`rounded-full transition-all duration-300 ${size} ${
                 isDestination
                   ? "bg-[var(--brand-text)] ring-4 ring-[var(--brand-subtle)]"
@@ -52,13 +56,23 @@ export function SectionConnectingPath({
 }) {
   return (
     <div className={`w-full flex justify-center py-8 pointer-events-none ${className}`}>
-      <div className="flex flex-col items-center gap-2">
+      <motion.div
+        initial={{ opacity: 0, scaleY: 0.8 }}
+        whileInView={{ opacity: 1, scaleY: 1 }}
+        viewport={{ once: true, margin: "-20px" }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        className="flex flex-col items-center gap-2"
+      >
         <div className="w-[1px] h-8 bg-gradient-to-b from-transparent to-[var(--border-medium)]" />
         <div className="w-1.5 h-1.5 rounded-full bg-[var(--border-strong)]" />
-        <div className="w-2 h-2 rounded-full bg-[var(--brand-base)] ring-2 ring-[var(--brand-subtle)]" />
+        <motion.div
+          animate={{ scale: [1, 1.25, 1], opacity: [0.8, 1, 0.8] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          className="w-2.5 h-2.5 rounded-full bg-[var(--brand-base)] ring-4 ring-[var(--brand-subtle)] shadow-[0_0_12px_rgba(30,107,255,0.35)]"
+        />
         <div className="w-1.5 h-1.5 rounded-full bg-[var(--border-strong)]" />
         <div className="w-[1px] h-8 bg-gradient-to-b from-[var(--border-medium)] to-transparent" />
-      </div>
+      </motion.div>
     </div>
   );
 }

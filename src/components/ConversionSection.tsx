@@ -63,7 +63,14 @@ export function ConversionSection() {
         </div>
 
         {/* Honest Urgency Callout — Grounded in Classroom Reality, Not Manipulation */}
-        <div className="w-full max-w-4xl p-6 sm:p-7 rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] mb-12 text-left flex flex-col sm:flex-row sm:items-center justify-between gap-6 shadow-xl">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          whileHover={{ y: -2, borderColor: "var(--brand-border)" }}
+          className="w-full max-w-4xl p-6 sm:p-7 rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] mb-12 text-left flex flex-col sm:flex-row sm:items-center justify-between gap-6 shadow-xl transition-all duration-300"
+        >
           <div className="space-y-1.5">
             <div className="text-xs font-semibold text-[var(--brand-text)] flex items-center gap-2">
               <SparkMotif size={14} />
@@ -76,29 +83,42 @@ export function ConversionSection() {
               Foundational understanding is cumulative. Gaps in prerequisite skills don't fix themselves over time — they compound into quiet disengagement. Bringing Escolent to your classrooms gives every student immediate, personalized scaffolding before small confusions become permanent setbacks.
             </p>
           </div>
-          <a
+          <motion.a
             href="https://demo.escolent.com?embed=1"
             target="_blank"
             rel="noopener noreferrer"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
             className="shrink-0 px-5 py-2.5 rounded-[14px] bg-[var(--bg-surface-elevated)] hover:bg-[var(--border-strong)] border border-[var(--border-medium)] text-[var(--text-primary)] font-semibold text-xs transition-colors flex items-center gap-1.5 self-start sm:self-center"
           >
             <span>Explore Sandbox</span>
             <ArrowUpRight className="w-3.5 h-3.5 text-[var(--text-muted)]" />
-          </a>
-        </div>
+          </motion.a>
+        </motion.div>
 
         {/* TIER 1: DOMINANT CTA — Launch Live Sandbox */}
-        <div className="w-full rounded-[26px] p-8 sm:p-12 bg-[var(--bg-surface)] border border-[var(--brand-border)] shadow-2xl relative mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="w-full rounded-[26px] p-8 sm:p-12 bg-[var(--bg-surface)] border border-[var(--brand-border)] shadow-2xl relative mb-12 overflow-hidden"
+        >
+          {/* Subtle top sheen line */}
+          <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[var(--brand-text)]/40 to-transparent" />
+
           <div className="flex flex-col items-center">
-            <a
+            <motion.a
               href="https://demo.escolent.com?embed=1"
               target="_blank"
               rel="noopener noreferrer"
+              whileHover={{ scale: 1.04, boxShadow: "0 12px 32px -4px rgba(30, 107, 255, 0.45)" }}
+              whileTap={{ scale: 0.98 }}
               className="group inline-flex items-center gap-3 px-8 py-4 sm:px-10 sm:py-5 text-base sm:text-lg font-semibold rounded-[14px] text-white bg-[var(--brand-base)] hover:bg-[var(--brand-hover)] border border-[var(--brand-border-strong)] shadow-lg transition-all duration-200"
             >
               <span>Launch Live Interactive Demo</span>
               <ArrowUpRight className="w-5 h-5 text-white/80 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </a>
+            </motion.a>
 
             <p className="mt-4 text-xs font-medium text-[var(--text-muted)]">
               Instant access at <span className="text-[var(--text-primary)] font-semibold">demo.escolent.com</span> · No credentials required
@@ -106,52 +126,62 @@ export function ConversionSection() {
 
             {/* Direct Shell Jump Grid */}
             <div className="mt-8 pt-6 border-t border-[var(--border-subtle)] w-full grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <a
+              <motion.a
                 href="https://demo.escolent.com/student/today?embed=1"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3.5 rounded-[14px] bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] hover:border-[var(--brand-border)] flex items-center justify-between text-xs text-[var(--text-secondary)] transition-colors"
+                whileHover={{ y: -2, borderColor: "var(--brand-border)" }}
+                className="p-3.5 rounded-[14px] bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] flex items-center justify-between text-xs text-[var(--text-secondary)] transition-all duration-200"
               >
                 <div className="flex items-center gap-2">
                   <GraduationCap className="w-4 h-4 text-[var(--brand-text)]" />
                   <span className="font-medium">Student Shell</span>
                 </div>
                 <ArrowUpRight className="w-3.5 h-3.5 text-[var(--text-muted)]" />
-              </a>
+              </motion.a>
 
-              <a
+              <motion.a
                 href="https://demo.escolent.com/teacher/escalations?embed=1"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3.5 rounded-[14px] bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] hover:border-[var(--brand-border)] flex items-center justify-between text-xs text-[var(--text-secondary)] transition-colors"
+                whileHover={{ y: -2, borderColor: "var(--brand-border)" }}
+                className="p-3.5 rounded-[14px] bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] flex items-center justify-between text-xs text-[var(--text-secondary)] transition-all duration-200"
               >
                 <div className="flex items-center gap-2">
                   <UserCheck className="w-4 h-4 text-[var(--brand-text)]" />
                   <span className="font-medium">Teacher Shell</span>
                 </div>
                 <ArrowUpRight className="w-3.5 h-3.5 text-[var(--text-muted)]" />
-              </a>
+              </motion.a>
 
-              <a
+              <motion.a
                 href="https://demo.escolent.com/admin/briefing?embed=1"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3.5 rounded-[14px] bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] hover:border-[var(--brand-border)] flex items-center justify-between text-xs text-[var(--text-secondary)] transition-colors"
+                whileHover={{ y: -2, borderColor: "var(--brand-border)" }}
+                className="p-3.5 rounded-[14px] bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] flex items-center justify-between text-xs text-[var(--text-secondary)] transition-all duration-200"
               >
                 <div className="flex items-center gap-2">
                   <Building2 className="w-4 h-4 text-[var(--brand-text)]" />
                   <span className="font-medium">Admin Shell</span>
                 </div>
                 <ArrowUpRight className="w-3.5 h-3.5 text-[var(--text-muted)]" />
-              </a>
+              </motion.a>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* TIER 2 & TIER 3 Grid */}
         <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch text-left">
           {/* TIER 2: Lightweight Early Access Email Capture */}
-          <div className="p-6 sm:p-8 rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-col justify-between">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            whileHover={{ y: -2, borderColor: "var(--border-medium)" }}
+            className="p-6 sm:p-8 rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-col justify-between transition-all duration-300"
+          >
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <Mail className="w-4 h-4 text-[var(--brand-text)]" />
@@ -169,10 +199,14 @@ export function ConversionSection() {
               {/* Form */}
               <div className="mt-6">
                 {submitted ? (
-                  <div className="p-4 rounded-[14px] bg-[var(--brand-subtle)] border border-[var(--brand-border)] flex items-center gap-3 text-xs text-[var(--brand-highlight)]">
+                  <motion.div
+                    initial={{ scale: 0.95, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    className="p-4 rounded-[14px] bg-[var(--brand-subtle)] border border-[var(--brand-border)] flex items-center gap-3 text-xs text-[var(--brand-highlight)]"
+                  >
                     <CheckCircle2 className="w-4 h-4 text-[var(--brand-text)] shrink-0" />
                     <span>Your email has been added to our educational briefing list.</span>
-                  </div>
+                  </motion.div>
                 ) : (
                   <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-2">
                     <input
@@ -183,13 +217,15 @@ export function ConversionSection() {
                       required
                       className="flex-1 px-4 py-2.5 rounded-[14px] bg-[var(--bg-surface-elevated)] border border-[var(--border-medium)] text-[var(--text-primary)] placeholder:text-[var(--text-muted)] text-xs focus:outline-none focus:border-[var(--brand-base)] transition-colors"
                     />
-                    <button
+                    <motion.button
                       type="submit"
                       disabled={loading}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
                       className="px-5 py-2.5 rounded-[14px] bg-[var(--brand-base)] hover:bg-[var(--brand-hover)] border border-[var(--brand-border)] text-xs font-semibold text-white transition-colors"
                     >
                       {loading ? "Joining..." : "Join List"}
-                    </button>
+                    </motion.button>
                   </form>
                 )}
               </div>
@@ -199,10 +235,17 @@ export function ConversionSection() {
               <Lock className="w-3.5 h-3.5 text-[var(--text-muted)]" />
               <span>Zero marketing spam. Strictly quarterly educational briefings.</span>
             </div>
-          </div>
+          </motion.div>
 
           {/* TIER 3: Book a Call — Honest & Friction-Free */}
-          <div className="p-6 sm:p-8 rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-col justify-between">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            whileHover={{ y: -2, borderColor: "var(--brand-border)" }}
+            className="p-6 sm:p-8 rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-col justify-between transition-all duration-300"
+          >
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <Calendar className="w-4 h-4 text-[var(--brand-text)]" />
@@ -234,13 +277,15 @@ export function ConversionSection() {
               </div>
 
               <div className="mt-5">
-                <a
+                <motion.a
                   href="mailto:ty@escolent.com?subject=Escolent%20School%20Walkthrough%20Inquiry"
+                  whileHover={{ scale: 1.02, backgroundColor: "var(--bg-surface-highlight)" }}
+                  whileTap={{ scale: 0.98 }}
                   className="inline-flex items-center justify-center gap-2 w-full px-5 py-3 rounded-[14px] bg-[var(--bg-surface-highlight)] hover:bg-[var(--border-strong)] border border-[var(--border-medium)] text-xs font-semibold text-[var(--text-primary)] transition-colors"
                 >
                   <Calendar className="w-4 h-4 text-[var(--brand-text)]" />
                   <span>Schedule a Walkthrough with the Builders</span>
-                </a>
+                </motion.a>
               </div>
             </div>
 
@@ -248,7 +293,7 @@ export function ConversionSection() {
               <Shield className="w-3.5 h-3.5 text-[var(--text-muted)]" />
               <span>Direct conversation with the builders — no intermediary sales reps.</span>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

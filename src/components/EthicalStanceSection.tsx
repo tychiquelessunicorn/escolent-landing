@@ -46,7 +46,13 @@ export function EthicalStanceSection() {
         {/* Visual Contrast: Addictive App Pattern vs Calm Classroom Sanctuary */}
         <div className="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch mb-16">
           {/* Left: The Addictive App Trap */}
-          <div className="rounded-[22px] p-6 sm:p-8 bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-col justify-between">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="rounded-[22px] p-6 sm:p-8 bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-col justify-between"
+          >
             <div>
               <div className="flex items-center justify-between pb-4 border-b border-[var(--border-subtle)]">
                 <div className="flex items-center gap-2">
@@ -106,10 +112,16 @@ export function EthicalStanceSection() {
             <div className="mt-8 pt-4 border-t border-[var(--border-subtle)] text-xs text-[var(--text-muted)] leading-relaxed">
               Creates artificial anxiety, rewards superficial guessing over deep thinking, and discourages students who need time to reflect.
             </div>
-          </div>
+          </motion.div>
 
           {/* Right: The Calm Classroom Sanctuary */}
-          <div className="rounded-[22px] p-6 sm:p-8 bg-[var(--bg-surface-elevated)] border border-[var(--brand-border)] flex flex-col justify-between shadow-xl">
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="rounded-[22px] p-6 sm:p-8 bg-[var(--bg-surface-elevated)] border border-[var(--brand-border)] flex flex-col justify-between shadow-xl"
+          >
             <div>
               <div className="flex items-center justify-between pb-4 border-b border-[var(--border-subtle)]">
                 <div className="flex items-center gap-2">
@@ -169,23 +181,35 @@ export function EthicalStanceSection() {
             <div className="mt-8 pt-4 border-t border-[var(--border-subtle)] text-xs text-[var(--text-secondary)] leading-relaxed">
               Built around how children actually learn: students thrive when they experience genuine understanding, not when they are pressured by countdown timers or cartoon streaks.
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* 3 Core Ethical Commitments */}
         <div className="w-full max-w-4xl grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-          <div className="p-5 rounded-[18px] bg-[var(--bg-surface)] border border-[var(--border-subtle)]">
+          <motion.div
+            whileHover={{ y: -3, borderColor: "var(--brand-border)" }}
+            transition={{ duration: 0.2 }}
+            className="p-5 rounded-[18px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] transition-colors"
+          >
             <h4 className="text-sm font-semibold text-[var(--text-primary)]">No Manipulative Tricks</h4>
             <p className="text-xs text-[var(--text-muted)] mt-1.5">No artificial urgency or guilt-driven reminders.</p>
-          </div>
-          <div className="p-5 rounded-[18px] bg-[var(--bg-surface)] border border-[var(--border-subtle)]">
+          </motion.div>
+          <motion.div
+            whileHover={{ y: -3, borderColor: "var(--brand-border)" }}
+            transition={{ duration: 0.2 }}
+            className="p-5 rounded-[18px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] transition-colors"
+          >
             <h4 className="text-sm font-semibold text-[var(--text-primary)]">No Public Scoreboards</h4>
             <p className="text-xs text-[var(--text-muted)] mt-1.5">Students master skills for themselves, not a leaderboard.</p>
-          </div>
-          <div className="p-5 rounded-[18px] bg-[var(--bg-surface)] border border-[var(--border-subtle)]">
+          </motion.div>
+          <motion.div
+            whileHover={{ y: -3, borderColor: "var(--brand-border)" }}
+            transition={{ duration: 0.2 }}
+            className="p-5 rounded-[18px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] transition-colors"
+          >
             <h4 className="text-sm font-semibold text-[var(--text-primary)]">Respect for the Student</h4>
             <p className="text-xs text-[var(--text-muted)] mt-1.5">Every screen treats student intelligence with dignity.</p>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
