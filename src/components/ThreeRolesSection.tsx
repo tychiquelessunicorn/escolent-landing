@@ -6,14 +6,14 @@ import {
   GraduationCap,
   UserCheck,
   Building2,
-  ArrowRight,
   RefreshCw,
   Maximize2,
-  Radio,
   Clock,
   Shield,
-  CheckCircle2,
+  Layers,
 } from "lucide-react";
+import { LiveIframe } from "./ui/LiveIframe";
+import { StaggeredWords, ScrollHighlightWord } from "./ui/TextReveal";
 
 interface RoleStep {
   id: "student" | "teacher" | "admin";
@@ -24,8 +24,6 @@ interface RoleStep {
   timingTruth: string;
   privacyBoundary: string;
   iframeUrl: string;
-  accentColor: string;
-  borderClass: string;
 }
 
 const steps: RoleStep[] = [
@@ -38,9 +36,7 @@ const steps: RoleStep[] = [
       "When a student clicks 'I need help' or enters concerning language in free-form input, the system logs a confidential escalation event and displays an immediate, reassuring message on her screen.",
     timingTruth: "Instant response on student device; logged immediately to backend.",
     privacyBoundary: "100% private to the student and her assigned teacher. No peer visibility.",
-    iframeUrl: "https://demo.escolent.com/student?demo=1",
-    accentColor: "#fb7185", // Rose
-    borderClass: "border-rose-500/40",
+    iframeUrl: "https://demo.escolent.com/student/today?demo=1",
   },
   {
     id: "teacher",
@@ -52,8 +48,6 @@ const steps: RoleStep[] = [
     timingTruth: "Queue polls the server every 15–20 seconds to balance freshness with network efficiency.",
     privacyBoundary: "Visible only to authorized educators responsible for that classroom.",
     iframeUrl: "https://demo.escolent.com/teacher/escalations?demo=1",
-    accentColor: "#38bdf8", // Sky
-    borderClass: "border-sky-500/40",
   },
   {
     id: "admin",
@@ -65,8 +59,6 @@ const steps: RoleStep[] = [
     timingTruth: "Aggregated institutional metrics compiled for morning and daily briefings.",
     privacyBoundary: "Zero access to private notes or personal transcripts — purely aggregate counts.",
     iframeUrl: "https://demo.escolent.com/admin/briefing?demo=1",
-    accentColor: "#34d399", // Emerald
-    borderClass: "border-emerald-500/40",
   },
 ];
 
@@ -79,35 +71,32 @@ export function ThreeRolesSection() {
   return (
     <section
       id="three-roles"
-      className="relative min-h-screen py-24 sm:py-32 px-4 sm:px-6 md:px-8 bg-[#050507] overflow-hidden"
+      className="relative py-28 sm:py-36 px-4 sm:px-6 md:px-8 bg-[var(--bg-canvas)] border-t border-[var(--border-subtle)]"
     >
-      {/* Background glow */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-indigo-500/[0.03] blur-[160px] rounded-full pointer-events-none" />
-
       <div className="max-w-7xl mx-auto flex flex-col items-center">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center max-w-3xl mb-14"
-        >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-mono uppercase tracking-widest mb-4">
-            <Radio className="w-3.5 h-3.5" />
-            <span>Three Roles · One Truth</span>
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mb-14">
+          <div className="flex items-center justify-center gap-2 mb-3">
+            <span className="text-xs font-semibold text-[var(--brand-text)]">
+              Unified Architecture
+            </span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white">
-            One connected event. <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-sky-300 to-emerald-400">
-              Three real perspectives.
-            </span>
-          </h2>
-          <p className="mt-4 text-base sm:text-lg text-zinc-400 max-w-2xl mx-auto">
-            When a student signals distress, it travels through an unbroken chain of human care: immediate reassurance for the child, timely triage for the teacher, and aggregate oversight for school leadership.
+          <StaggeredWords
+            as="h2"
+            text="One connected event. Three real perspectives."
+            highlightWords={["Three", "real", "perspectives."]}
+            highlightColor="var(--brand-text)"
+            className="text-3xl sm:text-5xl md:text-6xl font-display font-bold tracking-tight text-[var(--text-primary)]"
+          />
+
+          <p className="mt-4 text-base sm:text-lg text-[var(--text-secondary)] max-w-2xl mx-auto">
+            When a student signals distress, it travels through an unbroken chain:{" "}
+            <ScrollHighlightWord targetColor="var(--brand-text)">immediate reassurance</ScrollHighlightWord> for the child,{" "}
+            <ScrollHighlightWord targetColor="var(--brand-text)">timely triage</ScrollHighlightWord> for the teacher, and{" "}
+            <ScrollHighlightWord targetColor="var(--brand-text)">aggregate oversight</ScrollHighlightWord> for leadership.
           </p>
-        </motion.div>
+        </div>
 
         {/* Step Navigation Tabs */}
         <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-3 mb-8">
@@ -117,38 +106,48 @@ export function ThreeRolesSection() {
               <button
                 key={step.id}
                 onClick={() => setActiveTab(step.id)}
-                className={`text-left p-4 sm:p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between relative overflow-hidden ${
+                className={`text-left p-4 sm:p-5 rounded-[18px] border transition-all duration-200 flex flex-col justify-between relative overflow-hidden ${
                   isActive
-                    ? `bg-white/[0.08] ${step.borderClass} shadow-lg`
-                    : "bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04] opacity-75 hover:opacity-100"
+                    ? "bg-[var(--bg-surface-elevated)] border-[var(--brand-border-strong)] shadow-md"
+                    : "bg-[var(--bg-surface)] border-[var(--border-subtle)] hover:bg-[var(--bg-surface-elevated)] opacity-75 hover:opacity-100"
                 }`}
               >
                 <div className="flex items-center justify-between mb-3">
                   <span
-                    className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full"
-                    style={{
-                      backgroundColor: `${step.accentColor}15`,
-                      color: step.accentColor,
-                      border: `1px solid ${step.accentColor}30`,
-                    }}
+                    className={`text-[11px] font-semibold px-2 py-0.5 rounded-[8px] ${
+                      isActive
+                        ? "bg-[var(--brand-subtle)] text-[var(--brand-highlight)] border border-[var(--brand-border)]"
+                        : "bg-[var(--bg-surface)] text-[var(--text-muted)]"
+                    }`}
                   >
                     Step {step.stepNumber}
                   </span>
-                  {step.id === "student" && <GraduationCap className="w-4 h-4 text-rose-400" />}
-                  {step.id === "teacher" && <UserCheck className="w-4 h-4 text-sky-400" />}
-                  {step.id === "admin" && <Building2 className="w-4 h-4 text-emerald-400" />}
+                  {step.id === "student" && (
+                    <GraduationCap
+                      className={`w-4 h-4 ${isActive ? "text-[var(--brand-text)]" : "text-[var(--text-muted)]"}`}
+                    />
+                  )}
+                  {step.id === "teacher" && (
+                    <UserCheck
+                      className={`w-4 h-4 ${isActive ? "text-[var(--brand-text)]" : "text-[var(--text-muted)]"}`}
+                    />
+                  )}
+                  {step.id === "admin" && (
+                    <Building2
+                      className={`w-4 h-4 ${isActive ? "text-[var(--brand-text)]" : "text-[var(--text-muted)]"}`}
+                    />
+                  )}
                 </div>
 
                 <div>
-                  <h4 className="text-sm font-semibold text-white">{step.roleName}</h4>
-                  <p className="text-xs text-zinc-400 mt-1">{step.headline}</p>
+                  <h4 className="text-sm font-semibold text-[var(--text-primary)]">{step.roleName}</h4>
+                  <p className="text-xs text-[var(--text-muted)] mt-1">{step.headline}</p>
                 </div>
 
                 {isActive && (
                   <motion.div
-                    layoutId="activeRoleIndicator"
-                    className="absolute bottom-0 left-0 right-0 h-1"
-                    style={{ backgroundColor: step.accentColor }}
+                    layoutId="activeRoleBar"
+                    className="absolute bottom-0 left-0 right-0 h-1 bg-[var(--brand-base)]"
                   />
                 )}
               </button>
@@ -157,37 +156,26 @@ export function ThreeRolesSection() {
         </div>
 
         {/* Connected Live Shell Container */}
-        <div className="w-full max-w-5xl rounded-3xl bg-[#08080d] border border-white/10 shadow-2xl shadow-black/80 overflow-hidden">
+        <div className="w-full max-w-5xl rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-medium)] shadow-xl overflow-hidden">
           {/* Header Bar */}
-          <div className="p-5 bg-zinc-950/90 border-b border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="p-5 bg-[var(--bg-surface-elevated)] border-b border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-start sm:items-center gap-3">
-              <div
-                className="w-8 h-8 rounded-xl flex items-center justify-center font-mono text-xs font-bold shrink-0 mt-0.5 sm:mt-0"
-                style={{
-                  backgroundColor: `${activeStep.accentColor}15`,
-                  color: activeStep.accentColor,
-                  border: `1px solid ${activeStep.accentColor}30`,
-                }}
-              >
+              <div className="w-8 h-8 rounded-[8px] bg-[var(--brand-subtle)] border border-[var(--brand-border)] text-[var(--brand-text)] flex items-center justify-center font-semibold text-xs shrink-0 mt-0.5 sm:mt-0">
                 {activeStep.stepNumber}
               </div>
 
               <div>
                 <div className="flex items-center gap-2">
-                  <h3 className="text-sm font-semibold text-white">
+                  <h3 className="text-sm font-semibold text-[var(--text-primary)]">
                     {activeStep.roleName}: {activeStep.headline}
                   </h3>
-                  <span
-                    className="text-[10px] font-mono px-2 py-0.5 rounded"
-                    style={{
-                      backgroundColor: `${activeStep.accentColor}20`,
-                      color: activeStep.accentColor,
-                    }}
-                  >
+                  <span className="text-[10px] font-semibold px-2 py-0.5 rounded-[8px] bg-[var(--brand-subtle)] text-[var(--brand-highlight)]">
                     Live Demo State
                   </span>
                 </div>
-                <p className="text-xs text-zinc-400 mt-1 max-w-2xl">{activeStep.mechanism}</p>
+                <p className="text-xs text-[var(--text-secondary)] mt-1 max-w-2xl">
+                  {activeStep.mechanism}
+                </p>
               </div>
             </div>
 
@@ -195,7 +183,7 @@ export function ThreeRolesSection() {
               <button
                 onClick={() => setFrameKey((k) => k + 1)}
                 title="Reload live instance"
-                className="p-2 text-zinc-400 hover:text-white rounded-lg bg-white/[0.04] hover:bg-white/[0.08] transition-colors"
+                className="p-2 text-[var(--text-muted)] hover:text-[var(--text-primary)] rounded-[8px] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-highlight)] transition-colors"
               >
                 <RefreshCw className="w-4 h-4" />
               </button>
@@ -204,7 +192,7 @@ export function ThreeRolesSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Open live shell in new tab"
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.06] hover:bg-white/[0.1] text-xs font-medium text-zinc-200 transition-colors"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-[14px] bg-[var(--bg-surface-highlight)] hover:bg-[var(--border-strong)] text-xs font-semibold text-[var(--text-primary)] transition-colors"
               >
                 <span>Direct Shell</span>
                 <Maximize2 className="w-3.5 h-3.5" />
@@ -212,49 +200,35 @@ export function ThreeRolesSection() {
             </div>
           </div>
 
-          {/* Real Live Iframe Container */}
-          <div className="relative w-full h-[520px] bg-[#050508]">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={`${activeStep.id}-${frameKey}`}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.25 }}
-                className="w-full h-full"
-              >
-                <iframe
-                  src={activeStep.iframeUrl}
-                  title={`Live Demo - ${activeStep.roleName}`}
-                  className="w-full h-full border-0"
-                  sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
-                  loading="lazy"
-                />
-              </motion.div>
-            </AnimatePresence>
-          </div>
+          {/* Real Live Iframe with graceful loading & error fallback */}
+          <LiveIframe
+            src={activeStep.iframeUrl}
+            title={`Live Demo - ${activeStep.roleName}`}
+            reloadKey={frameKey}
+            height="h-[520px]"
+          />
 
           {/* Factual Mechanics & Privacy Footer */}
-          <div className="p-4 sm:p-5 bg-zinc-950/90 border-t border-white/[0.08] grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-            <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.04] flex items-start gap-2.5">
-              <Clock className="w-4 h-4 text-zinc-400 shrink-0 mt-0.5" />
+          <div className="p-4 sm:p-5 bg-[var(--bg-surface-elevated)] border-t border-[var(--border-subtle)] grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+            <div className="p-3.5 rounded-[14px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex items-start gap-2.5">
+              <Clock className="w-4 h-4 text-[var(--text-muted)] shrink-0 mt-0.5" />
               <div>
-                <span className="font-mono text-[10px] uppercase text-zinc-400 block">
+                <span className="text-[10px] font-semibold uppercase text-[var(--text-muted)] block">
                   Delivery & Polling Mechanism
                 </span>
-                <span className="text-zinc-300 mt-0.5 block leading-relaxed">
+                <span className="text-[var(--text-secondary)] mt-0.5 block leading-relaxed">
                   {activeStep.timingTruth}
                 </span>
               </div>
             </div>
 
-            <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.04] flex items-start gap-2.5">
-              <Shield className="w-4 h-4 text-zinc-400 shrink-0 mt-0.5" />
+            <div className="p-3.5 rounded-[14px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex items-start gap-2.5">
+              <Shield className="w-4 h-4 text-[var(--text-muted)] shrink-0 mt-0.5" />
               <div>
-                <span className="font-mono text-[10px] uppercase text-zinc-400 block">
+                <span className="text-[10px] font-semibold uppercase text-[var(--text-muted)] block">
                   Privacy & Data Scope
                 </span>
-                <span className="text-zinc-300 mt-0.5 block leading-relaxed">
+                <span className="text-[var(--text-secondary)] mt-0.5 block leading-relaxed">
                   {activeStep.privacyBoundary}
                 </span>
               </div>

@@ -13,6 +13,8 @@ import {
   Clock,
   ArrowUpRight,
 } from "lucide-react";
+import { SparkMotif } from "./motifs/SparkMotif";
+import { StaggeredWords, ScrollHighlightWord } from "./ui/TextReveal";
 
 interface SignalCase {
   title: string;
@@ -55,64 +57,59 @@ export function SafetyNetSection() {
   return (
     <section
       id="safety-net"
-      className="relative min-h-screen py-24 sm:py-32 px-4 sm:px-6 md:px-8 bg-[#050507] overflow-hidden"
+      className="relative py-28 sm:py-36 px-4 sm:px-6 md:px-8 bg-[var(--bg-canvas)] border-t border-[var(--border-subtle)]"
     >
-      {/* Background ambient lighting */}
-      <div className="absolute top-1/2 left-1/3 w-[600px] h-[600px] bg-rose-500/[0.03] blur-[170px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-emerald-500/[0.03] blur-[150px] rounded-full pointer-events-none" />
-
       <div className="max-w-7xl mx-auto flex flex-col items-center">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center max-w-3xl mb-16"
-        >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs font-mono uppercase tracking-widest mb-4">
-            <HeartHandshake className="w-3.5 h-3.5" />
-            <span>The Safety Net</span>
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mb-16">
+          <div className="flex items-center justify-center gap-2 mb-3">
+            <span className="text-xs font-semibold text-[var(--escalation-text)]">
+              The Safety Net
+            </span>
+            <SparkMotif size={16} />
           </div>
 
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white">
-            A system that notices distress, <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-amber-200 to-emerald-400">
-              not just incorrect answers.
-            </span>
-          </h2>
-          <p className="mt-4 text-base sm:text-lg text-zinc-400 max-w-2xl mx-auto">
-            Academic failure is rarely intellectual; it begins as emotional overwhelm. Escolent recognizes emotional distress and cognitive friction through explicit signals and language classification, connecting students to human support.
+          <StaggeredWords
+            as="h2"
+            text="A system that notices distress, not just incorrect answers."
+            highlightWords={["distress,", "answers."]}
+            highlightColor="var(--escalation-text)"
+            className="text-3xl sm:text-5xl md:text-6xl font-display font-bold tracking-tight text-[var(--text-primary)]"
+          />
+
+          <p className="mt-4 text-base sm:text-lg text-[var(--text-secondary)] max-w-2xl mx-auto">
+            Academic struggle is rarely intellectual; it begins as emotional overwhelm. Escolent recognizes{" "}
+            <ScrollHighlightWord targetColor="var(--escalation-text)">emotional distress</ScrollHighlightWord> through explicit signals and language classification, connecting students to genuine human support.
           </p>
-        </motion.div>
+        </div>
 
         {/* The Two-Sided Architectural Comparison */}
         <div className="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-16">
           {/* Left Column: Interactive Scenario Selector */}
           <div className="lg:col-span-5 flex flex-col justify-between gap-3">
-            <div className="text-xs font-mono uppercase text-zinc-400 tracking-wider mb-1 px-1">
+            <div className="text-xs font-semibold uppercase text-[var(--text-muted)] px-1 mb-1">
               Select Distress Trigger
             </div>
             {cases.map((c, i) => (
               <button
                 key={i}
                 onClick={() => setSelectedCase(i)}
-                className={`p-5 rounded-2xl text-left border transition-all duration-300 flex flex-col gap-2 ${
+                className={`p-5 rounded-[18px] text-left border transition-all duration-200 flex flex-col gap-2 ${
                   selectedCase === i
-                    ? "bg-rose-500/[0.08] border-rose-500/40 shadow-lg shadow-rose-950/20"
-                    : "bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04]"
+                    ? "bg-[var(--bg-surface-elevated)] border-[var(--escalation-border)] shadow-md"
+                    : "bg-[var(--bg-surface)] border-[var(--border-subtle)] hover:bg-[var(--bg-surface-elevated)]"
                 }`}
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold text-white">{c.title}</span>
+                  <span className="text-xs font-semibold text-[var(--text-primary)]">{c.title}</span>
                   <span
                     className={`w-2 h-2 rounded-full ${
-                      selectedCase === i ? "bg-rose-400 animate-ping" : "bg-zinc-600"
+                      selectedCase === i ? "bg-[var(--escalation-red)]" : "bg-[var(--border-strong)]"
                     }`}
                   />
                 </div>
-                <p className="text-xs text-zinc-400 line-clamp-2">{c.trigger}</p>
-                <div className="text-[11px] font-mono text-rose-300/80 mt-1">
+                <p className="text-xs text-[var(--text-secondary)] line-clamp-2">{c.trigger}</p>
+                <div className="text-[11px] text-[var(--escalation-text)] mt-1 font-medium">
                   Signal: {c.affectiveSignal}
                 </div>
               </button>
@@ -120,50 +117,50 @@ export function SafetyNetSection() {
           </div>
 
           {/* Right Column: Deep Architectural Contrast Card */}
-          <div className="lg:col-span-7 glass-panel rounded-3xl p-6 sm:p-8 border border-white/10 flex flex-col justify-between">
+          <div className="lg:col-span-7 rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-medium)] p-6 sm:p-8 flex flex-col justify-between shadow-xl">
             <div>
-              <div className="flex items-center justify-between pb-4 border-b border-white/[0.06]">
+              <div className="flex items-center justify-between pb-4 border-b border-[var(--border-subtle)]">
                 <div className="flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-rose-400 animate-pulse" />
-                  <span className="text-sm font-semibold text-white">
+                  <Activity className="w-4 h-4 text-[var(--escalation-red)]" />
+                  <span className="text-sm font-semibold text-[var(--text-primary)]">
                     Real Distress Detection & Triage
                   </span>
                 </div>
-                <span className="text-[10px] font-mono uppercase px-2.5 py-1 rounded-full bg-white/[0.05] text-zinc-400 border border-white/10">
+                <span className="text-[10px] font-semibold px-2.5 py-1 rounded-[8px] bg-[var(--bg-surface-elevated)] text-[var(--text-muted)] border border-[var(--border-subtle)]">
                   Real Protocol
                 </span>
               </div>
 
               {/* Selected Case Deep Dive */}
               <div className="mt-6 space-y-5">
-                <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.04]">
-                  <div className="text-[11px] font-mono uppercase text-zinc-400">
+                <div className="p-4 rounded-[14px] bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)]">
+                  <div className="text-[11px] font-semibold uppercase text-[var(--text-muted)]">
                     Observed Trigger
                   </div>
-                  <div className="text-sm text-zinc-200 mt-1 font-mono">
+                  <div className="text-sm text-[var(--text-primary)] mt-1 font-mono">
                     "{cases[selectedCase].trigger}"
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {/* Flawed Industry Default */}
-                  <div className="p-4 rounded-2xl bg-red-950/20 border border-red-500/20">
-                    <div className="flex items-center gap-1.5 text-xs font-semibold text-red-400">
+                  {/* Flawed Conventional Default */}
+                  <div className="p-4 rounded-[14px] bg-[var(--bg-canvas)] border border-[var(--border-subtle)]">
+                    <div className="flex items-center gap-1.5 text-xs font-semibold text-[var(--text-muted)]">
                       <AlertTriangle className="w-3.5 h-3.5" />
                       <span>Conventional EdTech</span>
                     </div>
-                    <p className="text-xs text-zinc-400 mt-2 leading-relaxed">
+                    <p className="text-xs text-[var(--text-muted)] mt-2 leading-relaxed">
                       {cases[selectedCase].traditionalReaction}
                     </p>
                   </div>
 
                   {/* Escolent Safety Net */}
-                  <div className="p-4 rounded-2xl bg-emerald-950/20 border border-emerald-500/20">
-                    <div className="flex items-center gap-1.5 text-xs font-semibold text-emerald-400">
+                  <div className="p-4 rounded-[14px] bg-[var(--bg-surface-elevated)] border border-[var(--brand-border)]">
+                    <div className="flex items-center gap-1.5 text-xs font-semibold text-[var(--brand-text)]">
                       <ShieldCheck className="w-3.5 h-3.5" />
                       <span>Escolent Safety Net</span>
                     </div>
-                    <p className="text-xs text-zinc-300 mt-2 leading-relaxed">
+                    <p className="text-xs text-[var(--text-primary)] mt-2 leading-relaxed font-medium">
                       {cases[selectedCase].escolentResponse}
                     </p>
                   </div>
@@ -172,16 +169,16 @@ export function SafetyNetSection() {
             </div>
 
             {/* School Trust Core Tenet */}
-            <div className="mt-8 pt-5 border-t border-white/[0.06] flex items-center justify-between text-xs text-zinc-400">
+            <div className="mt-8 pt-5 border-t border-[var(--border-subtle)] flex items-center justify-between text-xs text-[var(--text-secondary)]">
               <div className="flex items-center gap-2">
-                <Lock className="w-3.5 h-3.5 text-zinc-500" />
+                <Lock className="w-3.5 h-3.5 text-[var(--text-muted)]" />
                 <span>Zero AI therapy. 100% human-in-the-loop teacher triage.</span>
               </div>
               <a
-                href="https://demo.escolent.com/teacher?demo=1"
+                href="https://demo.escolent.com/teacher/escalations?demo=1"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-cyan-400 hover:text-cyan-300 font-medium inline-flex items-center gap-1"
+                className="text-[var(--brand-text)] hover:text-[var(--brand-highlight)] font-semibold inline-flex items-center gap-1"
               >
                 <span>Inspect Escalations</span>
                 <ArrowUpRight className="w-3 h-3" />
@@ -192,37 +189,37 @@ export function SafetyNetSection() {
 
         {/* 3 Pillar Cards on Trust */}
         <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-5">
-          <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex flex-col justify-between">
+          <div className="p-6 rounded-[18px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-col justify-between">
             <div>
-              <div className="w-8 h-8 rounded-lg bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400 mb-4">
+              <div className="w-8 h-8 rounded-[8px] bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] flex items-center justify-center text-[var(--text-secondary)] mb-4">
                 <Eye className="w-4 h-4" />
               </div>
-              <h4 className="text-sm font-semibold text-white">Private Reassurance</h4>
-              <p className="text-xs text-zinc-400 mt-2 leading-relaxed">
+              <h4 className="text-sm font-semibold text-[var(--text-primary)]">Private Reassurance</h4>
+              <p className="text-xs text-[var(--text-muted)] mt-2 leading-relaxed">
                 Struggling students are never publicly exposed or ranked. Reassurance appears privately on their screen.
               </p>
             </div>
           </div>
 
-          <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex flex-col justify-between">
+          <div className="p-6 rounded-[18px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-col justify-between">
             <div>
-              <div className="w-8 h-8 rounded-lg bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 mb-4">
+              <div className="w-8 h-8 rounded-[8px] bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] flex items-center justify-center text-[var(--text-secondary)] mb-4">
                 <UserCheck className="w-4 h-4" />
               </div>
-              <h4 className="text-sm font-semibold text-white">Human Teacher Action</h4>
-              <p className="text-xs text-zinc-400 mt-2 leading-relaxed">
+              <h4 className="text-sm font-semibold text-[var(--text-primary)]">Human Teacher Action</h4>
+              <p className="text-xs text-[var(--text-muted)] mt-2 leading-relaxed">
                 Teachers receive actionable triage alerts with student context to conduct targeted 1-on-1 check-ins.
               </p>
             </div>
           </div>
 
-          <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06] flex flex-col justify-between">
+          <div className="p-6 rounded-[18px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-col justify-between">
             <div>
-              <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-4">
+              <div className="w-8 h-8 rounded-[8px] bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] flex items-center justify-center text-[var(--text-secondary)] mb-4">
                 <Clock className="w-4 h-4" />
               </div>
-              <h4 className="text-sm font-semibold text-white">Institutional Accountability</h4>
-              <p className="text-xs text-zinc-400 mt-2 leading-relaxed">
+              <h4 className="text-sm font-semibold text-[var(--text-primary)]">Institutional Accountability</h4>
+              <p className="text-xs text-[var(--text-muted)] mt-2 leading-relaxed">
                 Admins monitor aggregate escalation counts and age thresholds so no student request remains unaddressed.
               </p>
             </div>

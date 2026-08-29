@@ -4,6 +4,8 @@ import React, { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { RefreshCw, Maximize2, ArrowUpRight } from "lucide-react";
 import { SparkMotif } from "./motifs/SparkMotif";
+import { LiveIframe } from "./ui/LiveIframe";
+import { StaggeredWords, ScrollHighlightWord } from "./ui/TextReveal";
 
 const EASING = [0.22, 1, 0.36, 1] as const;
 
@@ -34,13 +36,7 @@ export function BranchingPathSection() {
     >
       <div className="max-w-7xl mx-auto flex flex-col items-center">
         {/* Section Headline */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: EASING }}
-          className="text-center max-w-3xl mb-12 sm:mb-16"
-        >
+        <div className="text-center max-w-3xl mb-12 sm:mb-16">
           <div className="flex items-center justify-center gap-2 mb-3">
             <span className="text-xs font-semibold text-[var(--brand-text)]">
               The Signature Branch
@@ -48,12 +44,20 @@ export function BranchingPathSection() {
             <SparkMotif size={16} />
           </div>
 
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-display font-bold tracking-tight text-[var(--text-primary)]">
-            One shared question. <br />
-            <span className="text-[var(--text-secondary)]">Two real, divergent paths.</span>
-          </h2>
+          <StaggeredWords
+            as="h2"
+            text="One shared question. Two real, divergent paths."
+            highlightWords={["divergent", "paths."]}
+            highlightColor="var(--brand-text)"
+            className="text-3xl sm:text-5xl md:text-6xl font-display font-bold tracking-tight text-[var(--text-primary)]"
+          />
+
           <p className="mt-4 text-base sm:text-lg text-[var(--text-secondary)] max-w-2xl mx-auto">
-            When understanding falters, the interface dynamically constructs a scaffold ladder. When mastery is instant, it accelerates. Real production UI embedded live below.
+            When understanding falters, the interface dynamically constructs a{" "}
+            <ScrollHighlightWord targetColor="var(--brand-text)">scaffold ladder</ScrollHighlightWord>.
+            When mastery is instant, it accelerates into{" "}
+            <ScrollHighlightWord targetColor="var(--teal-text)">uninhibited velocity</ScrollHighlightWord>.
+            Real production UI embedded live below.
           </p>
 
           {/* View Mode Controls */}
@@ -82,14 +86,14 @@ export function BranchingPathSection() {
               onClick={() => setActiveTab("mastery")}
               className={`px-4 py-1.5 rounded-[8px] text-xs font-medium transition-all duration-200 ${
                 activeTab === "mastery"
-                  ? "bg-[var(--brand-subtle)] text-[var(--brand-highlight)] border border-[var(--brand-border)]"
+                  ? "bg-[var(--teal-subtle)] text-[var(--teal-text)] border border-[var(--teal-border)]"
                   : "text-[var(--text-muted)] hover:text-[var(--text-primary)]"
               }`}
             >
               Mastery Velocity Path
             </button>
           </div>
-        </motion.div>
+        </div>
 
         {/* Scroll-Linked Origin Node & Connecting Path Motif */}
         <motion.div
@@ -168,17 +172,13 @@ export function BranchingPathSection() {
                 </div>
               </div>
 
-              {/* Real Live Iframe Container */}
-              <div className="relative w-full h-[520px] bg-[var(--bg-canvas)]">
-                <iframe
-                  key={scaffoldKey}
-                  src={scaffoldUrl}
-                  title="Live Demo - Scaffold Ladder Mode"
-                  className="w-full h-full border-0"
-                  sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
-                  loading="lazy"
-                />
-              </div>
+              {/* Real Live Iframe Container with graceful loading & fallback */}
+              <LiveIframe
+                src={scaffoldUrl}
+                title="Live Demo - Scaffold Ladder Mode"
+                reloadKey={scaffoldKey}
+                height="h-[520px]"
+              />
 
               {/* Shell Footer Notes */}
               <div className="p-4 bg-[var(--bg-surface-elevated)] border-t border-[var(--border-subtle)] flex items-center justify-between text-xs text-[var(--text-secondary)]">
@@ -215,8 +215,8 @@ export function BranchingPathSection() {
                     <span className="text-xs font-semibold text-[var(--text-primary)]">
                       Path B: Advanced Student
                     </span>
-                    <span className="text-xs text-[var(--text-muted)] ml-2">
-                      (Mastery Flow)
+                    <span className="text-xs text-[var(--teal-text)] font-medium ml-2">
+                      (Mastery Flow · Reserved Arrival)
                     </span>
                   </div>
                 </div>
@@ -241,17 +241,13 @@ export function BranchingPathSection() {
                 </div>
               </div>
 
-              {/* Real Live Iframe Container */}
-              <div className="relative w-full h-[520px] bg-[var(--bg-canvas)]">
-                <iframe
-                  key={masteryKey}
-                  src={masteryUrl}
-                  title="Live Demo - Mastery Flow Mode"
-                  className="w-full h-full border-0"
-                  sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
-                  loading="lazy"
-                />
-              </div>
+              {/* Real Live Iframe Container with graceful loading & fallback */}
+              <LiveIframe
+                src={masteryUrl}
+                title="Live Demo - Mastery Flow Mode"
+                reloadKey={masteryKey}
+                height="h-[520px]"
+              />
 
               {/* Shell Footer Notes */}
               <div className="p-4 bg-[var(--bg-surface-elevated)] border-t border-[var(--border-subtle)] flex items-center justify-between text-xs text-[var(--text-secondary)]">
@@ -260,7 +256,7 @@ export function BranchingPathSection() {
                   href={masteryUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[var(--brand-text)] hover:text-[var(--brand-highlight)] font-medium inline-flex items-center gap-1"
+                  className="text-[var(--teal-text)] hover:text-white font-medium inline-flex items-center gap-1"
                 >
                   <span>Open directly</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />

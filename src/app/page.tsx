@@ -11,11 +11,9 @@ import { OriginsSection } from "@/components/OriginsSection";
 import { ConversionSection } from "@/components/ConversionSection";
 import { Footer } from "@/components/Footer";
 import { SectionConnectingPath } from "@/components/motifs/PathMotif";
-import { SparkMotif } from "@/components/motifs/SparkMotif";
+import { StaggeredWords, ScrollHighlightWord } from "@/components/ui/TextReveal";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
-
-const EASING = [0.22, 1, 0.36, 1];
+import { ArrowDown, ArrowUpRight, Layers, CheckCircle2 } from "lucide-react";
 
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -35,37 +33,40 @@ export default function Home() {
       {/* Hero Section — Clean, Bold, Restrained */}
       <section
         ref={heroRef}
-        className="relative min-h-[85vh] sm:min-h-[90vh] flex flex-col items-center justify-center px-6 pt-24 text-center border-b border-[var(--border-subtle)]"
+        className="relative min-h-[90vh] flex flex-col items-center justify-center px-6 pt-24 text-center border-b border-[var(--border-subtle)]"
       >
         <motion.div
           style={{ scale: heroScale, opacity: heroOpacity }}
           className="max-w-4xl flex flex-col items-center z-10"
         >
-          {/* Subtle Product Category Indicator */}
+          {/* Subtle Category Pill */}
           <div className="flex items-center gap-2 px-3 py-1 rounded-[14px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] mb-8">
             <span className="w-2 h-2 rounded-full bg-[var(--brand-base)]" />
-            <span className="text-xs font-medium text-[var(--text-secondary)]">
+            <span className="text-xs font-semibold text-[var(--text-secondary)]">
               Adaptive Learning Architecture
             </span>
           </div>
 
-          <h1 className="text-5xl sm:text-7xl md:text-8xl font-display font-bold tracking-tight text-[var(--text-primary)] leading-[1.05]">
-            One curriculum. <br />
-            <span className="text-[var(--text-secondary)]">
-              Every student’s real pace.
-            </span>
-          </h1>
+          {/* Staggered Word Headline */}
+          <StaggeredWords
+            as="h1"
+            text="One curriculum. Every student’s real pace."
+            highlightWords={["student’s", "real", "pace."]}
+            highlightColor="var(--text-secondary)"
+            className="text-5xl sm:text-7xl md:text-8xl font-display font-bold tracking-tight text-[var(--text-primary)] leading-[1.05]"
+          />
 
           <p className="mt-6 text-lg sm:text-xl text-[var(--text-secondary)] max-w-2xl font-normal leading-relaxed">
             A real-time intelligence layer that adapts to cognitive struggle and emotional distress. No gamification. No one-size-fits-all.
           </p>
 
+          {/* Primary Action Row */}
           <div className="mt-10 flex flex-col sm:flex-row items-center gap-4">
             <a
               href="https://demo.escolent.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 px-8 py-3.5 text-sm font-semibold rounded-[14px] text-white bg-[var(--brand-base)] hover:bg-[var(--brand-hover)] border border-[var(--brand-border)] shadow-md transition-all duration-200"
+              className="group inline-flex items-center gap-2 px-8 py-3.5 text-sm font-semibold rounded-[14px] text-white bg-[var(--brand-base)] hover:bg-[var(--brand-hover)] border border-[var(--brand-border-strong)] shadow-md transition-all duration-200"
             >
               <span>Experience Live Demo</span>
               <ArrowUpRight className="w-4 h-4 text-white/80 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -78,6 +79,21 @@ export default function Home() {
               <span>Explore the proof</span>
               <ArrowDown className="w-4 h-4" />
             </a>
+          </div>
+
+          {/* Prominent LMS Objection Killer Highlight */}
+          <div className="mt-12 inline-flex flex-wrap items-center justify-center gap-x-4 gap-y-2 px-4 py-2 rounded-[14px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] text-xs text-[var(--text-secondary)]">
+            <span className="flex items-center gap-1.5 font-semibold text-[var(--text-primary)]">
+              <Layers className="w-3.5 h-3.5 text-[var(--brand-text)]" />
+              Runs inside the LMS you already use:
+            </span>
+            <span className="text-[var(--text-muted)]">Canvas</span>
+            <span className="text-[var(--border-strong)]">·</span>
+            <span className="text-[var(--text-muted)]">Google Classroom</span>
+            <span className="text-[var(--border-strong)]">·</span>
+            <span className="text-[var(--text-muted)]">Moodle</span>
+            <span className="text-[var(--border-strong)]">·</span>
+            <span className="text-[var(--text-muted)]">D2L Brightspace</span>
           </div>
         </motion.div>
       </section>

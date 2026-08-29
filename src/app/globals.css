@@ -1,41 +1,68 @@
 @import "tailwindcss";
 
 :root {
-  /* Brand Core - oklch(48.8% 0.217 264.4) */
+  /* =========================================================================
+     1. THE BRAND BLUE (Primary & Universal Accent)
+     oklch(48.8% 0.217 264.4) — Single hue across entire interface
+     ========================================================================= */
   --brand-base: oklch(48.8% 0.217 264.4);
   --brand-hover: oklch(44% 0.22 264.4);
-  --brand-subtle: oklch(48.8% 0.217 264.4 / 0.14);
-  --brand-border: oklch(48.8% 0.217 264.4 / 0.32);
+  --brand-subtle: oklch(48.8% 0.217 264.4 / 0.12);
+  --brand-border: oklch(48.8% 0.217 264.4 / 0.28);
+  --brand-border-strong: oklch(48.8% 0.217 264.4 / 0.55);
   --brand-strong: oklch(56% 0.22 264.4);
   
-  /* Legible Dark-on-Light / Light-on-Dark Brand Derivatives (same 264.4 hue) */
-  --brand-text: oklch(78% 0.14 264.4);
+  /* Legible Light-on-Dark Brand Derivatives (same 264.4° hue) */
+  --brand-text: oklch(76% 0.14 264.4);
   --brand-highlight: oklch(88% 0.09 264.4);
 
-  /* Deep Canvas & Layered Surfaces */
-  --bg-canvas: oklch(11% 0.01 264.4);
-  --bg-surface: oklch(14.5% 0.012 264.4);
-  --bg-surface-elevated: oklch(18.5% 0.015 264.4);
-  --bg-surface-highlight: oklch(22.5% 0.018 264.4);
+  /* =========================================================================
+     2. RESERVED ACHIEVEMENT-TEAL ACCENT (Hue 215)
+     Strictly reserved for genuine mastery / arrival moments
+     ========================================================================= */
+  --teal-accent: oklch(62% 0.16 215);
+  --teal-subtle: oklch(62% 0.16 215 / 0.12);
+  --teal-border: oklch(62% 0.16 215 / 0.3);
+  --teal-text: oklch(80% 0.12 215);
+
+  /* =========================================================================
+     3. RESERVED ESCALATION RED (Hue 25)
+     Strictly reserved for the Safety Net / distress detection feature
+     ========================================================================= */
+  --escalation-red: oklch(55% 0.22 25);
+  --escalation-subtle: oklch(55% 0.22 25 / 0.12);
+  --escalation-border: oklch(55% 0.22 25 / 0.3);
+  --escalation-text: oklch(76% 0.16 25);
+
+  /* =========================================================================
+     4. PURE MONOCHROMATIC NEUTRALS (Deep Canvas & Layered Surfaces)
+     No chromatic tinting — pure precision contrast
+     ========================================================================= */
+  --bg-canvas: oklch(11% 0.005 264.4);
+  --bg-surface: oklch(14.5% 0.008 264.4);
+  --bg-surface-elevated: oklch(18.5% 0.01 264.4);
+  --bg-surface-highlight: oklch(23% 0.012 264.4);
 
   /* Structural Borders */
-  --border-subtle: oklch(23% 0.014 264.4);
-  --border-medium: oklch(30% 0.018 264.4);
-  --border-strong: oklch(40% 0.022 264.4);
+  --border-subtle: oklch(22% 0.008 264.4);
+  --border-medium: oklch(29% 0.01 264.4);
+  --border-strong: oklch(40% 0.014 264.4);
 
-  /* Typography Scale */
-  --text-primary: oklch(96% 0.005 264.4);
-  --text-secondary: oklch(76% 0.01 264.4);
-  --text-muted: oklch(54% 0.01 264.4);
+  /* Monochromatic Text Scale */
+  --text-primary: oklch(96% 0.004 264.4);
+  --text-secondary: oklch(72% 0.008 264.4);
+  --text-muted: oklch(48% 0.008 264.4);
 
-  /* Differentiated Radius Scale (8/14/18/22/26) */
+  /* =========================================================================
+     5. DIFFERENTIATED RADIUS SCALE (8 / 14 / 18 / 22 / 26 px)
+     ========================================================================= */
   --radius-xs: 8px;
   --radius-controls: 14px;
   --radius-shells: 18px;
   --radius-cards: 22px;
   --radius-modals: 26px;
 
-  /* Standard Motion Physics */
+  /* Product Motion Easing */
   --ease-product: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -75,7 +102,7 @@ body {
   background: var(--border-strong);
 }
 
-/* Precision Surface Classes - No blurry soup, structured crisp depth */
+/* Solid Structured Surfaces */
 .surface-card {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-subtle);
@@ -87,7 +114,7 @@ body {
   background-color: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-cards);
-  transition: border-color 0.25s var(--ease-product), background-color 0.25s var(--ease-product), box-shadow 0.25s var(--ease-product);
+  transition: border-color 0.25s var(--ease-product), background-color 0.25s var(--ease-product);
 }
 .surface-card-interactive:hover {
   border-color: var(--border-strong);
@@ -98,14 +125,4 @@ body {
   background-color: var(--bg-surface-elevated);
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-shells);
-}
-
-.surface-control {
-  border-radius: var(--radius-controls);
-  transition: all 0.2s var(--ease-product);
-}
-
-/* Subtle architectural alignment guide (no blur blobs) */
-.guide-line {
-  background-image: linear-gradient(to bottom, var(--border-subtle) 0%, transparent 100%);
 }
