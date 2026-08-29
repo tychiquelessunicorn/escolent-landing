@@ -12,7 +12,10 @@ import {
   Shield,
   FileCheck,
   CheckCircle2,
-  Sparkles,
+  Lock,
+  BarChart3,
+  Users,
+  EyeOff,
 } from "lucide-react";
 import { LiveIframe } from "./ui/LiveIframe";
 import { StaggeredWords, ScrollHighlightWord } from "./ui/TextReveal";
@@ -38,7 +41,7 @@ const steps: RoleStep[] = [
       "When a student clicks 'I need help' or enters concerning language in free-form input, the system logs a confidential request and displays an immediate, reassuring message on her screen.",
     timingTruth: "Instant reassurance on the student device; logged securely to backend.",
     privacyBoundary: "100% private between the student and her assigned teacher. No peer visibility.",
-    iframeUrl: "https://demo.escolent.com/student/today?demo=1",
+    iframeUrl: "https://demo.escolent.com/student/today?embed=1",
   },
   {
     id: "teacher",
@@ -49,7 +52,7 @@ const steps: RoleStep[] = [
       "Surfaces exactly what needs attention today — not a dense dashboard to dig through, but a focused triage queue. Teachers spend less time manually checking homework and more time giving direct 1-on-1 support to students who need it.",
     timingTruth: "Queue polls the server every 15–20 seconds to balance freshness with network efficiency.",
     privacyBoundary: "Visible only to verified educators responsible for that classroom.",
-    iframeUrl: "https://demo.escolent.com/teacher/escalations?demo=1",
+    iframeUrl: "https://demo.escolent.com/teacher/escalations?embed=1",
   },
   {
     id: "admin",
@@ -60,7 +63,7 @@ const steps: RoleStep[] = [
       "School leadership sees high-level aggregate indicators: total active escalations and response times (e.g. unresolved items past 30 minutes) to ensure no child slips through the cracks.",
     timingTruth: "Aggregated oversight compiled for daily briefings; strict data policies enforced.",
     privacyBoundary: "Zero access to private student notes — leadership sees counts, not personal transcripts.",
-    iframeUrl: "https://demo.escolent.com/admin/briefing?demo=1",
+    iframeUrl: "https://demo.escolent.com/admin/briefing?embed=1",
   },
 ];
 
@@ -238,45 +241,56 @@ export function ThreeRolesSection() {
           </div>
         </div>
 
-        {/* Teacher Workload Relief & Data Governance Dual Cards */}
-        <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Card 1: Teacher Time Savings */}
-          <div className="p-6 sm:p-7 rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-col justify-between">
-            <div className="flex items-start gap-3.5">
-              <div className="w-9 h-9 rounded-[10px] bg-[var(--brand-subtle)] border border-[var(--brand-border)] flex items-center justify-center text-[var(--brand-text)] shrink-0 mt-0.5">
-                <Clock className="w-5 h-5" />
+        {/* Dedicated Admin & Institutional Oversight Grid */}
+        <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+          <div className="p-5 sm:p-6 rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-col justify-between">
+            <div>
+              <div className="w-8 h-8 rounded-[10px] bg-[var(--brand-subtle)] border border-[var(--brand-border)] flex items-center justify-center text-[var(--brand-text)] mb-3">
+                <BarChart3 className="w-4 h-4" />
               </div>
-              <div>
-                <h4 className="text-sm font-semibold text-[var(--text-primary)]">
-                  Genuine Relief from Manual Workload
-                </h4>
-                <p className="text-xs text-[var(--text-secondary)] mt-2 leading-relaxed">
-                  The system handles real-time scaffolding and diagnostic tracking automatically. A teacher's daily briefing surfaces the exact students and questions that need follow-up today — eliminating manual grading and freeing up hours for direct human connection.
-                </p>
-              </div>
+              <h4 className="text-sm font-semibold text-[var(--text-primary)]">
+                School-Wide Cohort Health
+              </h4>
+              <p className="text-xs text-[var(--text-secondary)] mt-2 leading-relaxed">
+                Aggregates mastery progression and unresolved support queues across all Spaces, giving principals objective clarity without digging into classroom micromanagement.
+              </p>
             </div>
-            <div className="mt-5 pt-3.5 border-t border-[var(--border-subtle)] text-[11px] text-[var(--brand-text)] font-medium">
-              Less administrative overhead · More 1-on-1 teaching time
+            <div className="mt-4 pt-3 border-t border-[var(--border-subtle)] text-[11px] text-[var(--text-muted)]">
+              High-level cohort distribution metrics
             </div>
           </div>
 
-          {/* Card 2: Institutional Data Governance */}
-          <div className="p-6 sm:p-7 rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-col justify-between">
-            <div className="flex items-start gap-3.5">
-              <div className="w-9 h-9 rounded-[10px] bg-[var(--bg-surface-elevated)] border border-[var(--border-medium)] flex items-center justify-center text-[var(--brand-text)] shrink-0 mt-0.5">
-                <FileCheck className="w-5 h-5" />
+          <div className="p-5 sm:p-6 rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-col justify-between">
+            <div>
+              <div className="w-8 h-8 rounded-[10px] bg-[var(--brand-subtle)] border border-[var(--brand-border)] flex items-center justify-center text-[var(--brand-text)] mb-3">
+                <EyeOff className="w-4 h-4" />
               </div>
-              <div>
-                <h4 className="text-sm font-semibold text-[var(--text-primary)]">
-                  Strict Institutional Data Governance
-                </h4>
-                <p className="text-xs text-[var(--text-secondary)] mt-2 leading-relaxed">
-                  School data is strictly governed with an enforced 72-hour hold and explicit written confirmation required before any student records can be permanently deleted. Access controls are mathematically enforced at the database level.
-                </p>
-              </div>
+              <h4 className="text-sm font-semibold text-[var(--text-primary)]">
+                Student Privacy by Design
+              </h4>
+              <p className="text-xs text-[var(--text-secondary)] mt-2 leading-relaxed">
+                School leadership views aggregate indicators (such as escalations past 30 minutes) but cannot view confidential private messages between a child and their teacher.
+              </p>
             </div>
-            <div className="mt-5 pt-3.5 border-t border-[var(--border-subtle)] text-[11px] text-[var(--text-secondary)] font-medium">
-              Enforced 72-hour hold on all student record deletions
+            <div className="mt-4 pt-3 border-t border-[var(--border-subtle)] text-[11px] text-[var(--text-muted)]">
+              Strict boundary between oversight and private dialogue
+            </div>
+          </div>
+
+          <div className="p-5 sm:p-6 rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-col justify-between">
+            <div>
+              <div className="w-8 h-8 rounded-[10px] bg-[var(--brand-subtle)] border border-[var(--brand-border)] flex items-center justify-center text-[var(--brand-text)] mb-3">
+                <FileCheck className="w-4 h-4" />
+              </div>
+              <h4 className="text-sm font-semibold text-[var(--text-primary)]">
+                Enforced 72-Hour Data Hold
+              </h4>
+              <p className="text-xs text-[var(--text-secondary)] mt-2 leading-relaxed">
+                All record deletions require explicit written confirmation and trigger an enforced 72-hour hold period. Access controls are mathematically enforced at the database level.
+              </p>
+            </div>
+            <div className="mt-4 pt-3 border-t border-[var(--border-subtle)] text-[11px] text-[var(--text-muted)]">
+              Audited data-governance policy
             </div>
           </div>
         </div>

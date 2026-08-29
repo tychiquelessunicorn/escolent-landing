@@ -73,11 +73,11 @@ export function ConversionSection() {
               Every term a struggling or quietly disengaged student goes unnoticed is a term further behind.
             </h3>
             <p className="text-xs text-[var(--text-secondary)] leading-relaxed max-w-2xl">
-              Foundational math and science understanding is cumulative. Gaps in early algebra don't fix themselves over time — they compound into quiet disengagement. Bringing Escolent to your classroom gives every child immediate, personalized scaffolding before small confusions become permanent setbacks.
+              Foundational understanding is cumulative. Gaps in prerequisite skills don't fix themselves over time — they compound into quiet disengagement. Bringing Escolent to your classrooms gives every student immediate, personalized scaffolding before small confusions become permanent setbacks.
             </p>
           </div>
           <a
-            href="https://demo.escolent.com"
+            href="https://demo.escolent.com?embed=1"
             target="_blank"
             rel="noopener noreferrer"
             className="shrink-0 px-5 py-2.5 rounded-[14px] bg-[var(--bg-surface-elevated)] hover:bg-[var(--border-strong)] border border-[var(--border-medium)] text-[var(--text-primary)] font-semibold text-xs transition-colors flex items-center gap-1.5 self-start sm:self-center"
@@ -91,7 +91,7 @@ export function ConversionSection() {
         <div className="w-full rounded-[26px] p-8 sm:p-12 bg-[var(--bg-surface)] border border-[var(--brand-border)] shadow-2xl relative mb-12">
           <div className="flex flex-col items-center">
             <a
-              href="https://demo.escolent.com"
+              href="https://demo.escolent.com?embed=1"
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-3 px-8 py-4 sm:px-10 sm:py-5 text-base sm:text-lg font-semibold rounded-[14px] text-white bg-[var(--brand-base)] hover:bg-[var(--brand-hover)] border border-[var(--brand-border-strong)] shadow-lg transition-all duration-200"
@@ -107,7 +107,7 @@ export function ConversionSection() {
             {/* Direct Shell Jump Grid */}
             <div className="mt-8 pt-6 border-t border-[var(--border-subtle)] w-full grid grid-cols-1 sm:grid-cols-3 gap-3">
               <a
-                href="https://demo.escolent.com/student/today?demo=1"
+                href="https://demo.escolent.com/student/today?embed=1"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3.5 rounded-[14px] bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] hover:border-[var(--brand-border)] flex items-center justify-between text-xs text-[var(--text-secondary)] transition-colors"
@@ -120,7 +120,7 @@ export function ConversionSection() {
               </a>
 
               <a
-                href="https://demo.escolent.com/teacher/escalations?demo=1"
+                href="https://demo.escolent.com/teacher/escalations?embed=1"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3.5 rounded-[14px] bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] hover:border-[var(--brand-border)] flex items-center justify-between text-xs text-[var(--text-secondary)] transition-colors"
@@ -133,7 +133,7 @@ export function ConversionSection() {
               </a>
 
               <a
-                href="https://demo.escolent.com/admin/briefing?demo=1"
+                href="https://demo.escolent.com/admin/briefing?embed=1"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3.5 rounded-[14px] bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] hover:border-[var(--brand-border)] flex items-center justify-between text-xs text-[var(--text-secondary)] transition-colors"
@@ -160,10 +160,10 @@ export function ConversionSection() {
                 </span>
               </div>
               <h3 className="text-lg font-display font-semibold text-[var(--text-primary)]">
-                Get Quarterly Pilot Briefings
+                Get Quarterly Educational Briefings
               </h3>
               <p className="text-xs text-[var(--text-secondary)] mt-2 leading-relaxed">
-                Receive quarterly updates on school pilot milestones, curriculum additions, and learning outcomes.
+                Receive quarterly updates on diagnostic research milestones, curriculum additions, and learning outcomes.
               </p>
 
               {/* Form */}
@@ -171,7 +171,7 @@ export function ConversionSection() {
                 {submitted ? (
                   <div className="p-4 rounded-[14px] bg-[var(--brand-subtle)] border border-[var(--brand-border)] flex items-center gap-3 text-xs text-[var(--brand-highlight)]">
                     <CheckCircle2 className="w-4 h-4 text-[var(--brand-text)] shrink-0" />
-                    <span>Your email has been added to our pilot briefing list.</span>
+                    <span>Your email has been added to our educational briefing list.</span>
                   </div>
                 ) : (
                   <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-2">
@@ -197,7 +197,7 @@ export function ConversionSection() {
 
             <div className="mt-6 pt-4 border-t border-[var(--border-subtle)] text-[11px] text-[var(--text-muted)] flex items-center gap-1.5">
               <Lock className="w-3.5 h-3.5 text-[var(--text-muted)]" />
-              <span>Zero marketing spam. Strictly quarterly pilot briefings.</span>
+              <span>Zero marketing spam. Strictly quarterly educational briefings.</span>
             </div>
           </div>
 
@@ -214,7 +214,7 @@ export function ConversionSection() {
                 Schedule a 20-Minute School Walkthrough
               </h3>
               <p className="text-xs text-[var(--text-secondary)] mt-2 leading-relaxed">
-                For principals, department heads, and academic directors exploring cohort pilot integration for Grade 7–12.
+                For principals, department heads, and academic directors exploring classroom integration for their curriculum.
               </p>
 
               {/* Friction-Free Call Breakdown */}

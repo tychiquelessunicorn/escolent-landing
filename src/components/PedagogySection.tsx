@@ -17,6 +17,8 @@ import {
   Maximize2,
   RefreshCw,
   ArrowUpRight,
+  Scale,
+  GitBranch,
 } from "lucide-react";
 import { StaggeredWords, ScrollHighlightWord } from "./ui/TextReveal";
 import { LiveIframe } from "./ui/LiveIframe";
@@ -30,7 +32,7 @@ const ladderSteps = [
     explanation:
       "Shows the entire problem solved cleanly from start to finish, explaining why each step was taken so the student sees the full picture.",
     studentViewText:
-      "Example: Factorise 3x² + 8x + 4 → We find two numbers multiplying to 12 and adding to 8 (6 and 2). We split the middle term: 3x² + 6x + 2x + 4 = 3x(x + 2) + 2(x + 2) = (3x + 2)(x + 2).",
+      "Example: Solve for x: 4x + 7 = x + 19 → Subtract x from both sides: 3x + 7 = 19. Subtract 7: 3x = 12. Divide by 3: x = 4. Check: 4(4) + 7 = 23, (4) + 19 = 23 (Balanced).",
   },
   {
     step: "2",
@@ -40,7 +42,7 @@ const ladderSteps = [
     explanation:
       "Breaks the problem down into a single micro-step so the student doesn't have to carry the whole problem in their head at once.",
     studentViewText:
-      "Let's do just the first step together: For 2x² + 7x + 3, what is the product of the first and last numbers (2 × 3)? Enter that number below.",
+      "Let's take the first step together on 5x + 3 = 2x + 18. Subtract 2x from both sides to collect variable terms on the left. What is (5x - 2x)? Enter below.",
   },
   {
     step: "3",
@@ -50,47 +52,47 @@ const ladderSteps = [
     explanation:
       "Gives a gentle nudge pointing to the core rule without revealing the answer, letting the student discover the solution on their own.",
     studentViewText:
-      "Hint: Look at the middle term (+7x). Which two factors of 6 add up to exactly 7? Think about 6 and 1.",
+      "Hint: After collecting variables on the left (3x + 3 = 18), look at the constant (+3). What inverse operation undoes adding 3?",
   },
   {
     step: "4",
     title: "Try Alone",
-    stageName: "Step 4 · Independent Mastery",
+    stageName: "Step 4 · Independent Practice",
     badge: "Independent Practice",
     explanation:
       "Gives the student a fresh, parallel problem to solve independently with newfound confidence, confirming real understanding.",
     studentViewText:
-      "Now try factorising 2x² + 5x + 2 on your own. Enter your final factors in the brackets: ( _ + _ )( _ + _ ).",
+      "Now try solving a parallel problem on your own: Solve for x: 6x + 5 = 2x + 29. Enter your final value: x = [   ].",
   },
 ];
 
 const explanationModes = [
   {
     id: "visual",
-    title: "Visual Area Model",
-    badge: "For Visual Learners",
-    conceptTitle: "Splitting a rectangle into proportional blocks",
+    title: "Visual Balance Scale",
+    badge: "For Visual Thinkers",
+    conceptTitle: "Keeping both sides level like a physical scale",
     description:
-      "Shows a rectangle with total area 2x² + 7x + 3. The student sees 2x² in the top-left, 3 in the bottom-right, and the 7x split into 6x and 1x blocks, revealing dimensions (2x + 1) and (x + 3).",
-    graphicLabel: "Area: (2x + 1) × (x + 3) = 2x² + 7x + 3",
+      "Shows the equals sign as a balanced scale with 5 bags of x and 3 weights on the left, and 2 bags of x and 18 weights on the right. Removing 2 bags from both pans leaves 3x + 3 = 18 in perfect balance.",
+    graphicLabel: "Left Pan: 5x + 3  ⚖️  Right Pan: 2x + 18  →  Remove 2x from both pans",
   },
   {
     id: "algebraic",
-    title: "Step-by-Step Factoring",
+    title: "Symmetric Inverse Operations",
     badge: "For Structural Thinkers",
-    conceptTitle: "Finding factor pairs and grouping terms",
+    conceptTitle: "Applying matching operations to both sides",
     description:
-      "Guides the student to find two numbers that multiply to ac (2 × 3 = 6) and add to b (7). Re-writing 7x as 6x + x allows grouping: 2x(x + 3) + 1(x + 3) = (2x + 1)(x + 3).",
-    graphicLabel: "Product: 6 | Sum: 7 → Factors are 6 and 1",
+      "Breaks down equation solving into inverse pairings: subtraction undoes addition (-2x on both sides), and division undoes multiplication (÷3 on both sides), maintaining mathematical balance at each line.",
+    graphicLabel: "5x + 3 - 2x = 2x + 18 - 2x  →  3x + 3 = 18",
   },
   {
     id: "intuitive",
-    title: "Applied Context",
+    title: "Applied Rate Comparison",
     badge: "For Practical Intuition",
-    conceptTitle: "Thinking through physical combinations",
+    conceptTitle: "Finding when two growing quantities equal",
     description:
-      "Frames the algebra as designing modular garden plots or tile borders, explaining why multiplying side lengths produces the combined area formula.",
-    graphicLabel: "Connecting physical dimensions to quadratic terms",
+      "Frames the problem as two rates: Account A starts with $3 and gains $5/week; Account B starts with $18 and gains $2/week. Solving for x finds the exact week they hold identical totals.",
+    graphicLabel: "Growth A: 5x + 3  |  Growth B: 2x + 18  →  Equal at x = 5",
   },
 ];
 
@@ -98,7 +100,6 @@ export function PedagogySection() {
   const [activeTab, setActiveTab] = useState<"ladder" | "explanations">("ladder");
   const [activeLadderStep, setActiveLadderStep] = useState(0);
   const [activeExplanation, setActiveExplanation] = useState(0);
-  const [frameKey, setFrameKey] = useState(0);
 
   const currentStep = ladderSteps[activeLadderStep];
   const currentExp = explanationModes[activeExplanation];
@@ -239,7 +240,7 @@ export function PedagogySection() {
                   Traditional apps simply display a red cross and deduct points. Escolent steps down the difficulty ladder to protect confidence and build real mastery.
                 </span>
                 <a
-                  href="https://demo.escolent.com/student/practice?demo=1&problemDemo=wrong_answer_scaffold"
+                  href="https://demo.escolent.com/student/practice?embed=1&problemDemo=wrong_answer_scaffold"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[var(--brand-text)] hover:text-[var(--brand-highlight)] font-semibold inline-flex items-center gap-1 shrink-0"
@@ -318,7 +319,7 @@ export function PedagogySection() {
                   When a student is confused, repeating the exact same sentence doesn't help. Escolent pivots to a completely different explanation style.
                 </span>
                 <a
-                  href="https://demo.escolent.com/student/practice?demo=1"
+                  href="https://demo.escolent.com/student/practice?embed=1"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[var(--brand-text)] hover:text-[var(--brand-highlight)] font-semibold inline-flex items-center gap-1 shrink-0 ml-4"

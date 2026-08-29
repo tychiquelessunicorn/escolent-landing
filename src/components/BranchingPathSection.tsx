@@ -25,8 +25,8 @@ export function BranchingPathSection() {
   const forkLineProgress = useTransform(scrollYProgress, [0.1, 0.35], [0, 1]);
   const originOpacity = useTransform(scrollYProgress, [0.05, 0.25], [0, 1]);
 
-  const scaffoldUrl = "https://demo.escolent.com/student/practice?demo=1&problemDemo=wrong_answer_scaffold";
-  const masteryUrl = "https://demo.escolent.com/student/practice?demo=1";
+  const scaffoldUrl = "https://demo.escolent.com/student/practice?embed=1&problemDemo=wrong_answer_scaffold";
+  const masteryUrl = "https://demo.escolent.com/student/practice?embed=1";
 
   return (
     <section
@@ -102,10 +102,10 @@ export function BranchingPathSection() {
         >
           <div className="p-4 rounded-[18px] bg-[var(--bg-surface)] border border-[var(--border-medium)] relative">
             <div className="text-xs font-semibold text-[var(--text-muted)] mb-1">
-              Common Starting Point · Grade 8 Algebra
+              Common Starting Point · Multi-Step Linear Equation
             </div>
             <p className="text-sm sm:text-base font-display font-medium text-[var(--text-primary)]">
-              Problem: Factorise <span className="text-[var(--brand-highlight)] font-semibold">2x² + 7x + 3</span>
+              Problem: Solve for x: <span className="text-[var(--brand-highlight)] font-semibold">5x + 3 = 2x + 18</span>
             </p>
           </div>
 

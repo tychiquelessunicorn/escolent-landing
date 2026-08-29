@@ -130,7 +130,7 @@ export function SafetyNetSection() {
                     }`}
                   />
                 </div>
-                <div className="text-[11px] text-[var(--escalation-text)] font-medium">
+                <div className="text-[11px] text-[var(--text-secondary)] font-medium">
                   {c.humanMeaning}
                 </div>
               </button>
@@ -196,7 +196,7 @@ export function SafetyNetSection() {
                 <span>Zero automated therapy. 100% human teacher triage.</span>
               </div>
               <a
-                href="https://demo.escolent.com/teacher/escalations?demo=1"
+                href="https://demo.escolent.com/teacher/escalations?embed=1"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[var(--brand-text)] hover:text-[var(--brand-highlight)] font-semibold inline-flex items-center gap-1"
@@ -220,11 +220,11 @@ export function SafetyNetSection() {
                 A teacher's professional judgment always overrules the system
               </h3>
               <p className="text-xs text-[var(--text-secondary)] mt-2.5 leading-relaxed">
-                If a teacher knows a student has mastered a concept or needs extra practice despite an algorithm score, the teacher's decision is final. The system permanently records the teacher's reasoning to support their authority — never replacing, second-guessing, or undermining classroom leadership.
+                A teacher can manually mark any skill as mastered or flag it for reconfirmation, with a required written reason and an immutable permanent record. If an educator determines a student is ready to move ahead or needs additional reinforcement, their professional judgment overrules the algorithm every time — supporting teacher authority rather than replacing or second-guessing it.
               </p>
             </div>
             <div className="mt-5 pt-4 border-t border-[var(--border-subtle)] text-[11px] text-[var(--brand-text)] font-medium">
-              Built to support educator authority, not replace it.
+              Concrete override mechanism with permanent audit trail.
             </div>
           </div>
 

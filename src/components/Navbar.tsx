@@ -37,7 +37,7 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-[var(--text-secondary)]">
+        <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-[var(--text-secondary)]">
           <a href="#the-problem" className="hover:text-[var(--text-primary)] transition-colors">
             The Reality
           </a>
@@ -53,18 +53,21 @@ export function Navbar() {
           <a href="#safety-net" className="hover:text-[var(--text-primary)] transition-colors">
             Safety Net
           </a>
+          <a href="#misconceptions" className="hover:text-[var(--text-primary)] transition-colors">
+            Error Detection
+          </a>
           <a href="#philosophy" className="hover:text-[var(--text-primary)] transition-colors">
             Ethical Design
           </a>
           <a href="#origins" className="hover:text-[var(--text-primary)] transition-colors">
-            Origins
+            Infrastructure
           </a>
         </nav>
 
         {/* Live CTA Button */}
         <div className="hidden md:flex items-center gap-4">
           <a
-            href="https://demo.escolent.com"
+            href="https://demo.escolent.com?embed=1"
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-[14px] text-white bg-[var(--brand-base)] hover:bg-[var(--brand-hover)] border border-[var(--brand-border)] shadow-sm transition-all duration-200"
@@ -131,6 +134,13 @@ export function Navbar() {
                 Safety Net
               </a>
               <a
+                href="#misconceptions"
+                onClick={() => setMobileOpen(false)}
+                className="py-2 hover:text-[var(--text-primary)]"
+              >
+                Error Detection
+              </a>
+              <a
                 href="#philosophy"
                 onClick={() => setMobileOpen(false)}
                 className="py-2 hover:text-[var(--text-primary)]"
@@ -142,10 +152,10 @@ export function Navbar() {
                 onClick={() => setMobileOpen(false)}
                 className="py-2 hover:text-[var(--text-primary)]"
               >
-                Origins
+                Infrastructure
               </a>
               <a
-                href="https://demo.escolent.com"
+                href="https://demo.escolent.com?embed=1"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMobileOpen(false)}

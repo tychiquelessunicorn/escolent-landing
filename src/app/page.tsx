@@ -7,6 +7,7 @@ import { BranchingPathSection } from "@/components/BranchingPathSection";
 import { PedagogySection } from "@/components/PedagogySection";
 import { ThreeRolesSection } from "@/components/ThreeRolesSection";
 import { SafetyNetSection } from "@/components/SafetyNetSection";
+import { MisconceptionSection } from "@/components/MisconceptionSection";
 import { EthicalStanceSection } from "@/components/EthicalStanceSection";
 import { OriginsSection } from "@/components/OriginsSection";
 import { ConversionSection } from "@/components/ConversionSection";
@@ -54,7 +55,7 @@ export default function Home() {
             text="One curriculum. Every student’s real pace."
             highlightWords={["student’s", "real", "pace."]}
             highlightColor="var(--text-secondary)"
-            className="text-5xl sm:text-7xl md:text-8xl font-display font-bold tracking-tight text-[var(--text-primary)] leading-[1.05]"
+            className="text-5xl sm:text-7xl md:text-8xl font-display font-bold tracking-tight text-[var(--text-primary)]"
           />
 
           <p className="mt-6 text-lg sm:text-xl text-[var(--text-secondary)] max-w-2xl font-normal leading-relaxed">
@@ -64,7 +65,7 @@ export default function Home() {
           {/* Primary Action Row */}
           <div className="mt-10 flex flex-col sm:flex-row items-center gap-4">
             <a
-              href="https://demo.escolent.com"
+              href="https://demo.escolent.com?embed=1"
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-2 px-8 py-3.5 text-sm font-semibold rounded-[14px] text-white bg-[var(--brand-base)] hover:bg-[var(--brand-hover)] border border-[var(--brand-border-strong)] shadow-md transition-all duration-200"
@@ -118,19 +119,31 @@ export default function Home() {
       {/* Path connecting thread down to the three roles */}
       <SectionConnectingPath />
 
-      {/* 4. Three Roles, One Truth (Unified system) */}
+      {/* 4. Three Roles, One Truth (Unified system & teacher workload relief) */}
       <ThreeRolesSection />
+
+      {/* Path connecting thread down to the safety net */}
+      <SectionConnectingPath />
 
       {/* 5. The Safety-Net Story (Distress triage & teacher trust) */}
       <SafetyNetSection />
 
-      {/* 6. The Ethical Stance (No gamification, calm sanctuary) */}
+      {/* Path connecting thread down to the misconception engine */}
+      <SectionConnectingPath />
+
+      {/* 6. Misconception Detection (Automatic error pattern recognition in Spaces) */}
+      <MisconceptionSection />
+
+      {/* Path connecting thread down to ethical stance */}
+      <SectionConnectingPath />
+
+      {/* 7. The Ethical Stance (No gamification, calm sanctuary) */}
       <EthicalStanceSection />
 
-      {/* 7. Where This Starts, and Where It Goes (South Africa / Teneo pilot -> Global) */}
+      {/* 8. Where This Runs (Engineering ground truth & infrastructure resilience) */}
       <OriginsSection />
 
-      {/* 8. Convert (Three Tiers) */}
+      {/* 9. Convert (Three Tiers) */}
       <ConversionSection />
 
       {/* Footer */}

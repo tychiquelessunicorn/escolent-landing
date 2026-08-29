@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { MapPin, CheckCircle2, ArrowUpRight, Layers, WifiOff, Globe, BookOpen, School } from "lucide-react";
+import { CheckCircle2, ArrowUpRight, Layers, WifiOff, Globe, BookOpen, Cpu } from "lucide-react";
 import { StaggeredWords, ScrollHighlightWord } from "./ui/TextReveal";
 
 export function OriginsSection() {
@@ -16,21 +16,21 @@ export function OriginsSection() {
         <div className="text-center max-w-3xl mb-16">
           <div className="flex items-center justify-center gap-2 mb-3">
             <span className="text-xs font-semibold text-[var(--brand-text)]">
-              Active Pilot
+              Infrastructure Ground Truth
             </span>
           </div>
 
           <StaggeredWords
             as="h2"
-            text="Where this runs today."
-            highlightWords={["runs", "today."]}
+            text="Built for the real conditions of schools."
+            highlightWords={["real", "conditions"]}
             highlightColor="var(--brand-text)"
             className="text-3xl sm:text-5xl md:text-6xl font-display font-bold tracking-tight text-[var(--text-primary)]"
           />
 
           <p className="mt-4 text-base sm:text-lg text-[var(--text-secondary)] max-w-2xl mx-auto">
-            Escolent is deployed in active classrooms — currently running in an active{" "}
-            <ScrollHighlightWord targetColor="var(--brand-text)">Grade 8 pilot alongside Teneo</ScrollHighlightWord> in South Africa.
+            Escolent is engineered from the ground up for environments with{" "}
+            <ScrollHighlightWord targetColor="var(--brand-text)">unstable power, intermittent connections,</ScrollHighlightWord> and strict curriculum requirements.
           </p>
         </div>
 
@@ -59,7 +59,7 @@ export function OriginsSection() {
           </div>
 
           <a
-            href="https://demo.escolent.com"
+            href="https://demo.escolent.com?embed=1"
             target="_blank"
             rel="noopener noreferrer"
             className="shrink-0 px-4 py-2.5 rounded-[14px] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-highlight)] border border-[var(--border-subtle)] text-xs font-semibold text-[var(--text-primary)] transition-colors flex items-center gap-1.5"
@@ -69,35 +69,35 @@ export function OriginsSection() {
           </a>
         </div>
 
-        {/* Concrete South Africa Proof Grid */}
+        {/* Real Engineering Facts Grid */}
         <div className="w-full max-w-5xl rounded-[22px] p-6 sm:p-10 bg-[var(--bg-surface)] border border-[var(--border-subtle)] shadow-xl mb-8">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-[var(--border-subtle)] gap-3">
             <div className="flex items-center gap-2.5">
-              <School className="w-5 h-5 text-[var(--brand-text)]" />
+              <Cpu className="w-5 h-5 text-[var(--brand-text)]" />
               <div>
                 <h3 className="text-sm font-semibold text-[var(--text-primary)]">
-                  Teneo Grade 8 Mathematics Pilot
+                  Engineered for Low-Resource Environments
                 </h3>
-                <span className="text-xs text-[var(--text-muted)]">Johannesburg & Online Classrooms</span>
+                <span className="text-xs text-[var(--text-muted)]">Built for real classroom constraints</span>
               </div>
             </div>
             <span className="text-[11px] font-semibold text-[var(--brand-text)] bg-[var(--brand-subtle)] border border-[var(--brand-border)] px-3 py-1 rounded-[8px] self-start sm:self-auto">
-              Live School Deployment
+              Hardware & Network Resilience
             </span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-            {/* Fact 1: Real Curriculum Standards */}
+            {/* Fact 1: Real Curriculum Standards Capability */}
             <div className="p-5 rounded-[18px] bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] flex flex-col justify-between">
               <div>
                 <div className="w-8 h-8 rounded-[10px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex items-center justify-center text-[var(--brand-text)] mb-3">
                   <BookOpen className="w-4 h-4" />
                 </div>
                 <h4 className="text-xs font-semibold text-[var(--text-primary)]">
-                  Official School Standards (CAPS & IEB)
+                  Curriculum-Agnostic Standards Engine
                 </h4>
                 <p className="text-xs text-[var(--text-secondary)] mt-2 leading-relaxed">
-                  Mapped directly to official South African syllabus requirements, helping students build genuine mastery on core algebra and geometry concepts.
+                  The diagnostic skill graph maps directly to national and regional syllabus requirements (such as CAPS, IEB, Cambridge, and common core standards), keeping instruction aligned with mandated goals.
                 </p>
               </div>
             </div>
@@ -112,7 +112,7 @@ export function OriginsSection() {
                   Works through power cuts and lost connections
                 </h4>
                 <p className="text-xs text-[var(--text-secondary)] mt-2 leading-relaxed">
-                  Built for load shedding and spotty 3G. The platform saves student progress locally on the device and resumes automatically the moment power or signal returns.
+                  Engineered for load shedding and spotty 3G. The platform saves student progress locally on the device and resumes automatically the moment power or signal returns without lost work.
                 </p>
               </div>
             </div>
@@ -124,10 +124,10 @@ export function OriginsSection() {
                   <CheckCircle2 className="w-4 h-4" />
                 </div>
                 <h4 className="text-xs font-semibold text-[var(--text-primary)]">
-                  Lightweight on data usage
+                  Minimal data usage footprint
                 </h4>
                 <p className="text-xs text-[var(--text-secondary)] mt-2 leading-relaxed">
-                  Transfers tiny amounts of data per question so lessons open immediately on standard tablets and school mobile bundles without wasting data.
+                  Transfers lightweight bytecode payloads per problem so lessons open instantly on standard school tablets and mobile connections without wasting data.
                 </p>
               </div>
             </div>
@@ -138,11 +138,11 @@ export function OriginsSection() {
             <div className="flex items-center gap-2">
               <Globe className="w-4 h-4 text-[var(--text-secondary)] shrink-0" />
               <span>
-                Because the system is engineered to thrive under uneven power and bandwidth constraints, the same resilient core works reliably in any classroom worldwide.
+                Because the system is engineered to thrive under uneven power and connectivity constraints, the same resilient core operates reliably in any classroom worldwide.
               </span>
             </div>
             <a
-              href="https://demo.escolent.com"
+              href="https://demo.escolent.com?embed=1"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[var(--brand-text)] hover:text-[var(--brand-highlight)] font-semibold inline-flex items-center gap-1 shrink-0"

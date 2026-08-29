@@ -28,7 +28,7 @@ export function Footer() {
           <div className="flex flex-col gap-2">
             <span className="text-[var(--text-primary)] font-semibold text-xs">Live Sandbox Shells</span>
             <a
-              href="https://demo.escolent.com/student/today?demo=1"
+              href="https://demo.escolent.com/student/today?embed=1"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[var(--brand-text)] transition-colors flex items-center gap-1"
@@ -37,7 +37,7 @@ export function Footer() {
               <ArrowUpRight className="w-3 h-3 text-[var(--text-muted)]" />
             </a>
             <a
-              href="https://demo.escolent.com/teacher/escalations?demo=1"
+              href="https://demo.escolent.com/teacher/escalations?embed=1"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[var(--brand-text)] transition-colors flex items-center gap-1"
@@ -46,7 +46,7 @@ export function Footer() {
               <ArrowUpRight className="w-3 h-3 text-[var(--text-muted)]" />
             </a>
             <a
-              href="https://demo.escolent.com/admin/briefing?demo=1"
+              href="https://demo.escolent.com/admin/briefing?embed=1"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[var(--brand-text)] transition-colors flex items-center gap-1"
@@ -73,11 +73,14 @@ export function Footer() {
             <a href="#safety-net" className="hover:text-[var(--text-primary)] transition-colors">
               Affective Safety Net
             </a>
+            <a href="#misconceptions" className="hover:text-[var(--text-primary)] transition-colors">
+              Error Detection
+            </a>
             <a href="#philosophy" className="hover:text-[var(--text-primary)] transition-colors">
               Ethical Design
             </a>
             <a href="#origins" className="hover:text-[var(--text-primary)] transition-colors">
-              South Africa Pilot
+              Infrastructure
             </a>
           </div>
         </div>
