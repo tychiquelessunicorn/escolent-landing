@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useRef, useState, useEffect } from "react";
+import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import {
   GraduationCap,
   UserCheck,
@@ -96,6 +96,24 @@ export function ThreeRolesSection() {
   const [frameKey, setFrameKey] = useState(0);
   const [queryStep, setQueryStep] = useState(0);
 
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Scroll-linked tab switching across student, teacher, and admin roles
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  useMotionValueEvent(scrollYProgress, "change", (progress) => {
+    if (progress < 0.35) {
+      if (activeTab !== "student") setActiveTab("student");
+    } else if (progress < 0.70) {
+      if (activeTab !== "teacher") setActiveTab("teacher");
+    } else {
+      if (activeTab !== "admin") setActiveTab("admin");
+    }
+  });
+
   const activeStep = steps.find((s) => s.id === activeTab) || steps[0];
 
   const queries = [
@@ -113,372 +131,184 @@ export function ThreeRolesSection() {
 
   return (
     <section
+      ref={containerRef}
       id="three-roles"
-      className="relative py-28 sm:py-36 px-4 sm:px-6 md:px-8 bg-[var(--bg-canvas)] border-t border-[var(--border-subtle)]"
+      className="relative min-h-[220vh] bg-[var(--bg-canvas)] border-t border-[var(--border-subtle)]"
     >
-      <div className="max-w-7xl mx-auto flex flex-col items-center">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mb-14">
-          <div className="flex items-center justify-center gap-2 mb-3">
-            <span className="text-xs font-semibold text-[var(--brand-text)]">
-              Unified System
-            </span>
-            <SparkMotif size={16} />
+      <div className="sticky top-0 min-h-screen py-16 sm:py-20 px-4 sm:px-6 md:px-8 flex flex-col items-center justify-center overflow-hidden">
+        <div className="max-w-7xl mx-auto w-full flex flex-col items-center">
+          {/* Section Header */}
+          <div className="text-center max-w-3xl mb-8 sm:mb-10">
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <span className="text-xs font-semibold text-[var(--brand-text)]">
+                Unified System
+              </span>
+              <SparkMotif size={16} />
+            </div>
+
+            <StaggeredWords
+              as="h2"
+              text="One connected event. Three real perspectives."
+              highlightWords={["Three", "real", "perspectives."]}
+              highlightColor="var(--brand-text)"
+              className="text-3xl sm:text-5xl md:text-6xl font-display font-bold tracking-tight text-[var(--text-primary)]"
+            />
+
+            <p className="mt-3 text-sm sm:text-base text-[var(--text-secondary)] max-w-2xl mx-auto">
+              When a student signals distress, it travels through an unbroken chain:{" "}
+              <ScrollHighlightWord targetColor="var(--brand-text)">immediate reassurance</ScrollHighlightWord> for the child,{" "}
+              <ScrollHighlightWord targetColor="var(--brand-text)">timely triage</ScrollHighlightWord> for the teacher, and{" "}
+              <ScrollHighlightWord targetColor="var(--brand-text)">aggregate oversight</ScrollHighlightWord> for leadership.
+            </p>
           </div>
 
-          <StaggeredWords
-            as="h2"
-            text="One connected event. Three real perspectives."
-            highlightWords={["Three", "real", "perspectives."]}
-            highlightColor="var(--brand-text)"
-            className="text-3xl sm:text-5xl md:text-6xl font-display font-bold tracking-tight text-[var(--text-primary)]"
-          />
+          {/* Step Navigation Tabs */}
+          <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
+            {steps.map((step) => {
+              const isActive = activeTab === step.id;
+              return (
+                <motion.button
+                  key={step.id}
+                  onClick={() => setActiveTab(step.id)}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`text-left p-3.5 sm:p-4 rounded-[18px] border transition-all duration-200 flex flex-col justify-between relative overflow-hidden ${
+                    isActive
+                      ? "bg-[var(--bg-surface-elevated)] border-[var(--brand-border-strong)] shadow-md"
+                      : "bg-[var(--bg-surface)] border-[var(--border-subtle)] hover:bg-[var(--bg-surface-elevated)] opacity-75 hover:opacity-100"
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <span
+                      className={`text-[11px] font-semibold px-2 py-0.5 rounded-[8px] ${
+                        isActive
+                          ? "bg-[var(--brand-subtle)] text-[var(--brand-highlight)] border border-[var(--brand-border)]"
+                          : "bg-[var(--bg-surface)] text-[var(--text-muted)]"
+                      }`}
+                    >
+                      Step {step.stepNumber}
+                    </span>
+                    {step.id === "student" && (
+                      <GraduationCap
+                        className={`w-4 h-4 ${isActive ? "text-[var(--brand-text)]" : "text-[var(--text-muted)]"}`}
+                      />
+                    )}
+                    {step.id === "teacher" && (
+                      <UserCheck
+                        className={`w-4 h-4 ${isActive ? "text-[var(--brand-text)]" : "text-[var(--text-muted)]"}`}
+                      />
+                    )}
+                    {step.id === "admin" && (
+                      <Building2
+                        className={`w-4 h-4 ${isActive ? "text-[var(--brand-text)]" : "text-[var(--text-muted)]"}`}
+                      />
+                    )}
+                  </div>
 
-          <p className="mt-4 text-base sm:text-lg text-[var(--text-secondary)] max-w-2xl mx-auto">
-            When a student signals distress, it travels through an unbroken chain:{" "}
-            <ScrollHighlightWord targetColor="var(--brand-text)">immediate reassurance</ScrollHighlightWord> for the child,{" "}
-            <ScrollHighlightWord targetColor="var(--brand-text)">timely triage</ScrollHighlightWord> for the teacher, and{" "}
-            <ScrollHighlightWord targetColor="var(--brand-text)">aggregate oversight</ScrollHighlightWord> for leadership.
-          </p>
-        </div>
+                  <div>
+                    <h4 className="text-xs sm:text-sm font-semibold text-[var(--text-primary)]">{step.roleName}</h4>
+                    <p className="text-[11px] text-[var(--text-muted)] mt-0.5">{step.headline}</p>
+                  </div>
 
-        {/* Step Navigation Tabs */}
-        <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-3 mb-8">
-          {steps.map((step) => {
-            const isActive = activeTab === step.id;
-            return (
-              <motion.button
-                key={step.id}
-                onClick={() => setActiveTab(step.id)}
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                className={`text-left p-4 sm:p-5 rounded-[18px] border transition-all duration-200 flex flex-col justify-between relative overflow-hidden ${
-                  isActive
-                    ? "bg-[var(--bg-surface-elevated)] border-[var(--brand-border-strong)] shadow-md"
-                    : "bg-[var(--bg-surface)] border-[var(--border-subtle)] hover:bg-[var(--bg-surface-elevated)] opacity-75 hover:opacity-100"
-                }`}
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <span
-                    className={`text-[11px] font-semibold px-2 py-0.5 rounded-[8px] ${
-                      isActive
-                        ? "bg-[var(--brand-subtle)] text-[var(--brand-highlight)] border border-[var(--brand-border)]"
-                        : "bg-[var(--bg-surface)] text-[var(--text-muted)]"
-                    }`}
-                  >
-                    Step {step.stepNumber}
-                  </span>
-                  {step.id === "student" && (
-                    <GraduationCap
-                      className={`w-4 h-4 ${isActive ? "text-[var(--brand-text)]" : "text-[var(--text-muted)]"}`}
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeRoleBar"
+                      className="absolute bottom-0 left-0 right-0 h-1 bg-[var(--brand-base)]"
+                      transition={{ duration: 0.3, ease: EASING }}
                     />
                   )}
-                  {step.id === "teacher" && (
-                    <UserCheck
-                      className={`w-4 h-4 ${isActive ? "text-[var(--brand-text)]" : "text-[var(--text-muted)]"}`}
-                    />
-                  )}
-                  {step.id === "admin" && (
-                    <Building2
-                      className={`w-4 h-4 ${isActive ? "text-[var(--brand-text)]" : "text-[var(--text-muted)]"}`}
-                    />
-                  )}
-                </div>
-
-                <div>
-                  <h4 className="text-sm font-semibold text-[var(--text-primary)]">{step.roleName}</h4>
-                  <p className="text-xs text-[var(--text-muted)] mt-1">{step.headline}</p>
-                </div>
-
-                {isActive && (
-                  <motion.div
-                    layoutId="activeRoleBar"
-                    className="absolute bottom-0 left-0 right-0 h-1 bg-[var(--brand-base)]"
-                    transition={{ duration: 0.3, ease: EASING }}
-                  />
-                )}
-              </motion.button>
-            );
-          })}
-        </div>
-
-        {/* Connected Live Shell Container */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.7, ease: EASING }}
-          className="w-full max-w-5xl rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-medium)] shadow-xl overflow-hidden mb-8"
-        >
-          {/* Header Bar */}
-          <div className="p-5 bg-[var(--bg-surface-elevated)] border-b border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div className="flex items-start sm:items-center gap-3">
-              <div className="w-8 h-8 rounded-[8px] bg-[var(--brand-subtle)] border border-[var(--brand-border)] text-[var(--brand-text)] flex items-center justify-center font-semibold text-xs shrink-0 mt-0.5 sm:mt-0">
-                {activeStep.stepNumber}
-              </div>
-
-              <div>
-                <div className="flex items-center gap-2">
-                  <h3 className="text-sm font-semibold text-[var(--text-primary)]">
-                    {activeStep.roleName}: {activeStep.headline}
-                  </h3>
-                  <span className="text-[10px] font-semibold px-2 py-0.5 rounded-[8px] bg-[var(--brand-subtle)] text-[var(--brand-highlight)]">
-                    Live Demo State
-                  </span>
-                </div>
-                <p className="text-xs text-[var(--text-secondary)] mt-1 max-w-2xl">
-                  {activeStep.mechanism}
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2 self-end sm:self-auto shrink-0">
-              <motion.button
-                whileTap={{ scale: 0.9, rotate: 180 }}
-                onClick={() => setFrameKey((k) => k + 1)}
-                title="Reload live instance"
-                className="p-2 text-[var(--text-muted)] hover:text-[var(--text-primary)] rounded-[8px] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-highlight)] transition-colors"
-              >
-                <RefreshCw className="w-4 h-4" />
-              </motion.button>
-              <a
-                href={activeStep.iframeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                title="Open live shell in new tab"
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-[14px] bg-[var(--bg-surface-highlight)] hover:bg-[var(--border-strong)] text-xs font-semibold text-[var(--text-primary)] transition-colors"
-              >
-                <span>Direct Shell</span>
-                <Maximize2 className="w-3.5 h-3.5" />
-              </a>
-            </div>
+                </motion.button>
+              );
+            })}
           </div>
 
-          {/* Real Live Iframe with graceful loading & error fallback */}
-          <LiveIframe
-            src={activeStep.iframeUrl}
-            title={`Live Demo - ${activeStep.roleName}`}
-            reloadKey={frameKey}
-            height="h-[520px]"
-          />
-
-          {/* Factual Mechanics & Privacy Footer */}
-          <div className="p-4 sm:p-5 bg-[var(--bg-surface-elevated)] border-t border-[var(--border-subtle)] grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-            <div className="p-3.5 rounded-[14px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex items-start gap-2.5">
-              <Clock className="w-4 h-4 text-[var(--text-muted)] shrink-0 mt-0.5" />
-              <div>
-                <span className="text-[10px] font-semibold uppercase text-[var(--text-muted)] block">
-                  How Updates Travel
-                </span>
-                <span className="text-[var(--text-secondary)] mt-0.5 block leading-relaxed">
-                  {activeStep.timingTruth}
-                </span>
-              </div>
-            </div>
-
-            <div className="p-3.5 rounded-[14px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex items-start gap-2.5">
-              <Shield className="w-4 h-4 text-[var(--text-muted)] shrink-0 mt-0.5" />
-              <div>
-                <span className="text-[10px] font-semibold uppercase text-[var(--text-muted)] block">
-                  Who Sees What
-                </span>
-                <span className="text-[var(--text-secondary)] mt-0.5 block leading-relaxed">
-                  {activeStep.privacyBoundary}
-                </span>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Live Built Features: Mastery Overview Matrix & Natural Language Command Layer */}
-        <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          {/* Card 1: Mastery Overview Matrix with Direct Shell Deep-Link */}
+          {/* Connected Live Shell Container */}
           <motion.div
-            whileHover={{ y: -3, borderColor: "var(--brand-border)" }}
-            transition={{ duration: 0.2 }}
-            className="p-6 sm:p-7 rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-col justify-between shadow-lg"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: EASING }}
+            className="w-full max-w-5xl rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-medium)] shadow-xl overflow-hidden mb-6"
           >
-            <div>
-              <div className="flex items-start gap-3.5">
-                <div className="w-9 h-9 rounded-[10px] bg-[var(--brand-subtle)] border border-[var(--brand-border)] flex items-center justify-center text-[var(--brand-text)] shrink-0 mt-0.5">
-                  <LayoutGrid className="w-5 h-5" />
+            {/* Header Bar */}
+            <div className="p-4 bg-[var(--bg-surface-elevated)] border-b border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="flex items-start sm:items-center gap-3">
+                <div className="w-7 h-7 rounded-[8px] bg-[var(--brand-subtle)] border border-[var(--brand-border)] text-[var(--brand-text)] flex items-center justify-center font-semibold text-xs shrink-0 mt-0.5 sm:mt-0">
+                  {activeStep.stepNumber}
                 </div>
+
                 <div>
-                  <h4 className="text-sm font-semibold text-[var(--text-primary)]">
-                    Classroom Mastery Matrix
-                  </h4>
-                  <p className="text-xs text-[var(--text-secondary)] mt-2 leading-relaxed">
-                    Teachers see their entire roster mapped across all syllabus skills on one clean grid. One glance identifies whole-class bottlenecks, individual skill gaps, and candidates for extension without digging through spreadsheets.
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-xs sm:text-sm font-semibold text-[var(--text-primary)]">
+                      {activeStep.roleName}: {activeStep.headline}
+                    </h3>
+                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded-[8px] bg-[var(--brand-subtle)] text-[var(--brand-highlight)]">
+                      Live Demo State
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-[var(--text-secondary)] mt-0.5 max-w-2xl truncate sm:whitespace-normal">
+                    {activeStep.mechanism}
                   </p>
                 </div>
               </div>
 
-              {/* Animated Mini Mastery Heat Map */}
-              <div className="mt-5 p-3.5 rounded-[14px] bg-[var(--bg-canvas)] border border-[var(--border-subtle)]">
-                <div className="text-[10px] font-semibold text-[var(--text-muted)] mb-2 flex items-center justify-between">
-                  <span>Live Roster Heat Map Preview</span>
-                  <span>5 Syllabus Skills</span>
-                </div>
-                <div className="space-y-2">
-                  {mockStudents.map((s, idx) => (
-                    <div key={s.name} className="flex items-center justify-between text-[11px]">
-                      <span className="text-[var(--text-secondary)] font-medium w-24 truncate">{s.name}</span>
-                      <div className="flex items-center gap-1.5">
-                        {s.status.map((st, i) => (
-                          <motion.div
-                            key={i}
-                            animate={{ opacity: [0.8, 1, 0.8] }}
-                            transition={{ duration: 3, delay: (idx + i) * 0.15, repeat: Infinity }}
-                            className={`w-5 h-4 rounded-[4px] ${statusColors[st - 1]}`}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
+              <div className="flex items-center gap-2 self-end sm:self-auto shrink-0">
+                <motion.button
+                  whileTap={{ scale: 0.9, rotate: 180 }}
+                  onClick={() => setFrameKey((k) => k + 1)}
+                  title="Reload live instance"
+                  className="p-1.5 text-[var(--text-muted)] hover:text-[var(--text-primary)] rounded-[8px] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-highlight)] transition-colors"
+                >
+                  <RefreshCw className="w-3.5 h-3.5" />
+                </motion.button>
+                <a
+                  href={activeStep.iframeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Open live shell in new tab"
+                  className="flex items-center gap-1.5 px-3 py-1 rounded-[14px] bg-[var(--bg-surface-highlight)] hover:bg-[var(--border-strong)] text-xs font-semibold text-[var(--text-primary)] transition-colors"
+                >
+                  <span>Direct Shell</span>
+                  <Maximize2 className="w-3 h-3" />
+                </a>
               </div>
             </div>
 
-            <div className="mt-5 pt-3.5 border-t border-[var(--border-subtle)] text-[11px] flex items-center justify-between">
-              <span className="text-[var(--brand-text)] font-medium">5-state heat map per student & skill</span>
-              <a
-                href="https://demo.escolent.com/teacher/escalations?embed=1"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[var(--text-secondary)] hover:text-[var(--brand-highlight)] font-semibold inline-flex items-center gap-1"
-              >
-                <span>Open Teacher Shell</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </a>
-            </div>
-          </motion.div>
+            {/* Real Live Iframe with graceful loading & error fallback */}
+            <LiveIframe
+              src={activeStep.iframeUrl}
+              title={`Live Demo - ${activeStep.roleName}`}
+              reloadKey={frameKey}
+              height="h-[440px]"
+            />
 
-          {/* Card 2: Grounded Natural-Language Query Layer with Direct Shell Deep-Link */}
-          <motion.div
-            whileHover={{ y: -3, borderColor: "var(--brand-border)" }}
-            transition={{ duration: 0.2 }}
-            className="p-6 sm:p-7 rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-col justify-between shadow-lg"
-          >
-            <div>
-              <div className="flex items-start gap-3.5">
-                <div className="w-9 h-9 rounded-[10px] bg-[var(--bg-surface-elevated)] border border-[var(--border-medium)] flex items-center justify-center text-[var(--brand-text)] shrink-0 mt-0.5">
-                  <MessageSquare className="w-5 h-5" />
-                </div>
+            {/* Factual Mechanics & Privacy Footer */}
+            <div className="p-3 sm:p-4 bg-[var(--bg-surface-elevated)] border-t border-[var(--border-subtle)] grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+              <div className="p-2.5 rounded-[12px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex items-start gap-2">
+                <Clock className="w-3.5 h-3.5 text-[var(--text-muted)] shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="text-sm font-semibold text-[var(--text-primary)]">
-                    Ask Your Classroom in Plain English
-                  </h4>
-                  <p className="text-xs text-[var(--text-secondary)] mt-2 leading-relaxed">
-                    Teachers and administrators can ask questions directly: <em>"Who hasn't completed two-step equations?"</em> or <em>"Show open escalations past 30 minutes."</em> Grounded exclusively in live school data with zero hallucination.
-                  </p>
+                  <span className="text-[10px] font-semibold uppercase text-[var(--text-muted)] block">
+                    How Updates Travel
+                  </span>
+                  <span className="text-[var(--text-secondary)] mt-0.5 block leading-tight text-[11px]">
+                    {activeStep.timingTruth}
+                  </span>
                 </div>
               </div>
 
-              {/* Animated Interactive Query Simulator */}
-              <div className="mt-5 p-3.5 rounded-[14px] bg-[var(--bg-canvas)] border border-[var(--border-subtle)] min-h-[96px] flex flex-col justify-center">
-                <div className="text-[10px] font-semibold text-[var(--brand-text)] uppercase mb-1 flex items-center gap-1.5">
-                  <Search className="w-3 h-3" />
-                  <span>Grounded Query Simulator:</span>
+              <div className="p-2.5 rounded-[12px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex items-start gap-2">
+                <Shield className="w-3.5 h-3.5 text-[var(--text-muted)] shrink-0 mt-0.5" />
+                <div>
+                  <span className="text-[10px] font-semibold uppercase text-[var(--text-muted)] block">
+                    Who Sees What
+                  </span>
+                  <span className="text-[var(--text-secondary)] mt-0.5 block leading-tight text-[11px]">
+                    {activeStep.privacyBoundary}
+                  </span>
                 </div>
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={queryStep}
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -6 }}
-                    transition={{ duration: 0.3 }}
-                    className="space-y-1.5"
-                  >
-                    <div className="text-xs font-mono text-[var(--text-primary)]">
-                      "{queries[queryStep].q}"
-                    </div>
-                    <div className="text-[11px] text-[var(--teal-text)] bg-[var(--teal-subtle)] px-2.5 py-1 rounded-[8px] border border-[var(--teal-border)]">
-                      ✓ {queries[queryStep].a}
-                    </div>
-                  </motion.div>
-                </AnimatePresence>
               </div>
-            </div>
-
-            <div className="mt-5 pt-3.5 border-t border-[var(--border-subtle)] text-[11px] flex items-center justify-between">
-              <span className="text-[var(--text-secondary)] font-medium">Grounded AI command layer</span>
-              <a
-                href="https://demo.escolent.com/teacher/escalations?embed=1"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[var(--brand-text)] hover:text-[var(--brand-highlight)] font-semibold inline-flex items-center gap-1"
-              >
-                <span>Test Query Shell</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </a>
             </div>
           </motion.div>
         </div>
-
-        {/* Dedicated Admin & Institutional Oversight Grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.7, ease: EASING }}
-          className="w-full max-w-5xl rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] p-6 sm:p-8 shadow-xl"
-        >
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-[var(--border-subtle)] gap-2">
-            <div className="flex items-center gap-2.5">
-              <Building2 className="w-5 h-5 text-[var(--brand-text)]" />
-              <div>
-                <h3 className="text-sm font-semibold text-[var(--text-primary)]">
-                  School-Wide Oversight & Administrative Controls
-                </h3>
-                <span className="text-xs text-[var(--text-muted)]">Institutional data governance, safety boundaries, and compliance</span>
-              </div>
-            </div>
-            <a
-              href="https://demo.escolent.com/admin/briefing?embed=1"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[10px] font-semibold px-2.5 py-1 rounded-[8px] bg-[var(--bg-surface-elevated)] hover:bg-[var(--bg-surface-highlight)] text-[var(--brand-text)] border border-[var(--brand-border)] self-start sm:self-auto inline-flex items-center gap-1 transition-colors"
-            >
-              <span>Open Admin Briefing Shell</span>
-              <ArrowUpRight className="w-3 h-3" />
-            </a>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6 text-xs">
-            {/* Control 1: Aggregated Health Without Privacy Intrusion */}
-            <div className="space-y-1.5">
-              <div className="flex items-center gap-2 text-[var(--text-primary)] font-semibold">
-                <BarChart3 className="w-4 h-4 text-[var(--brand-text)]" />
-                <span>Aggregated School Metrics</span>
-              </div>
-              <p className="text-[var(--text-secondary)] leading-relaxed">
-                Leadership sees overall syllabus progression rates, total active escalations, and average response times across all classes — spotting school-wide bottlenecks without micromanaging teachers.
-              </p>
-            </div>
-
-            {/* Control 2: Strict Privacy Boundaries */}
-            <div className="space-y-1.5">
-              <div className="flex items-center gap-2 text-[var(--text-primary)] font-semibold">
-                <EyeOff className="w-4 h-4 text-[var(--brand-text)]" />
-                <span>Enforced Privacy Boundaries</span>
-              </div>
-              <p className="text-[var(--text-secondary)] leading-relaxed">
-                School leaders see escalation age and counts, but never private student dialogue or diagnostic notes. Confidentiality between student and educator is protected by hardcoded access controls.
-              </p>
-            </div>
-
-            {/* Control 3: Data Deletion & Audit Controls */}
-            <div className="space-y-1.5">
-              <div className="flex items-center gap-2 text-[var(--text-primary)] font-semibold">
-                <Lock className="w-4 h-4 text-[var(--brand-text)]" />
-                <span>Strict 72-Hour Hold on Deletion</span>
-              </div>
-              <p className="text-[var(--text-secondary)] leading-relaxed">
-                Student data is protected by a mandatory 72-hour hold buffer and requires explicit written confirmation for permanent deletion. Full POPIA/GDPR compliance with machine-readable audit trails.
-              </p>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
