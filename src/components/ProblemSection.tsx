@@ -22,7 +22,7 @@ export function ProblemSection() {
           />
         </div>
 
-        {/* Motion Graphic: Rigid Broadcast Vector vs Actual Divergent Understanding */}
+        {/* Motion Graphic: Fixed Curriculum Pace vs Actual Student Understanding */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -31,11 +31,11 @@ export function ProblemSection() {
           className="w-full max-w-3xl rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] p-6 sm:p-10 shadow-xl relative overflow-hidden"
         >
           <div className="relative h-64 sm:h-72 w-full flex flex-col justify-between py-2">
-            {/* The Relentless Broadcast Vector */}
+            {/* The Fixed Curriculum Pace */}
             <div className="relative w-full">
               <div className="flex justify-between items-center text-[11px] font-medium text-[var(--text-muted)] mb-2">
-                <span>Fixed Classroom Velocity (1.0x)</span>
-                <span className="text-[var(--text-secondary)]">Advances regardless of comprehension</span>
+                <span>Fixed Classroom Pace</span>
+                <span className="text-[var(--text-secondary)]">Moves on schedule regardless of understanding</span>
               </div>
               <div className="relative h-1.5 w-full bg-[var(--border-subtle)] rounded-full overflow-hidden">
                 <motion.div
@@ -48,7 +48,7 @@ export function ProblemSection() {
 
             {/* Visualizing Divergent Student Realities */}
             <div className="relative h-44 w-full flex flex-col justify-around">
-              {/* Path 1: Advanced student finished early, idle */}
+              {/* Student 1: Understood immediately, waiting idle */}
               <div className="relative h-1 w-full bg-[var(--border-subtle)]/40 rounded-full">
                 <motion.div
                   className="absolute -top-1.5 w-4 h-4 rounded-full bg-[var(--text-primary)] shadow-sm"
@@ -63,11 +63,11 @@ export function ProblemSection() {
                   }}
                 />
                 <span className="absolute -top-5 right-4 text-[10px] font-medium text-[var(--text-muted)]">
-                  Mastered concept · Waiting in idle
+                  Understood quickly · Bored and waiting
                 </span>
               </div>
 
-              {/* Path 2: Student stalled on unseen prerequisite */}
+              {/* Student 2: Stalled on prior foundation */}
               <div className="relative h-1 w-full bg-[var(--border-subtle)]/40 rounded-full">
                 <motion.div
                   className="absolute -top-1.5 w-4 h-4 rounded-full bg-[var(--text-secondary)]"
@@ -82,11 +82,11 @@ export function ProblemSection() {
                   }}
                 />
                 <span className="absolute -top-5 left-[24%] text-[10px] font-medium text-[var(--text-muted)]">
-                  Missing prerequisite · Stalled
+                  Stuck on previous step · Falling behind
                 </span>
               </div>
 
-              {/* Path 3: Student in silent hesitation */}
+              {/* Student 3: Silent hesitation */}
               <div className="relative h-1 w-full bg-[var(--border-subtle)]/40 rounded-full">
                 <motion.div
                   className="absolute -top-1.5 w-4 h-4 rounded-full bg-[var(--text-muted)]"
@@ -101,20 +101,20 @@ export function ProblemSection() {
                   }}
                 />
                 <span className="absolute -top-5 left-[42%] text-[10px] font-medium text-[var(--text-muted)]">
-                  Hesitation in silence
+                  Hesitant to ask · Hoping not to be called on
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Minimal Poetic Takeaway */}
+          {/* Minimal Takeaway */}
           <div className="mt-6 pt-4 border-t border-[var(--border-subtle)] flex items-center justify-between text-xs text-[var(--text-secondary)]">
             <span>The curriculum moves on schedule. Real understanding does not.</span>
             <a
               href="#branching-path"
               className="text-[var(--brand-text)] hover:text-[var(--brand-highlight)] font-medium transition-colors"
             >
-              See the adaptation ↓
+              See how Escolent adapts ↓
             </a>
           </div>
         </motion.div>

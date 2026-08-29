@@ -26,13 +26,13 @@
   --teal-text: oklch(80% 0.12 215);
 
   /* =========================================================================
-     3. RESERVED ESCALATION RED (Hue 25)
+     3. RESERVED ESCALATION RED (Hue 15)
      Strictly reserved for the Safety Net / distress detection feature
      ========================================================================= */
-  --escalation-red: oklch(55% 0.22 25);
-  --escalation-subtle: oklch(55% 0.22 25 / 0.12);
-  --escalation-border: oklch(55% 0.22 25 / 0.3);
-  --escalation-text: oklch(76% 0.16 25);
+  --escalation-red: oklch(55% 0.22 15);
+  --escalation-subtle: oklch(55% 0.22 15 / 0.12);
+  --escalation-border: oklch(55% 0.22 15 / 0.3);
+  --escalation-text: oklch(76% 0.16 15);
 
   /* =========================================================================
      4. PURE MONOCHROMATIC NEUTRALS (Deep Canvas & Layered Surfaces)

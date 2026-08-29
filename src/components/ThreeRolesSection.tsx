@@ -214,7 +214,7 @@ export function ThreeRolesSection() {
               <Clock className="w-4 h-4 text-[var(--text-muted)] shrink-0 mt-0.5" />
               <div>
                 <span className="text-[10px] font-semibold uppercase text-[var(--text-muted)] block">
-                  Delivery & Polling Mechanism
+                  How Updates Travel
                 </span>
                 <span className="text-[var(--text-secondary)] mt-0.5 block leading-relaxed">
                   {activeStep.timingTruth}
@@ -226,7 +226,7 @@ export function ThreeRolesSection() {
               <Shield className="w-4 h-4 text-[var(--text-muted)] shrink-0 mt-0.5" />
               <div>
                 <span className="text-[10px] font-semibold uppercase text-[var(--text-muted)] block">
-                  Privacy & Data Scope
+                  Who Sees What
                 </span>
                 <span className="text-[var(--text-secondary)] mt-0.5 block leading-relaxed">
                   {activeStep.privacyBoundary}

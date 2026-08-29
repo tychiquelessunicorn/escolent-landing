@@ -49,14 +49,14 @@ export function ConversionSection() {
 
           <StaggeredWords
             as="h2"
-            text="See the living architecture in action."
-            highlightWords={["living", "architecture"]}
+            text="Experience the system in action."
+            highlightWords={["system", "action."]}
             highlightColor="var(--brand-text)"
             className="text-4xl sm:text-6xl md:text-7xl font-display font-bold tracking-tight text-[var(--text-primary)]"
           />
 
           <p className="mt-4 text-base sm:text-lg text-[var(--text-secondary)] max-w-2xl mx-auto">
-            No signup barriers. No gated marketing videos. Open the live production sandbox and experience all three vantage points right now.
+            No signup barriers. No marketing video gates. Open the live platform and test all three views right now.
           </p>
         </div>
 
@@ -129,14 +129,14 @@ export function ConversionSection() {
               <div className="flex items-center gap-2 mb-3">
                 <Mail className="w-4 h-4 text-[var(--brand-text)]" />
                 <span className="text-xs font-semibold text-[var(--brand-text)]">
-                  Tier 2 · Stay Informed
+                  Stay Informed
                 </span>
               </div>
               <h3 className="text-lg font-display font-semibold text-[var(--text-primary)]">
-                Get Early Access Briefings
+                Get Quarterly Pilot Briefings
               </h3>
               <p className="text-xs text-[var(--text-secondary)] mt-2 leading-relaxed">
-                Receive confidential quarterly briefings on pilot milestones, curriculum expansion, and cognitive research publications.
+                Receive quarterly updates on school pilot milestones, curriculum additions, and learning outcomes.
               </p>
 
               {/* Form */}
@@ -170,7 +170,7 @@ export function ConversionSection() {
 
             <div className="mt-6 pt-4 border-t border-[var(--border-subtle)] text-[11px] text-[var(--text-muted)] flex items-center gap-1.5">
               <Lock className="w-3.5 h-3.5 text-[var(--text-muted)]" />
-              <span>Zero marketing spam. Strictly technical & pedagogical briefings.</span>
+              <span>Zero marketing spam. Strictly quarterly pilot briefings.</span>
             </div>
           </div>
 
@@ -180,7 +180,7 @@ export function ConversionSection() {
               <div className="flex items-center gap-2 mb-3">
                 <Calendar className="w-4 h-4 text-[var(--brand-text)]" />
                 <span className="text-xs font-semibold text-[var(--brand-text)]">
-                  Tier 3 · Institutional Walkthrough
+                  School Walkthrough
                 </span>
               </div>
               <h3 className="text-lg font-display font-semibold text-[var(--text-primary)]">
@@ -194,7 +194,7 @@ export function ConversionSection() {
               <div className="mt-5 p-3.5 rounded-[14px] bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] space-y-2 text-xs">
                 <div className="flex items-center gap-2 text-[var(--text-secondary)]">
                   <Clock className="w-3.5 h-3.5 text-[var(--brand-text)] shrink-0" />
-                  <span><strong>Duration:</strong> 20 minutes (no sales pitches, no lock-in pressure)</span>
+                  <span><strong>Duration:</strong> 20 minutes (no sales pitches, no pressure)</span>
                 </div>
                 <div className="flex items-center gap-2 text-[var(--text-secondary)]">
                   <User className="w-3.5 h-3.5 text-[var(--brand-text)] shrink-0" />
@@ -202,7 +202,7 @@ export function ConversionSection() {
                 </div>
                 <div className="flex items-center gap-2 text-[var(--text-secondary)]">
                   <Layers className="w-3.5 h-3.5 text-[var(--brand-text)] shrink-0" />
-                  <span><strong>Agenda:</strong> Your curriculum standards + live LMS embed test</span>
+                  <span><strong>Agenda:</strong> Your curriculum standards + live LMS integration test</span>
                 </div>
               </div>
 
@@ -212,7 +212,7 @@ export function ConversionSection() {
                   className="inline-flex items-center justify-center gap-2 w-full px-5 py-3 rounded-[14px] bg-[var(--bg-surface-highlight)] hover:bg-[var(--border-strong)] border border-[var(--border-medium)] text-xs font-semibold text-[var(--text-primary)] transition-colors"
                 >
                   <Calendar className="w-4 h-4 text-[var(--brand-text)]" />
-                  <span>Schedule Direct Founder Consultation</span>
+                  <span>Schedule a Walkthrough with the Builders</span>
                 </a>
               </div>
             </div>
