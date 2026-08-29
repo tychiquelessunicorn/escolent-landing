@@ -30,18 +30,18 @@ export function MisconceptionSection() {
 
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Generous dwell time for both Error Pattern Flow and Space Creator Shell
+  // Extended mobile-safe scroll track giving ample dwell time
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
   useMotionValueEvent(scrollYProgress, "change", (progress) => {
-    // 0.00 -> 0.52: Automatic Error Pattern Flow
-    if (progress < 0.52) {
+    // 0.00 -> 0.58: Automatic Error Pattern Flow (Wide initial dwell buffer)
+    if (progress < 0.58) {
       if (activeTab !== "equation") setActiveTab("equation");
     } 
-    // 0.52 -> 1.00: Live Space Creator Shell
+    // 0.58 -> 1.00: Live Space Creator Shell
     else {
       if (activeTab !== "spaces") setActiveTab("spaces");
     }
@@ -53,17 +53,17 @@ export function MisconceptionSection() {
     <section
       ref={containerRef}
       id="misconceptions"
-      className="relative min-h-[260vh] bg-[var(--bg-canvas)] border-t border-[var(--border-subtle)]"
+      className="relative min-h-[420vh] bg-[var(--bg-canvas)] border-t border-[var(--border-subtle)]"
     >
-      <div className="sticky top-0 min-h-screen py-8 sm:py-12 px-4 sm:px-6 md:px-8 flex flex-col items-center justify-center overflow-hidden">
+      <div className="sticky top-0 min-h-screen py-4 sm:py-8 md:py-12 px-3 sm:px-6 md:px-8 flex flex-col items-center justify-center overflow-hidden">
         <div className="max-w-7xl mx-auto w-full flex flex-col items-center justify-between">
           {/* Section Header */}
-          <div className="text-center max-w-3xl mb-4 sm:mb-5">
-            <div className="flex items-center justify-center gap-2 mb-1.5">
-              <span className="text-xs font-semibold text-[var(--brand-text)]">
+          <div className="text-center max-w-3xl mb-2.5 sm:mb-4">
+            <div className="flex items-center justify-center gap-2 mb-1">
+              <span className="text-[11px] sm:text-xs font-semibold text-[var(--brand-text)]">
                 Cognitive Diagnostic
               </span>
-              <SparkMotif size={14} />
+              <SparkMotif size={13} />
             </div>
 
             <StaggeredWords
@@ -71,38 +71,38 @@ export function MisconceptionSection() {
               text="Struggle caught in silence, before frustration sets in."
               highlightWords={["caught", "silence,"]}
               highlightColor="var(--brand-text)"
-              className="text-2xl sm:text-4xl md:text-5xl font-display font-bold tracking-tight text-[var(--text-primary)]"
+              className="text-xl sm:text-3xl md:text-5xl font-display font-bold tracking-tight text-[var(--text-primary)]"
             />
 
-            <p className="mt-2 text-xs sm:text-sm text-[var(--text-secondary)] max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-1 sm:mt-2 text-[11px] sm:text-xs md:text-sm text-[var(--text-secondary)] max-w-2xl mx-auto leading-relaxed hidden xs:block">
               Not every struggling student clicks "I need help." When a student submits a wrong answer matching a recognized misconception, the system{" "}
               <ScrollHighlightWord targetColor="var(--brand-text)">identifies the underlying logic error</ScrollHighlightWord> and surfaces it directly to the teacher's active Space — without waiting for a child to raise their hand.
             </p>
 
             {/* Toggle View */}
-            <div className="mt-3.5 inline-flex items-center p-1 bg-[var(--bg-surface)] border border-[var(--border-subtle)] rounded-[14px]">
+            <div className="mt-2.5 sm:mt-3 inline-flex items-center p-0.5 sm:p-1 bg-[var(--bg-surface)] border border-[var(--border-subtle)] rounded-[14px]">
               <motion.button
                 whileTap={{ scale: 0.96 }}
                 onClick={() => setActiveTab("equation")}
-                className={`px-3.5 py-1 rounded-[8px] text-xs font-medium transition-all duration-200 ${
+                className={`px-2.5 sm:px-3.5 py-1 rounded-[8px] text-[11px] sm:text-xs font-medium transition-all duration-200 ${
                   activeTab === "equation"
                     ? "bg-[var(--bg-surface-highlight)] text-[var(--text-primary)] shadow-sm"
                     : "text-[var(--text-muted)] hover:text-[var(--text-primary)]"
                 }`}
               >
-                Automatic Error Pattern Flow
+                Error Pattern Flow
               </motion.button>
               <motion.button
                 whileTap={{ scale: 0.96 }}
                 onClick={() => setActiveTab("spaces")}
-                className={`px-3.5 py-1 rounded-[8px] text-xs font-medium transition-all duration-200 flex items-center gap-1.5 ${
+                className={`px-2.5 sm:px-3.5 py-1 rounded-[8px] text-[11px] sm:text-xs font-medium transition-all duration-200 flex items-center gap-1.5 ${
                   activeTab === "spaces"
                     ? "bg-[var(--bg-surface-highlight)] text-[var(--text-primary)] shadow-sm"
                     : "text-[var(--text-muted)] hover:text-[var(--text-primary)]"
                 }`}
               >
                 <FolderTree className="w-3.5 h-3.5 text-[var(--brand-text)]" />
-                <span>Live Space Creator Shell</span>
+                <span>Space Creator Shell</span>
               </motion.button>
             </div>
           </div>
@@ -116,11 +116,11 @@ export function MisconceptionSection() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -12 }}
                 transition={{ duration: 0.35, ease: EASING }}
-                className="w-full max-w-4xl rounded-[20px] bg-[var(--bg-surface)] border border-[var(--border-medium)] p-4 sm:p-6 shadow-xl relative overflow-hidden"
+                className="w-full max-w-4xl rounded-[18px] sm:rounded-[20px] bg-[var(--bg-surface)] border border-[var(--border-medium)] p-3 sm:p-4 md:p-6 shadow-xl relative overflow-hidden"
               >
-                <div className="flex flex-col md:flex-row items-stretch justify-between gap-3 pb-3 border-b border-[var(--border-subtle)]">
+                <div className="flex flex-col md:flex-row items-stretch justify-between gap-1.5 sm:gap-2.5 pb-2 sm:pb-3 border-b border-[var(--border-subtle)]">
                   <div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1.5 sm:gap-2">
                       <motion.div
                         animate={{ scale: [1, 1.3, 1] }}
                         transition={{ duration: 2, repeat: Infinity }}
@@ -130,29 +130,29 @@ export function MisconceptionSection() {
                         Live Problem: Solve for x: 5x + 3 = 2x + 18
                       </span>
                     </div>
-                    <p className="text-[11px] text-[var(--text-muted)] mt-0.5">
+                    <p className="text-[10px] sm:text-[11px] text-[var(--text-muted)] mt-0.5">
                       Student silently submits: <strong className="text-[var(--text-primary)] font-mono">3x = 21</strong> (incorrect)
                     </p>
                   </div>
-                  <span className="text-[10px] font-semibold px-2 py-0.5 rounded-[6px] bg-[var(--bg-surface-elevated)] text-[var(--brand-text)] border border-[var(--brand-border)] self-start md:self-auto">
+                  <span className="text-[9px] sm:text-[10px] font-semibold px-2 py-0.5 rounded-[6px] bg-[var(--bg-surface-elevated)] text-[var(--brand-text)] border border-[var(--brand-border)] self-start md:self-auto">
                     No Help Button Pressed
                   </span>
                 </div>
 
                 {/* Step-by-Step Graphic Chain */}
-                <div className="py-4 grid grid-cols-1 md:grid-cols-3 gap-3 items-stretch relative">
+                <div className="py-2.5 sm:py-3.5 grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 items-stretch relative">
                   {/* Step 1: Raw Student Attempt */}
                   <motion.div
                     whileHover={{ y: -1 }}
-                    className="p-3 rounded-[14px] bg-[var(--bg-canvas)] border border-[var(--border-subtle)] flex flex-col justify-between h-full"
+                    className="p-2.5 sm:p-3 rounded-[12px] sm:rounded-[14px] bg-[var(--bg-canvas)] border border-[var(--border-subtle)] flex flex-col justify-between h-full"
                   >
-                    <div className="text-[10px] font-semibold uppercase text-[var(--text-muted)] mb-1">
+                    <div className="text-[9px] sm:text-[10px] font-semibold uppercase text-[var(--text-muted)] mb-0.5">
                       1. Silent Attempt
                     </div>
-                    <div className="font-mono text-xs text-[var(--text-primary)] bg-[var(--bg-surface)] p-1.5 rounded-[8px] border border-[var(--border-subtle)] font-bold">
+                    <div className="font-mono text-[11px] sm:text-xs text-[var(--text-primary)] bg-[var(--bg-surface)] p-1 sm:p-1.5 rounded-[6px] sm:rounded-[8px] border border-[var(--border-subtle)] font-bold">
                       3x = 21
                     </div>
-                    <p className="text-[10px] text-[var(--text-muted)] mt-1 leading-relaxed">
+                    <p className="text-[9px] sm:text-[10px] text-[var(--text-muted)] mt-1 leading-relaxed">
                       Subtracted 2x from both sides, but added 3 to 18 instead of subtracting 3.
                     </p>
                   </motion.div>
@@ -160,17 +160,17 @@ export function MisconceptionSection() {
                   {/* Step 2: Diagnostic Engine Match */}
                   <motion.div
                     whileHover={{ y: -1 }}
-                    className="p-3 rounded-[14px] bg-[var(--bg-surface-elevated)] border border-[var(--brand-border)] flex flex-col justify-between h-full shadow-md relative"
+                    className="p-2.5 sm:p-3 rounded-[12px] sm:rounded-[14px] bg-[var(--bg-surface-elevated)] border border-[var(--brand-border)] flex flex-col justify-between h-full shadow-md relative"
                   >
-                    <div className="text-[10px] font-semibold uppercase text-[var(--brand-text)] mb-1 flex items-center gap-1">
+                    <div className="text-[9px] sm:text-[10px] font-semibold uppercase text-[var(--brand-text)] mb-0.5 flex items-center gap-1">
                       <Brain className="w-3 h-3 text-[var(--brand-text)]" />
                       <span>2. Pattern Identified</span>
                     </div>
-                    <div className="text-[11px] font-semibold text-[var(--brand-highlight)] bg-[var(--brand-subtle)] p-1.5 rounded-[8px] border border-[var(--brand-border)] flex items-center justify-between">
+                    <div className="text-[10px] sm:text-[11px] font-semibold text-[var(--brand-highlight)] bg-[var(--brand-subtle)] p-1 sm:p-1.5 rounded-[6px] sm:rounded-[8px] border border-[var(--brand-border)] flex items-center justify-between">
                       <span>Sign Inversion</span>
                       <SparkMotif size={8} />
                     </div>
-                    <p className="text-[10px] text-[var(--text-secondary)] mt-1 leading-relaxed">
+                    <p className="text-[9px] sm:text-[10px] text-[var(--text-secondary)] mt-1 leading-relaxed">
                       Matched to error graph: inverse operation applied incorrectly to constant.
                     </p>
                   </motion.div>
@@ -178,36 +178,36 @@ export function MisconceptionSection() {
                   {/* Step 3: Teacher View Surfacing */}
                   <motion.div
                     whileHover={{ y: -1 }}
-                    className="p-3 rounded-[14px] bg-[var(--bg-canvas)] border border-[var(--border-subtle)] flex flex-col justify-between h-full"
+                    className="p-2.5 sm:p-3 rounded-[12px] sm:rounded-[14px] bg-[var(--bg-canvas)] border border-[var(--border-subtle)] flex flex-col justify-between h-full"
                   >
-                    <div className="text-[10px] font-semibold uppercase text-[var(--text-muted)] mb-1 flex items-center gap-1">
+                    <div className="text-[9px] sm:text-[10px] font-semibold uppercase text-[var(--text-muted)] mb-0.5 flex items-center gap-1">
                       <UserCheck className="w-3 h-3 text-[var(--text-secondary)]" />
                       <span>3. Surfaced to Space</span>
                     </div>
-                    <div className="text-[11px] font-medium text-[var(--text-primary)] bg-[var(--bg-surface)] p-1.5 rounded-[8px] border border-[var(--border-subtle)]">
+                    <div className="text-[10px] sm:text-[11px] font-medium text-[var(--text-primary)] bg-[var(--bg-surface)] p-1 sm:p-1.5 rounded-[6px] sm:rounded-[8px] border border-[var(--border-subtle)]">
                       Alert: 10s check-in on constant
                     </div>
-                    <p className="text-[10px] text-[var(--text-muted)] mt-1 leading-relaxed">
+                    <p className="text-[9px] sm:text-[10px] text-[var(--text-muted)] mt-1 leading-relaxed">
                       Appears in teacher's active Space without public student exposure.
                     </p>
                   </motion.div>
                 </div>
 
                 {/* Dual Signal Explanation */}
-                <div className="pt-3 border-t border-[var(--border-subtle)] grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
-                  <div className="p-2.5 rounded-[10px] bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)]">
-                    <span className="font-semibold text-[var(--brand-text)] block mb-0.5 text-[11px]">
+                <div className="pt-2 sm:pt-2.5 border-t border-[var(--border-subtle)] grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                  <div className="p-2 sm:p-2.5 rounded-[8px] sm:rounded-[10px] bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)]">
+                    <span className="font-semibold text-[var(--brand-text)] block mb-0.5 text-[10px] sm:text-[11px]">
                       Signal 1 · Affective Safety Net
                     </span>
-                    <span className="text-[var(--text-secondary)] leading-relaxed text-[10px]">
+                    <span className="text-[var(--text-secondary)] leading-relaxed text-[9px] sm:text-[10px]">
                       Catches emotional distress, explicit help requests, and feelings of being overwhelmed.
                     </span>
                   </div>
-                  <div className="p-2.5 rounded-[10px] bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)]">
-                    <span className="font-semibold text-[var(--brand-text)] block mb-0.5 text-[11px]">
+                  <div className="p-2 sm:p-2.5 rounded-[8px] sm:rounded-[10px] bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] hidden xs:block">
+                    <span className="font-semibold text-[var(--brand-text)] block mb-0.5 text-[10px] sm:text-[11px]">
                       Signal 2 · Cognitive Misconception Detection
                     </span>
-                    <span className="text-[var(--text-secondary)] leading-relaxed text-[10px]">
+                    <span className="text-[var(--text-secondary)] leading-relaxed text-[9px] sm:text-[10px]">
                       Catches silent, specific reasoning errors and flags them directly to the educator.
                     </span>
                   </div>
@@ -223,24 +223,24 @@ export function MisconceptionSection() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -12 }}
                 transition={{ duration: 0.35, ease: EASING }}
-                className="w-full max-w-4xl rounded-[20px] bg-[var(--bg-surface)] border border-[var(--brand-border)] shadow-2xl overflow-hidden"
+                className="w-full max-w-4xl rounded-[18px] sm:rounded-[20px] bg-[var(--bg-surface)] border border-[var(--brand-border)] shadow-2xl overflow-hidden"
               >
                 {/* Shell Header Bar */}
-                <div className="p-3 sm:p-4 bg-[var(--bg-surface-elevated)] border-b border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-7 h-7 rounded-[8px] bg-[var(--brand-subtle)] border border-[var(--brand-border)] flex items-center justify-center text-[var(--brand-text)] shrink-0">
+                <div className="p-2.5 sm:p-3.5 bg-[var(--bg-surface-elevated)] border-b border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-2.5">
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-[7px] bg-[var(--brand-subtle)] border border-[var(--brand-border)] flex items-center justify-center text-[var(--brand-text)] shrink-0">
                       <FolderTree className="w-3.5 h-3.5" />
                     </div>
                     <div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1.5">
                         <h3 className="text-xs sm:text-sm font-semibold text-[var(--text-primary)]">
                           Teacher Space Creator Shell
                         </h3>
-                        <span className="text-[9px] font-semibold px-1.5 py-0.5 rounded-[6px] bg-[var(--teal-subtle)] text-[var(--teal-text)] border border-[var(--teal-border)]">
-                          Live Interactive Embed
+                        <span className="text-[9px] font-semibold px-1.5 py-0.5 rounded-[5px] bg-[var(--teal-subtle)] text-[var(--teal-text)] border border-[var(--teal-border)]">
+                          Live Embed
                         </span>
                       </div>
-                      <p className="text-[11px] text-[var(--text-muted)] mt-0.5">
+                      <p className="text-[10px] sm:text-[11px] text-[var(--text-muted)] mt-0.5 hidden xs:block">
                         Type natural language instructions to generate targeted cohorts and practice spaces in seconds.
                       </p>
                     </div>
@@ -253,14 +253,14 @@ export function MisconceptionSection() {
                       title="Reload live instance"
                       className="p-1 text-[var(--text-muted)] hover:text-[var(--text-primary)] rounded-[6px] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-highlight)] transition-colors"
                     >
-                      <RefreshCw className="w-3 h-3" />
+                      <RefreshCw className="w-3.5 h-3.5" />
                     </motion.button>
                     <a
                       href={spacesUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       title="Open live shell in new tab"
-                      className="flex items-center gap-1 px-2.5 py-1 rounded-[12px] bg-[var(--bg-surface-highlight)] hover:bg-[var(--border-strong)] text-xs font-semibold text-[var(--text-primary)] transition-colors"
+                      className="flex items-center gap-1 px-2.5 py-1 rounded-[12px] bg-[var(--bg-surface-highlight)] hover:bg-[var(--border-strong)] text-[11px] font-semibold text-[var(--text-primary)] transition-colors"
                     >
                       <span>Direct Shell</span>
                       <Maximize2 className="w-3 h-3" />
@@ -273,19 +273,19 @@ export function MisconceptionSection() {
                   src={spacesUrl}
                   title="Live Demo - Teacher Spaces Shell"
                   reloadKey={spacesReloadKey}
-                  height="h-[520px] sm:h-[560px] md:h-[600px]"
+                  height="h-[360px] xs:h-[400px] sm:h-[480px] lg:h-[560px]"
                 />
 
                 {/* Shell Footer Notes */}
-                <div className="p-2.5 bg-[var(--bg-surface-elevated)] border-t border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center justify-between text-xs text-[var(--text-secondary)] gap-2">
-                  <span className="text-[11px]">
+                <div className="p-2 sm:p-2.5 bg-[var(--bg-surface-elevated)] border-t border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center justify-between text-[11px] text-[var(--text-secondary)] gap-1">
+                  <span className="truncate">
                     Teachers retain complete authority over every generated Space proposal before it goes live.
                   </span>
                   <a
                     href={spacesUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[var(--brand-text)] hover:text-[var(--brand-highlight)] font-semibold inline-flex items-center gap-1 shrink-0 text-[11px]"
+                    className="text-[var(--brand-text)] hover:text-[var(--brand-highlight)] font-semibold inline-flex items-center gap-1 shrink-0 ml-auto sm:ml-0"
                   >
                     <span>Open Space Creator directly</span>
                     <ArrowUpRight className="w-3 h-3" />

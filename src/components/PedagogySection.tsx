@@ -109,32 +109,32 @@ export function PedagogySection() {
 
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Generously paced scroll-linked progression across all 4 ladder steps, 3 mental models, and live shell
+  // Extended mobile-safe scroll track giving ample dwell time on all screens
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
   useMotionValueEvent(scrollYProgress, "change", (progress) => {
-    // TAB 1: GRADUATED LADDER (0.00 -> 0.52) - Each step gets generous dwell time
-    if (progress < 0.52) {
+    // TAB 1: GRADUATED LADDER (0.00 -> 0.56)
+    if (progress < 0.56) {
       if (activeTab !== "ladder") setActiveTab("ladder");
-      if (progress < 0.15) {
+      if (progress < 0.16) {
         if (activeLadderStep !== 0) setActiveLadderStep(0);
-      } else if (progress < 0.28) {
+      } else if (progress < 0.30) {
         if (activeLadderStep !== 1) setActiveLadderStep(1);
-      } else if (progress < 0.40) {
+      } else if (progress < 0.44) {
         if (activeLadderStep !== 2) setActiveLadderStep(2);
       } else {
         if (activeLadderStep !== 3) setActiveLadderStep(3);
       }
     } 
-    // TAB 2: MENTAL MODELS (0.52 -> 0.88) - Each explanation model gets generous dwell time
+    // TAB 2: MENTAL MODELS (0.56 -> 0.88)
     else if (progress < 0.88) {
       if (activeTab !== "explanations") setActiveTab("explanations");
-      if (progress < 0.65) {
+      if (progress < 0.68) {
         if (activeExplanation !== 0) setActiveExplanation(0);
-      } else if (progress < 0.77) {
+      } else if (progress < 0.79) {
         if (activeExplanation !== 1) setActiveExplanation(1);
       } else {
         if (activeExplanation !== 2) setActiveExplanation(2);
@@ -154,17 +154,17 @@ export function PedagogySection() {
     <section
       ref={containerRef}
       id="pedagogy"
-      className="relative min-h-[460vh] bg-[var(--bg-canvas)] border-t border-[var(--border-subtle)]"
+      className="relative min-h-[520vh] bg-[var(--bg-canvas)] border-t border-[var(--border-subtle)]"
     >
-      <div className="sticky top-0 min-h-screen py-8 sm:py-12 px-4 sm:px-6 md:px-8 flex flex-col items-center justify-center overflow-hidden">
+      <div className="sticky top-0 min-h-screen py-4 sm:py-8 md:py-12 px-3 sm:px-6 md:px-8 flex flex-col items-center justify-center overflow-hidden">
         <div className="max-w-7xl mx-auto w-full flex flex-col items-center justify-between">
           {/* Section Header */}
-          <div className="text-center max-w-3xl mb-4 sm:mb-6">
-            <div className="flex items-center justify-center gap-2 mb-1.5">
-              <span className="text-xs font-semibold text-[var(--brand-text)]">
+          <div className="text-center max-w-3xl mb-2.5 sm:mb-4">
+            <div className="flex items-center justify-center gap-2 mb-1">
+              <span className="text-[11px] sm:text-xs font-semibold text-[var(--brand-text)]">
                 Teaching Method
               </span>
-              <SparkMotif size={14} />
+              <SparkMotif size={13} />
             </div>
 
             <StaggeredWords
@@ -172,32 +172,32 @@ export function PedagogySection() {
               text="How something is taught matters as much as how fast."
               highlightWords={["taught", "matters", "fast."]}
               highlightColor="var(--brand-text)"
-              className="text-2xl sm:text-4xl md:text-5xl font-display font-bold tracking-tight text-[var(--text-primary)]"
+              className="text-xl sm:text-3xl md:text-5xl font-display font-bold tracking-tight text-[var(--text-primary)]"
             />
 
-            <p className="mt-2 text-xs sm:text-sm text-[var(--text-secondary)] max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-1 sm:mt-2 text-[11px] sm:text-xs md:text-sm text-[var(--text-secondary)] max-w-2xl mx-auto leading-relaxed hidden xs:block">
               Adapting is not just about moving fast or slow. It means giving students{" "}
               <ScrollHighlightWord targetColor="var(--brand-text)">genuinely different ways to understand</ScrollHighlightWord>, verified lessons directly linked to school textbooks, and a graduated ladder of support — never just marked wrong with nothing in between.
             </p>
 
             {/* Mode Switcher */}
-            <div className="mt-3.5 inline-flex items-center p-1 bg-[var(--bg-surface)] border border-[var(--border-subtle)] rounded-[14px]">
+            <div className="mt-2.5 sm:mt-3 inline-flex items-center p-0.5 sm:p-1 bg-[var(--bg-surface)] border border-[var(--border-subtle)] rounded-[14px]">
               <motion.button
                 whileTap={{ scale: 0.96 }}
                 onClick={() => setActiveTab("ladder")}
-                className={`px-3.5 py-1 rounded-[8px] text-xs font-semibold transition-all duration-200 flex items-center gap-1.5 ${
+                className={`px-2.5 sm:px-3.5 py-1 rounded-[8px] text-[11px] sm:text-xs font-semibold transition-all duration-200 flex items-center gap-1.5 ${
                   activeTab === "ladder"
                     ? "bg-[var(--bg-surface-highlight)] text-[var(--text-primary)] shadow-sm"
                     : "text-[var(--text-muted)] hover:text-[var(--text-primary)]"
                 }`}
               >
                 <Layers className="w-3.5 h-3.5 text-[var(--brand-text)]" />
-                <span>Graduated Support Ladder</span>
+                <span>Support Ladder</span>
               </motion.button>
               <motion.button
                 whileTap={{ scale: 0.96 }}
                 onClick={() => setActiveTab("explanations")}
-                className={`px-3.5 py-1 rounded-[8px] text-xs font-semibold transition-all duration-200 flex items-center gap-1.5 ${
+                className={`px-2.5 sm:px-3.5 py-1 rounded-[8px] text-[11px] sm:text-xs font-semibold transition-all duration-200 flex items-center gap-1.5 ${
                   activeTab === "explanations"
                     ? "bg-[var(--bg-surface-highlight)] text-[var(--text-primary)] shadow-sm"
                     : "text-[var(--text-muted)] hover:text-[var(--text-primary)]"
@@ -209,7 +209,7 @@ export function PedagogySection() {
               <motion.button
                 whileTap={{ scale: 0.96 }}
                 onClick={() => setActiveTab("live_learn")}
-                className={`px-3.5 py-1 rounded-[8px] text-xs font-semibold transition-all duration-200 flex items-center gap-1.5 ${
+                className={`px-2.5 sm:px-3.5 py-1 rounded-[8px] text-[11px] sm:text-xs font-semibold transition-all duration-200 flex items-center gap-1.5 ${
                   activeTab === "live_learn"
                     ? "bg-[var(--bg-surface-highlight)] text-[var(--text-primary)] shadow-sm"
                     : "text-[var(--text-muted)] hover:text-[var(--text-primary)]"
@@ -227,10 +227,10 @@ export function PedagogySection() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: EASING }}
-              className="w-full max-w-5xl flex flex-col gap-3.5"
+              className="w-full max-w-5xl flex flex-col gap-2.5 sm:gap-3.5"
             >
               {/* Step Selection Row */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 sm:gap-2.5">
                 {ladderSteps.map((step, idx) => {
                   const isActive = activeLadderStep === idx;
                   return (
@@ -239,15 +239,15 @@ export function PedagogySection() {
                       onClick={() => setActiveLadderStep(idx)}
                       whileHover={{ y: -1 }}
                       whileTap={{ scale: 0.98 }}
-                      className={`p-2.5 sm:p-3 rounded-[16px] border text-left transition-all duration-200 relative flex flex-col justify-between ${
+                      className={`p-2 sm:p-2.5 rounded-[14px] sm:rounded-[16px] border text-left transition-all duration-200 relative flex flex-col justify-between ${
                         isActive
                           ? "bg-[var(--bg-surface-elevated)] border-[var(--brand-border-strong)] shadow-md"
                           : "bg-[var(--bg-surface)] border-[var(--border-subtle)] hover:bg-[var(--bg-surface-elevated)] opacity-75 hover:opacity-100"
                       }`}
                     >
-                      <div className="flex items-center justify-between mb-1.5">
+                      <div className="flex items-center justify-between mb-1">
                         <span
-                          className={`w-5 h-5 rounded-[6px] flex items-center justify-center text-[11px] font-bold transition-colors ${
+                          className={`w-4 h-4 sm:w-5 sm:h-5 rounded-[5px] sm:rounded-[6px] flex items-center justify-center text-[10px] sm:text-[11px] font-bold transition-colors ${
                             isActive
                               ? "bg-[var(--brand-base)] text-white shadow-[0_0_8px_rgba(30,107,255,0.4)]"
                               : "bg-[var(--bg-canvas)] text-[var(--text-muted)]"
@@ -255,11 +255,11 @@ export function PedagogySection() {
                         >
                           {step.step}
                         </span>
-                        <span className="text-[10px] font-semibold text-[var(--text-muted)]">
+                        <span className="text-[9px] sm:text-[10px] font-semibold text-[var(--text-muted)]">
                           {step.badge}
                         </span>
                       </div>
-                      <div className="text-xs font-semibold text-[var(--text-primary)]">
+                      <div className="text-[11px] sm:text-xs font-semibold text-[var(--text-primary)]">
                         {step.title}
                       </div>
                       {isActive && (
@@ -282,47 +282,47 @@ export function PedagogySection() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.3, ease: EASING }}
-                  className="rounded-[20px] bg-[var(--bg-surface)] border border-[var(--border-medium)] p-4 sm:p-5 shadow-xl"
+                  className="rounded-[18px] sm:rounded-[20px] bg-[var(--bg-surface)] border border-[var(--border-medium)] p-3 sm:p-4 md:p-5 shadow-xl"
                 >
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-2.5 border-b border-[var(--border-subtle)] gap-1.5">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-6 h-6 rounded-[6px] bg-[var(--brand-subtle)] border border-[var(--brand-border)] text-[var(--brand-text)] flex items-center justify-center font-bold text-xs">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-2 border-b border-[var(--border-subtle)] gap-1">
+                    <div className="flex items-center gap-2">
+                      <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-[6px] bg-[var(--brand-subtle)] border border-[var(--brand-border)] text-[var(--brand-text)] flex items-center justify-center font-bold text-[11px]">
                         {currentStep.step}
                       </div>
                       <div>
                         <h3 className="text-xs sm:text-sm font-semibold text-[var(--text-primary)]">
                           {currentStep.stageName}
                         </h3>
-                        <p className="text-[11px] text-[var(--text-secondary)] mt-0.5">
+                        <p className="text-[10px] sm:text-[11px] text-[var(--text-secondary)] mt-0.5 hidden xs:block">
                           {currentStep.explanation}
                         </p>
                       </div>
                     </div>
-                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded-[6px] bg-[var(--bg-surface-elevated)] text-[var(--brand-text)] border border-[var(--brand-border)] self-start sm:self-auto">
+                    <span className="text-[9px] sm:text-[10px] font-semibold px-2 py-0.5 rounded-[6px] bg-[var(--bg-surface-elevated)] text-[var(--brand-text)] border border-[var(--brand-border)] self-start sm:self-auto">
                       Graduated Step
                     </span>
                   </div>
 
                   {/* What the student sees */}
-                  <div className="mt-3 p-3 rounded-[14px] bg-[var(--bg-surface-elevated)] border border-[var(--brand-border)]">
-                    <div className="text-[10px] font-semibold uppercase text-[var(--brand-text)] mb-1 flex items-center gap-1.5">
+                  <div className="mt-2.5 sm:mt-3 p-2.5 sm:p-3 rounded-[12px] sm:rounded-[14px] bg-[var(--bg-surface-elevated)] border border-[var(--brand-border)]">
+                    <div className="text-[9px] sm:text-[10px] font-semibold uppercase text-[var(--brand-text)] mb-1 flex items-center gap-1.5">
                       <Eye className="w-3 h-3" />
                       <span>On the student's screen right now:</span>
                     </div>
-                    <p className="text-xs sm:text-sm text-[var(--text-primary)] font-medium leading-relaxed font-mono">
+                    <p className="text-[11px] sm:text-xs md:text-sm text-[var(--text-primary)] font-medium leading-relaxed font-mono">
                       {currentStep.studentViewText}
                     </p>
                   </div>
 
-                  <div className="mt-3 pt-2.5 border-t border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center justify-between text-xs text-[var(--text-muted)] gap-2">
-                    <span className="text-[11px]">
-                      Traditional apps mark a red cross and deduct points. Escolent steps down the support ladder.
+                  <div className="mt-2.5 pt-2 border-t border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center justify-between text-[11px] text-[var(--text-muted)] gap-1.5">
+                    <span className="truncate">
+                      Traditional apps mark a red cross. Escolent steps down the support ladder.
                     </span>
                     <a
                       href="https://demo.escolent.com/student/practice?embed=1&problemDemo=wrong_answer_scaffold"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[var(--brand-text)] hover:text-[var(--brand-highlight)] font-semibold inline-flex items-center gap-1 shrink-0 text-[11px]"
+                      className="text-[var(--brand-text)] hover:text-[var(--brand-highlight)] font-semibold inline-flex items-center gap-1 shrink-0 ml-auto sm:ml-0"
                     >
                       <span>See Live in Action</span>
                       <ArrowUpRight className="w-3 h-3" />
@@ -339,9 +339,9 @@ export function PedagogySection() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: EASING }}
-              className="w-full max-w-5xl flex flex-col gap-3.5"
+              className="w-full max-w-5xl flex flex-col gap-2.5 sm:gap-3.5"
             >
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-1.5 sm:gap-2.5">
                 {explanationModes.map((mode, idx) => {
                   const isActive = activeExplanation === idx;
                   return (
@@ -350,7 +350,7 @@ export function PedagogySection() {
                       onClick={() => setActiveExplanation(idx)}
                       whileHover={{ y: -1 }}
                       whileTap={{ scale: 0.98 }}
-                      className={`p-2.5 sm:p-3 rounded-[16px] border text-left transition-all duration-200 relative flex flex-col justify-between ${
+                      className={`p-2 sm:p-2.5 rounded-[14px] sm:rounded-[16px] border text-left transition-all duration-200 relative flex flex-col justify-between ${
                         isActive
                           ? "bg-[var(--bg-surface-elevated)] border-[var(--brand-border-strong)] shadow-md"
                           : "bg-[var(--bg-surface)] border-[var(--border-subtle)] hover:bg-[var(--bg-surface-elevated)] opacity-75 hover:opacity-100"
@@ -384,35 +384,35 @@ export function PedagogySection() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.3, ease: EASING }}
-                  className="rounded-[20px] bg-[var(--bg-surface)] border border-[var(--border-medium)] p-4 sm:p-5 shadow-xl"
+                  className="rounded-[18px] sm:rounded-[20px] bg-[var(--bg-surface)] border border-[var(--border-medium)] p-3 sm:p-4 md:p-5 shadow-xl"
                 >
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-2.5 border-b border-[var(--border-subtle)] gap-1.5">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-2 border-b border-[var(--border-subtle)] gap-1">
                     <div>
                       <h3 className="text-xs sm:text-sm font-semibold text-[var(--text-primary)]">
                         {currentExp.title}: {currentExp.conceptTitle}
                       </h3>
-                      <p className="text-[11px] text-[var(--text-secondary)] mt-0.5 max-w-2xl leading-relaxed">
+                      <p className="text-[10px] sm:text-[11px] text-[var(--text-secondary)] mt-0.5 max-w-2xl leading-relaxed hidden xs:block">
                         {currentExp.description}
                       </p>
                     </div>
-                    <span className="text-[10px] font-semibold px-2 py-0.5 rounded-[6px] bg-[var(--brand-subtle)] text-[var(--brand-text)] border border-[var(--brand-border)] self-start sm:self-auto shrink-0">
+                    <span className="text-[9px] sm:text-[10px] font-semibold px-2 py-0.5 rounded-[6px] bg-[var(--brand-subtle)] text-[var(--brand-text)] border border-[var(--brand-border)] self-start sm:self-auto shrink-0">
                       Alternative Model
                     </span>
                   </div>
 
                   {/* Graphical demonstration block */}
-                  <div className="mt-3 p-3 rounded-[14px] bg-[var(--bg-surface-elevated)] border border-[var(--border-medium)] flex flex-col items-center justify-center text-center">
-                    <div className="text-[11px] font-semibold text-[var(--brand-text)] mb-2 flex items-center gap-1.5">
+                  <div className="mt-2.5 p-2.5 sm:p-3 rounded-[12px] bg-[var(--bg-surface-elevated)] border border-[var(--border-medium)] flex flex-col items-center justify-center text-center">
+                    <div className="text-[10px] sm:text-[11px] font-semibold text-[var(--brand-text)] mb-1.5 flex items-center gap-1.5">
                       <Sparkles className="w-3 h-3" />
                       <span>Interactive Concept Demonstration</span>
                     </div>
 
                     {currentExp.id === "visual" && (
-                      <div className="p-2.5 rounded-[12px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] w-full max-w-lg">
-                        <div className="flex items-center justify-between text-xs font-mono mb-1.5 px-2 text-[var(--text-secondary)]">
-                          <span className="text-[var(--brand-text)] font-semibold text-[11px]">Left Pan: 5x + 3</span>
+                      <div className="p-2 sm:p-2.5 rounded-[10px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] w-full max-w-lg">
+                        <div className="flex items-center justify-between font-mono mb-1 px-2 text-[var(--text-secondary)]">
+                          <span className="text-[var(--brand-text)] font-semibold text-[10px] sm:text-[11px]">Left: 5x + 3</span>
                           <Scale className="w-3.5 h-3.5 text-[var(--text-muted)] animate-bounce" />
-                          <span className="text-[var(--teal-text)] font-semibold text-[11px]">Right Pan: 2x + 18</span>
+                          <span className="text-[var(--teal-text)] font-semibold text-[10px] sm:text-[11px]">Right: 2x + 18</span>
                         </div>
                         <div className="h-1.5 w-full bg-[var(--border-subtle)] rounded-full overflow-hidden relative">
                           <motion.div
@@ -421,42 +421,42 @@ export function PedagogySection() {
                             className="h-full bg-gradient-to-r from-[var(--brand-base)] via-[var(--teal-accent)] to-[var(--brand-base)]"
                           />
                         </div>
-                        <div className="text-[10px] text-[var(--text-muted)] mt-1.5">
-                          Subtract 2x weights from both pans → Remaining: <strong className="text-[var(--text-primary)]">3x + 3 = 18</strong>
+                        <div className="text-[10px] text-[var(--text-muted)] mt-1">
+                          Subtract 2x weights → Remaining: <strong className="text-[var(--text-primary)]">3x + 3 = 18</strong>
                         </div>
                       </div>
                     )}
 
                     {currentExp.id === "algebraic" && (
-                      <div className="p-2.5 rounded-[12px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] w-full max-w-lg text-left space-y-1 font-mono text-[11px]">
+                      <div className="p-2 sm:p-2.5 rounded-[10px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] w-full max-w-lg text-left space-y-0.5 font-mono text-[10px] sm:text-[11px]">
                         <div className="text-[var(--text-muted)]">Given: 5x + 3 = 2x + 18</div>
-                        <div className="text-[var(--brand-highlight)] bg-[var(--brand-subtle)] px-2 py-0.5 rounded-[4px]">
+                        <div className="text-[var(--brand-highlight)] bg-[var(--brand-subtle)] px-1.5 py-0.5 rounded-[4px]">
                           Step 1: (5x - 2x) + 3 = (2x - 2x) + 18 → 3x + 3 = 18
                         </div>
-                        <div className="text-[var(--teal-text)] bg-[var(--teal-subtle)] px-2 py-0.5 rounded-[4px]">
+                        <div className="text-[var(--teal-text)] bg-[var(--teal-subtle)] px-1.5 py-0.5 rounded-[4px]">
                           Step 2: 3x + (3 - 3) = 18 - 3 → 3x = 15
                         </div>
-                        <div className="text-[var(--text-primary)] font-bold px-2 py-0.5">
+                        <div className="text-[var(--text-primary)] font-bold px-1.5 py-0.5">
                           Step 3: (3x ÷ 3) = (15 ÷ 3) → x = 5
                         </div>
                       </div>
                     )}
 
                     {currentExp.id === "intuitive" && (
-                      <div className="p-2.5 rounded-[12px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] w-full max-w-lg text-xs">
-                        <div className="flex justify-between items-center mb-1 text-[10px] text-[var(--text-muted)]">
+                      <div className="p-2 sm:p-2.5 rounded-[10px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] w-full max-w-lg text-xs">
+                        <div className="flex justify-between items-center mb-0.5 text-[10px] text-[var(--text-muted)]">
                           <span>Account A: $3 + $5/wk</span>
                           <span>Account B: $18 + $2/wk</span>
                         </div>
                         <div className="space-y-1">
-                          <div className="h-2 rounded-full bg-[var(--border-subtle)] overflow-hidden relative">
+                          <div className="h-1.5 sm:h-2 rounded-full bg-[var(--border-subtle)] overflow-hidden relative">
                             <motion.div
                               className="h-full bg-[var(--brand-base)]"
                               animate={{ width: ["15%", "85%", "85%", "15%"] }}
                               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                             />
                           </div>
-                          <div className="h-2 rounded-full bg-[var(--border-subtle)] overflow-hidden relative">
+                          <div className="h-1.5 sm:h-2 rounded-full bg-[var(--border-subtle)] overflow-hidden relative">
                             <motion.div
                               className="h-full bg-[var(--teal-accent)]"
                               animate={{ width: ["45%", "85%", "85%", "45%"] }}
@@ -465,32 +465,32 @@ export function PedagogySection() {
                           </div>
                         </div>
                         <div className="text-[10px] text-[var(--text-secondary)] mt-1 font-mono">
-                          Intersection at <strong className="text-[var(--text-primary)]">Week 5 (x = 5)</strong>: Both totals = $28
+                          Intersection at <strong className="text-[var(--text-primary)]">Week 5 (x = 5)</strong>: $28
                         </div>
                       </div>
                     )}
                   </div>
 
                   {/* Syllabus Source Citation Proof */}
-                  <div className="mt-2.5 p-2 rounded-[12px] bg-[var(--bg-canvas)] border border-[var(--border-subtle)] flex items-center justify-between text-xs text-[var(--text-muted)]">
-                    <div className="flex items-center gap-1.5">
-                      <BookmarkCheck className="w-3.5 h-3.5 text-[var(--brand-text)]" />
-                      <span className="text-[10px]">{currentExp.citation}</span>
+                  <div className="mt-2 p-1.5 sm:p-2 rounded-[10px] bg-[var(--bg-canvas)] border border-[var(--border-subtle)] flex items-center justify-between text-[10px] text-[var(--text-muted)]">
+                    <div className="flex items-center gap-1.5 truncate">
+                      <BookmarkCheck className="w-3.5 h-3.5 text-[var(--brand-text)] shrink-0" />
+                      <span className="truncate">{currentExp.citation}</span>
                     </div>
-                    <span className="text-[9px] font-medium text-[var(--text-secondary)]">Verified Syllabus</span>
+                    <span className="text-[9px] font-medium text-[var(--text-secondary)] shrink-0 ml-2">Verified Syllabus</span>
                   </div>
 
-                  <div className="mt-2.5 pt-2 border-t border-[var(--border-subtle)] flex items-center justify-between text-xs text-[var(--text-muted)]">
-                    <span className="text-[11px]">
+                  <div className="mt-2 pt-1.5 border-t border-[var(--border-subtle)] flex items-center justify-between text-[11px] text-[var(--text-muted)]">
+                    <span className="truncate">
                       Course Maps link directly to standard school curricula.
                     </span>
                     <a
                       href="https://demo.escolent.com/student/today?embed=1"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[var(--brand-text)] hover:text-[var(--brand-highlight)] font-semibold inline-flex items-center gap-1 shrink-0 ml-4 text-[11px]"
+                      className="text-[var(--brand-text)] hover:text-[var(--brand-highlight)] font-semibold inline-flex items-center gap-1 shrink-0 ml-2"
                     >
-                      <span>Open Learn Shell Demo</span>
+                      <span>Open Demo</span>
                       <ArrowUpRight className="w-3 h-3" />
                     </a>
                   </div>
@@ -505,24 +505,24 @@ export function PedagogySection() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: EASING }}
-              className="w-full max-w-5xl rounded-[20px] bg-[var(--bg-surface)] border border-[var(--brand-border)] shadow-2xl overflow-hidden"
+              className="w-full max-w-5xl rounded-[18px] sm:rounded-[20px] bg-[var(--bg-surface)] border border-[var(--brand-border)] shadow-2xl overflow-hidden"
             >
               {/* Shell Header Bar */}
-              <div className="p-3 sm:p-4 bg-[var(--bg-surface-elevated)] border-b border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-7 h-7 rounded-[8px] bg-[var(--brand-subtle)] border border-[var(--brand-border)] flex items-center justify-center text-[var(--brand-text)] shrink-0">
+              <div className="p-2.5 sm:p-3.5 bg-[var(--bg-surface-elevated)] border-b border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-2.5">
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-[7px] bg-[var(--brand-subtle)] border border-[var(--brand-border)] flex items-center justify-center text-[var(--brand-text)] shrink-0">
                     <BookOpen className="w-3.5 h-3.5" />
                   </div>
                   <div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1.5">
                       <h3 className="text-xs sm:text-sm font-semibold text-[var(--text-primary)]">
                         Student Learn Shell & Daily Overview
                       </h3>
-                      <span className="text-[10px] font-semibold px-2 py-0.5 rounded-[6px] bg-[var(--brand-subtle)] text-[var(--brand-highlight)] border border-[var(--brand-border)]">
+                      <span className="text-[9px] font-semibold px-1.5 py-0.5 rounded-[5px] bg-[var(--brand-subtle)] text-[var(--brand-highlight)] border border-[var(--brand-border)]">
                         Live Embed
                       </span>
                     </div>
-                    <p className="text-[11px] text-[var(--text-muted)] mt-0.5">
+                    <p className="text-[10px] sm:text-[11px] text-[var(--text-muted)] mt-0.5 hidden xs:block">
                       Course maps, assigned practice spaces, and learning objectives directly mapped to school curricula.
                     </p>
                   </div>
@@ -542,7 +542,7 @@ export function PedagogySection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     title="Open live shell in new tab"
-                    className="flex items-center gap-1 px-2.5 py-1 rounded-[12px] bg-[var(--bg-surface-highlight)] hover:bg-[var(--border-strong)] text-xs font-semibold text-[var(--text-primary)] transition-colors"
+                    className="flex items-center gap-1 px-2.5 py-1 rounded-[12px] bg-[var(--bg-surface-highlight)] hover:bg-[var(--border-strong)] text-[11px] font-semibold text-[var(--text-primary)] transition-colors"
                   >
                     <span>Direct Shell</span>
                     <Maximize2 className="w-3 h-3" />
@@ -555,19 +555,19 @@ export function PedagogySection() {
                 src={learnUrl}
                 title="Live Demo - Student Learn Shell"
                 reloadKey={learnReloadKey}
-                height="h-[520px] sm:h-[560px] md:h-[600px]"
+                height="h-[360px] xs:h-[400px] sm:h-[480px] lg:h-[560px]"
               />
 
               {/* Shell Footer Notes */}
-              <div className="p-2.5 bg-[var(--bg-surface-elevated)] border-t border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center justify-between text-xs text-[var(--text-secondary)] gap-2">
-                <span className="text-[11px]">
+              <div className="p-2 sm:p-2.5 bg-[var(--bg-surface-elevated)] border-t border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center justify-between text-[11px] text-[var(--text-secondary)] gap-1">
+                <span className="truncate">
                   Students browse full Course Maps before practicing, with verified references to school curricula.
                 </span>
                 <a
                   href={learnUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[var(--brand-text)] hover:text-[var(--brand-highlight)] font-semibold inline-flex items-center gap-1 shrink-0 text-[11px]"
+                  className="text-[var(--brand-text)] hover:text-[var(--brand-highlight)] font-semibold inline-flex items-center gap-1 shrink-0 ml-auto sm:ml-0"
                 >
                   <span>Open Learn Shell directly</span>
                   <ArrowUpRight className="w-3 h-3" />
