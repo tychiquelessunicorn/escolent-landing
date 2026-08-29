@@ -11,6 +11,8 @@ import {
   Clock,
   Shield,
   FileCheck,
+  CheckCircle2,
+  Sparkles,
 } from "lucide-react";
 import { LiveIframe } from "./ui/LiveIframe";
 import { StaggeredWords, ScrollHighlightWord } from "./ui/TextReveal";
@@ -42,9 +44,9 @@ const steps: RoleStep[] = [
     id: "teacher",
     stepNumber: "02",
     roleName: "Teacher Escalations",
-    headline: "The Active Queue",
+    headline: "Targeted Daily Triage",
     mechanism:
-      "The teacher's dashboard receives the student's name, timestamp, and specific problem context on the active Escalations queue, enabling the teacher to conduct a timely, personal check-in.",
+      "Surfaces exactly what needs attention today — not a dense dashboard to dig through, but a focused triage queue. Teachers spend less time manually checking homework and more time giving direct 1-on-1 support to students who need it.",
     timingTruth: "Queue polls the server every 15–20 seconds to balance freshness with network efficiency.",
     privacyBoundary: "Visible only to verified educators responsible for that classroom.",
     iframeUrl: "https://demo.escolent.com/teacher/escalations?demo=1",
@@ -156,7 +158,7 @@ export function ThreeRolesSection() {
         </div>
 
         {/* Connected Live Shell Container */}
-        <div className="w-full max-w-5xl rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-medium)] shadow-xl overflow-hidden mb-10">
+        <div className="w-full max-w-5xl rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-medium)] shadow-xl overflow-hidden mb-8">
           {/* Header Bar */}
           <div className="p-5 bg-[var(--bg-surface-elevated)] border-b border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-start sm:items-center gap-3">
@@ -236,24 +238,47 @@ export function ThreeRolesSection() {
           </div>
         </div>
 
-        {/* Real Data Governance & Privacy Guarantee */}
-        <div className="w-full max-w-5xl rounded-[22px] p-6 sm:p-7 bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
-          <div className="flex items-start gap-3.5">
-            <div className="w-9 h-9 rounded-[10px] bg-[var(--bg-surface-elevated)] border border-[var(--border-medium)] flex items-center justify-center text-[var(--brand-text)] shrink-0 mt-0.5">
-              <FileCheck className="w-5 h-5" />
+        {/* Teacher Workload Relief & Data Governance Dual Cards */}
+        <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Card 1: Teacher Time Savings */}
+          <div className="p-6 sm:p-7 rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-col justify-between">
+            <div className="flex items-start gap-3.5">
+              <div className="w-9 h-9 rounded-[10px] bg-[var(--brand-subtle)] border border-[var(--brand-border)] flex items-center justify-center text-[var(--brand-text)] shrink-0 mt-0.5">
+                <Clock className="w-5 h-5" />
+              </div>
+              <div>
+                <h4 className="text-sm font-semibold text-[var(--text-primary)]">
+                  Genuine Relief from Manual Workload
+                </h4>
+                <p className="text-xs text-[var(--text-secondary)] mt-2 leading-relaxed">
+                  The system handles real-time scaffolding and diagnostic tracking automatically. A teacher's daily briefing surfaces the exact students and questions that need follow-up today — eliminating manual grading and freeing up hours for direct human connection.
+                </p>
+              </div>
             </div>
-            <div>
-              <h4 className="text-sm font-semibold text-[var(--text-primary)]">
-                Strict Institutional Data Governance
-              </h4>
-              <p className="text-xs text-[var(--text-secondary)] mt-1 max-w-2xl leading-relaxed">
-                School data is strictly governed with an enforced 72-hour hold and explicit written confirmation required before any student records can be permanently deleted. Access controls are mathematically enforced at the database level, not merely cosmetically hidden.
-              </p>
+            <div className="mt-5 pt-3.5 border-t border-[var(--border-subtle)] text-[11px] text-[var(--brand-text)] font-medium">
+              Less administrative overhead · More 1-on-1 teaching time
             </div>
           </div>
-          <span className="text-[11px] font-semibold px-3 py-1 rounded-[8px] bg-[var(--bg-surface-elevated)] text-[var(--text-secondary)] border border-[var(--border-subtle)] shrink-0">
-            Enforced 72-Hour Hold
-          </span>
+
+          {/* Card 2: Institutional Data Governance */}
+          <div className="p-6 sm:p-7 rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex flex-col justify-between">
+            <div className="flex items-start gap-3.5">
+              <div className="w-9 h-9 rounded-[10px] bg-[var(--bg-surface-elevated)] border border-[var(--border-medium)] flex items-center justify-center text-[var(--brand-text)] shrink-0 mt-0.5">
+                <FileCheck className="w-5 h-5" />
+              </div>
+              <div>
+                <h4 className="text-sm font-semibold text-[var(--text-primary)]">
+                  Strict Institutional Data Governance
+                </h4>
+                <p className="text-xs text-[var(--text-secondary)] mt-2 leading-relaxed">
+                  School data is strictly governed with an enforced 72-hour hold and explicit written confirmation required before any student records can be permanently deleted. Access controls are mathematically enforced at the database level.
+                </p>
+              </div>
+            </div>
+            <div className="mt-5 pt-3.5 border-t border-[var(--border-subtle)] text-[11px] text-[var(--text-secondary)] font-medium">
+              Enforced 72-hour hold on all student record deletions
+            </div>
+          </div>
         </div>
       </div>
     </section>

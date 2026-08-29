@@ -84,7 +84,7 @@ export function SafetyNetSection() {
         {/* Section Header */}
         <div className="text-center max-w-3xl mb-16">
           <div className="flex items-center justify-center gap-2 mb-3">
-            <span className="text-xs font-semibold text-[var(--escalation-text)]">
+            <span className="text-xs font-semibold text-[var(--brand-text)]">
               The Safety Net
             </span>
             <SparkMotif size={16} />
@@ -94,7 +94,7 @@ export function SafetyNetSection() {
             as="h2"
             text="A system that notices distress, not just incorrect answers."
             highlightWords={["distress,", "answers."]}
-            highlightColor="var(--escalation-text)"
+            highlightColor="var(--text-secondary)"
             className="text-3xl sm:text-5xl md:text-6xl font-display font-bold tracking-tight text-[var(--text-primary)]"
           />
 

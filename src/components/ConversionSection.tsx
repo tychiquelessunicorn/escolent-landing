@@ -15,7 +15,9 @@ import {
   User,
   Shield,
   Layers,
+  Sparkles,
 } from "lucide-react";
+import { SparkMotif } from "./motifs/SparkMotif";
 import { StaggeredWords, ScrollHighlightWord } from "./ui/TextReveal";
 
 export function ConversionSection() {
@@ -40,7 +42,7 @@ export function ConversionSection() {
     >
       <div className="max-w-5xl mx-auto flex flex-col items-center text-center">
         {/* Section Header */}
-        <div className="max-w-3xl mb-16">
+        <div className="max-w-3xl mb-12 sm:mb-14">
           <div className="flex items-center justify-center gap-2 mb-3">
             <span className="text-xs font-semibold text-[var(--brand-text)]">
               Experience the System
@@ -58,6 +60,31 @@ export function ConversionSection() {
           <p className="mt-4 text-base sm:text-lg text-[var(--text-secondary)] max-w-2xl mx-auto">
             No signup barriers. No marketing video gates. Open the live platform and test all three views right now.
           </p>
+        </div>
+
+        {/* Honest Urgency Callout — Grounded in Classroom Reality, Not Manipulation */}
+        <div className="w-full max-w-4xl p-6 sm:p-7 rounded-[22px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] mb-12 text-left flex flex-col sm:flex-row sm:items-center justify-between gap-6 shadow-xl">
+          <div className="space-y-1.5">
+            <div className="text-xs font-semibold text-[var(--brand-text)] flex items-center gap-2">
+              <SparkMotif size={14} />
+              <span>A Real Classroom Reality</span>
+            </div>
+            <h3 className="text-base sm:text-lg font-display font-semibold text-[var(--text-primary)]">
+              Every term a struggling or quietly disengaged student goes unnoticed is a term further behind.
+            </h3>
+            <p className="text-xs text-[var(--text-secondary)] leading-relaxed max-w-2xl">
+              Foundational math and science understanding is cumulative. Gaps in early algebra don't fix themselves over time — they compound into quiet disengagement. Bringing Escolent to your classroom gives every child immediate, personalized scaffolding before small confusions become permanent setbacks.
+            </p>
+          </div>
+          <a
+            href="https://demo.escolent.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="shrink-0 px-5 py-2.5 rounded-[14px] bg-[var(--bg-surface-elevated)] hover:bg-[var(--border-strong)] border border-[var(--border-medium)] text-[var(--text-primary)] font-semibold text-xs transition-colors flex items-center gap-1.5 self-start sm:self-center"
+          >
+            <span>Explore Sandbox</span>
+            <ArrowUpRight className="w-3.5 h-3.5 text-[var(--text-muted)]" />
+          </a>
         </div>
 
         {/* TIER 1: DOMINANT CTA — Launch Live Sandbox */}
