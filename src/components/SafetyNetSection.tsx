@@ -8,10 +8,8 @@ import {
   ShieldCheck,
   AlertTriangle,
   UserCheck,
-  Sparkles,
   Lock,
   Eye,
-  Radio,
   Clock,
   ArrowUpRight,
 } from "lucide-react";
@@ -22,36 +20,32 @@ interface SignalCase {
   affectiveSignal: string;
   traditionalReaction: string;
   escolentResponse: string;
-  telemetryType: "frustration" | "resignation" | "overwhelm";
 }
 
 const cases: SignalCase[] = [
   {
-    title: "The Rapid Backspace Loop",
-    trigger: "Student types and deletes answer 4 times in 45 seconds",
-    affectiveSignal: "Paralyzing Self-Doubt / Imposter Anxiety",
-    traditionalReaction: "Marks as idle time or generic error on submission",
+    title: "Explicit Help Request",
+    trigger: "Student presses the built-in 'I need help' button during practice",
+    affectiveSignal: "Active Request for Support / Academic Vulnerability",
+    traditionalReaction: "Nonexistent or forces student to raise hand publicly in front of peers",
     escolentResponse:
-      "Softens interface pressure, removes timer countdown, and presents a 1-step confidence check with no penalty.",
-    telemetryType: "frustration",
+      "Displays immediate private reassurance on screen and enqueues an escalation record on the teacher's dashboard.",
   },
   {
-    title: "The Silent Disengagement Drop",
-    trigger: "7 minutes without interaction following 2 incorrect attempts",
-    affectiveSignal: "Cognitive Resignation (Learned Helplessness)",
-    traditionalReaction: "Records failure at deadline; student disappears unnoticed",
+    title: "Concerning Language in Reflection",
+    trigger: "Student types 'I am too stupid for this' or expressions of severe distress",
+    affectiveSignal: "Cognitive Resignation & Self-Efficacy Breakdown",
+    traditionalReaction: "Ignored by automated graders or marked as standard incorrect text",
     escolentResponse:
-      "Silently notifies teacher with exact misconception note & suggests a private 90-second checkpoint.",
-    telemetryType: "resignation",
+      "Classifier flags the emotional distress signal confidentially to the teacher while reassuring the student calmly.",
   },
   {
-    title: "The Guess-Spam Rush",
-    trigger: "Clicking multiple options in under 2 seconds",
-    affectiveSignal: "Panic Avoidance / Shame Reaction",
-    traditionalReaction: "Subtracts points, deducts lives, flashes loud red banners",
+    title: "Persistent Foundational Deadlock",
+    trigger: "Multiple consecutive incorrect attempts on the same sub-concept",
+    affectiveSignal: "Cognitive Overwhelm / Prerequisite Barrier",
+    traditionalReaction: "Penalizes score, locks out attempt, or moves on to next question unresolved",
     escolentResponse:
-      "Freezes question penalty-free, opens calm reflective pause, and branches to intuitive visual model.",
-    telemetryType: "overwhelm",
+      "Activates the step-down scaffold ladder to isolate the missing prerequisite without public shaming.",
   },
 ];
 
@@ -88,7 +82,7 @@ export function SafetyNetSection() {
             </span>
           </h2>
           <p className="mt-4 text-base sm:text-lg text-zinc-400 max-w-2xl mx-auto">
-            Academic failure is rarely intellectual; it begins as emotional overwhelm. Escolent detects subtle patterns of frustration, panic, and silent withdrawal before they turn into failure.
+            Academic failure is rarely intellectual; it begins as emotional overwhelm. Escolent recognizes emotional distress and cognitive friction through explicit signals and language classification, connecting students to human support.
           </p>
         </motion.div>
 
@@ -97,7 +91,7 @@ export function SafetyNetSection() {
           {/* Left Column: Interactive Scenario Selector */}
           <div className="lg:col-span-5 flex flex-col justify-between gap-3">
             <div className="text-xs font-mono uppercase text-zinc-400 tracking-wider mb-1 px-1">
-              Select Affective State
+              Select Distress Trigger
             </div>
             {cases.map((c, i) => (
               <button
@@ -132,7 +126,7 @@ export function SafetyNetSection() {
                 <div className="flex items-center gap-2">
                   <Activity className="w-4 h-4 text-rose-400 animate-pulse" />
                   <span className="text-sm font-semibold text-white">
-                    Affective Telemetry & Human Dispatch
+                    Real Distress Detection & Triage
                   </span>
                 </div>
                 <span className="text-[10px] font-mono uppercase px-2.5 py-1 rounded-full bg-white/[0.05] text-zinc-400 border border-white/10">
@@ -144,7 +138,7 @@ export function SafetyNetSection() {
               <div className="mt-6 space-y-5">
                 <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/[0.04]">
                   <div className="text-[11px] font-mono uppercase text-zinc-400">
-                    Observed Micro-Interaction
+                    Observed Trigger
                   </div>
                   <div className="text-sm text-zinc-200 mt-1 font-mono">
                     "{cases[selectedCase].trigger}"
@@ -181,7 +175,7 @@ export function SafetyNetSection() {
             <div className="mt-8 pt-5 border-t border-white/[0.06] flex items-center justify-between text-xs text-zinc-400">
               <div className="flex items-center gap-2">
                 <Lock className="w-3.5 h-3.5 text-zinc-500" />
-                <span>Zero AI therapy. 100% human-in-the-loop teacher dispatch.</span>
+                <span>Zero AI therapy. 100% human-in-the-loop teacher triage.</span>
               </div>
               <a
                 href="https://demo.escolent.com/teacher?demo=1"
@@ -203,9 +197,9 @@ export function SafetyNetSection() {
               <div className="w-8 h-8 rounded-lg bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400 mb-4">
                 <Eye className="w-4 h-4" />
               </div>
-              <h4 className="text-sm font-semibold text-white">Private Intervention</h4>
+              <h4 className="text-sm font-semibold text-white">Private Reassurance</h4>
               <p className="text-xs text-zinc-400 mt-2 leading-relaxed">
-                Struggling students are never exposed to peer judgment or public ranking boards. Help arrives discreetly.
+                Struggling students are never publicly exposed or ranked. Reassurance appears privately on their screen.
               </p>
             </div>
           </div>
@@ -215,9 +209,9 @@ export function SafetyNetSection() {
               <div className="w-8 h-8 rounded-lg bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 mb-4">
                 <UserCheck className="w-4 h-4" />
               </div>
-              <h4 className="text-sm font-semibold text-white">Actionable Teacher Context</h4>
+              <h4 className="text-sm font-semibold text-white">Human Teacher Action</h4>
               <p className="text-xs text-zinc-400 mt-2 leading-relaxed">
-                Teachers receive exact root misconceptions rather than vague "needs help" alerts, making 2-minute conferences transformative.
+                Teachers receive actionable triage alerts with student context to conduct targeted 1-on-1 check-ins.
               </p>
             </div>
           </div>
@@ -227,9 +221,9 @@ export function SafetyNetSection() {
               <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-4">
                 <Clock className="w-4 h-4" />
               </div>
-              <h4 className="text-sm font-semibold text-white">Zero Fallback to Drift</h4>
+              <h4 className="text-sm font-semibold text-white">Institutional Accountability</h4>
               <p className="text-xs text-zinc-400 mt-2 leading-relaxed">
-                No student is allowed to quietly drift away. Every silent disengagement trigger generates closed-loop institutional accountability.
+                Admins monitor aggregate escalation counts and age thresholds so no student request remains unaddressed.
               </p>
             </div>
           </div>
