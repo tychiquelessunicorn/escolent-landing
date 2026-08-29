@@ -1,21 +1,25 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Outfit, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const outfit = Outfit({
+  variable: "--font-display",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-body",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "Escolent — One Curriculum. Every Student's Real Pace.",
   description:
-    "An intelligent learning platform that adapts in real time to both cognitive struggle and emotional distress. No gamification. No one-size-fits-all.",
+    "An intelligent learning platform that adapts in real time to cognitive struggle and emotional distress. No gamification. No one-size-fits-all.",
   keywords: [
     "Adaptive learning",
     "Education intelligence",
@@ -41,7 +45,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#050507",
+  themeColor: "#07080c",
 };
 
 export default function RootLayout({
@@ -52,9 +56,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} dark h-full antialiased selection:bg-cyan-500/30 selection:text-white`}
+      className={`${outfit.variable} ${plusJakartaSans.variable} dark h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#050507] text-[#f4f4f6] font-sans antialiased overflow-x-hidden">
+      <body className="min-h-full flex flex-col bg-[var(--bg-canvas)] text-[var(--text-primary)] font-body antialiased overflow-x-hidden selection:bg-[var(--brand-subtle)] selection:text-[var(--brand-highlight)]">
         {children}
       </body>
     </html>

@@ -1,23 +1,62 @@
 @import "tailwindcss";
 
 :root {
-  --background: #050507;
-  --foreground: #f4f4f6;
-  --accent-blue: #38bdf8;
-  --accent-cyan: #22d3ee;
-  --accent-emerald: #34d399;
-  --accent-amber: #fbbf24;
-  --accent-violet: #a78bfa;
-  --accent-rose: #fb7185;
+  /* Brand Core - oklch(48.8% 0.217 264.4) */
+  --brand-base: oklch(48.8% 0.217 264.4);
+  --brand-hover: oklch(44% 0.22 264.4);
+  --brand-subtle: oklch(48.8% 0.217 264.4 / 0.14);
+  --brand-border: oklch(48.8% 0.217 264.4 / 0.32);
+  --brand-strong: oklch(56% 0.22 264.4);
+  
+  /* Legible Dark-on-Light / Light-on-Dark Brand Derivatives (same 264.4 hue) */
+  --brand-text: oklch(78% 0.14 264.4);
+  --brand-highlight: oklch(88% 0.09 264.4);
+
+  /* Deep Canvas & Layered Surfaces */
+  --bg-canvas: oklch(11% 0.01 264.4);
+  --bg-surface: oklch(14.5% 0.012 264.4);
+  --bg-surface-elevated: oklch(18.5% 0.015 264.4);
+  --bg-surface-highlight: oklch(22.5% 0.018 264.4);
+
+  /* Structural Borders */
+  --border-subtle: oklch(23% 0.014 264.4);
+  --border-medium: oklch(30% 0.018 264.4);
+  --border-strong: oklch(40% 0.022 264.4);
+
+  /* Typography Scale */
+  --text-primary: oklch(96% 0.005 264.4);
+  --text-secondary: oklch(76% 0.01 264.4);
+  --text-muted: oklch(54% 0.01 264.4);
+
+  /* Differentiated Radius Scale (8/14/18/22/26) */
+  --radius-xs: 8px;
+  --radius-controls: 14px;
+  --radius-shells: 18px;
+  --radius-cards: 22px;
+  --radius-modals: 26px;
+
+  /* Standard Motion Physics */
+  --ease-product: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@theme inline {
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+}
+
+.font-display {
+  font-family: var(--font-display), system-ui, -apple-system, sans-serif;
+}
+
+.font-body {
+  font-family: var(--font-body), system-ui, -apple-system, sans-serif;
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-body), system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
-  selection-background-color: rgba(56, 189, 248, 0.3);
-  selection-color: #ffffff;
 }
 
 /* Custom scrollbar */
@@ -26,85 +65,47 @@ body {
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #09090b;
+  background: var(--bg-canvas);
 }
 ::-webkit-scrollbar-thumb {
-  background: #27272a;
-  border-radius: 9999px;
+  background: var(--border-medium);
+  border-radius: var(--radius-xs);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3f3f46;
+  background: var(--border-strong);
 }
 
-/* Glow & Glass Utilities */
-.glass-panel {
-  background: rgba(18, 18, 24, 0.7);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+/* Precision Surface Classes - No blurry soup, structured crisp depth */
+.surface-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-cards);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.4), 0 12px 32px -8px rgba(0, 0, 0, 0.6);
 }
 
-.glass-panel-interactive {
-  background: rgba(22, 22, 30, 0.65);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+.surface-card-interactive {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-cards);
+  transition: border-color 0.25s var(--ease-product), background-color 0.25s var(--ease-product), box-shadow 0.25s var(--ease-product);
+}
+.surface-card-interactive:hover {
+  border-color: var(--border-strong);
+  background-color: var(--bg-surface-elevated);
 }
 
-.glass-panel-interactive:hover {
-  border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 35px -5px rgba(56, 189, 248, 0.15);
+.surface-shell {
+  background-color: var(--bg-surface-elevated);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-shells);
 }
 
-.glow-ambient-blue {
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, rgba(56, 189, 248, 0) 70%);
+.surface-control {
+  border-radius: var(--radius-controls);
+  transition: all 0.2s var(--ease-product);
 }
 
-.glow-ambient-violet {
-  background: radial-gradient(circle, rgba(167, 139, 250, 0.1) 0%, rgba(167, 139, 250, 0) 70%);
-}
-
-.glow-ambient-emerald {
-  background: radial-gradient(circle, rgba(52, 211, 153, 0.12) 0%, rgba(52, 211, 153, 0) 70%);
-}
-
-@keyframes pulse-subtle {
-  0%, 100% {
-    opacity: 0.4;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.03);
-  }
-}
-
-.animate-pulse-subtle {
-  animation: pulse-subtle 4s ease-in-out infinite;
-}
-
-@keyframes float-slow {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-.animate-float {
-  animation: float-slow 6s ease-in-out infinite;
-}
-
-/* Subtle grid backdrop */
-.bg-grid-pattern {
-  background-size: 40px 40px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-}
-
-.bg-radial-vignette {
-  background: radial-gradient(ellipse at center, transparent 0%, #050507 80%);
+/* Subtle architectural alignment guide (no blur blobs) */
+.guide-line {
+  background-image: linear-gradient(to bottom, var(--border-subtle) 0%, transparent 100%);
 }
