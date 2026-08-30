@@ -27,13 +27,7 @@ export function LiveIframe({
 
     // Safety timeout: if iframe doesn't finish loading within 12s, show fallback
     const timeout = setTimeout(() => {
-      setIsLoading((loading) => {
-        if (loading) {
-          // Still loading after 12s -> show helpful direct access fallback
-          return false;
-        }
-        return false;
-      });
+      setIsLoading(false);
     }, 12000);
 
     return () => clearTimeout(timeout);
@@ -43,7 +37,7 @@ export function LiveIframe({
     <div className={`relative w-full ${height} bg-[var(--bg-canvas)] overflow-hidden ${className}`}>
       {/* Graceful Loading State */}
       {isLoading && (
-        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-[var(--bg-surface)] text-[var(--text-secondary)] gap-3 p-6 text-center">
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-[var(--bg-surface)] text-[var(--text-secondary)] gap-3 p-6 text-center pointer-events-none">
           <div className="w-8 h-8 rounded-[8px] bg-[var(--brand-subtle)] border border-[var(--brand-border)] flex items-center justify-center">
             <Loader2 className="w-4 h-4 text-[var(--brand-text)] animate-spin" />
           </div>
@@ -82,7 +76,7 @@ export function LiveIframe({
 
       {/* Real Live Iframe */}
       <iframe
-        key={`${src}-${reloadKey}`}
+        key={reloadKey ? `${src}-${reloadKey}` : src}
         src={src}
         title={title}
         onLoad={() => {
@@ -97,7 +91,7 @@ export function LiveIframe({
           isLoading ? "opacity-0" : "opacity-100"
         }`}
         sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
-        loading="lazy"
+        loading="eager"
       />
     </div>
   );

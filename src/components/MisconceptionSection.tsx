@@ -382,14 +382,9 @@ export function MisconceptionSection() {
             )}
 
             {/* TAB 3: Live Embedded Teacher Spaces Overview */}
-            {activeTab === "spaces" && (
-              <motion.div
-                key="spaces"
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.35, ease: EASING }}
-                className="w-full max-w-4xl rounded-[18px] sm:rounded-[20px] bg-[var(--bg-surface)] border border-[var(--brand-border)] shadow-2xl overflow-hidden"
+            <div className={activeTab === "spaces" ? "block w-full max-w-4xl" : "hidden"}>
+              <div
+                className="w-full rounded-[18px] sm:rounded-[20px] bg-[var(--bg-surface)] border border-[var(--brand-border)] shadow-2xl overflow-hidden"
               >
                 {/* Shell Header Bar */}
                 <div className="p-2.5 sm:p-3.5 bg-[var(--bg-surface-elevated)] border-b border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-2.5">
@@ -457,8 +452,8 @@ export function MisconceptionSection() {
                     <ArrowUpRight className="w-3 h-3" />
                   </a>
                 </div>
-              </motion.div>
-            )}
+              </div>
+            </div>
           </AnimatePresence>
         </div>
       </div>

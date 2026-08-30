@@ -500,12 +500,9 @@ export function PedagogySection() {
           )}
 
           {/* TAB 3: LIVE LEARN SHELL & COURSE MAP EMBED */}
-          {activeTab === "live_learn" && (
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, ease: EASING }}
-              className="w-full max-w-5xl rounded-[18px] sm:rounded-[20px] bg-[var(--bg-surface)] border border-[var(--brand-border)] shadow-2xl overflow-hidden"
+          <div className={activeTab === "live_learn" ? "block w-full max-w-5xl" : "hidden"}>
+            <div
+              className="w-full rounded-[18px] sm:rounded-[20px] bg-[var(--bg-surface)] border border-[var(--brand-border)] shadow-2xl overflow-hidden"
             >
               {/* Shell Header Bar */}
               <div className="p-2.5 sm:p-3.5 bg-[var(--bg-surface-elevated)] border-b border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-2.5">
@@ -573,8 +570,8 @@ export function PedagogySection() {
                   <ArrowUpRight className="w-3 h-3" />
                 </a>
               </div>
-            </motion.div>
-          )}
+            </div>
+          </div>
         </div>
       </div>
     </section>

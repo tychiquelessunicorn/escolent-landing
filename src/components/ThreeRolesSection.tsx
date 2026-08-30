@@ -249,13 +249,25 @@ export function ThreeRolesSection() {
               </div>
             </div>
 
-            {/* Real Live Iframe */}
-            <LiveIframe
-              src={activeStep.iframeUrl}
-              title={`Live Demo - ${activeStep.roleName}`}
-              reloadKey={frameKey}
-              height="h-[360px] xs:h-[400px] sm:h-[480px] lg:h-[560px]"
-            />
+            {/* Preloaded Live Iframes for Instant Response without Re-fetching */}
+            <div className="relative">
+              {steps.map((step) => {
+                const isCurrent = activeTab === step.id;
+                return (
+                  <div
+                    key={step.id}
+                    className={isCurrent ? "block" : "hidden"}
+                  >
+                    <LiveIframe
+                      src={step.iframeUrl}
+                      title={`Live Demo - ${step.roleName}`}
+                      reloadKey={frameKey}
+                      height="h-[360px] xs:h-[400px] sm:h-[480px] lg:h-[560px]"
+                    />
+                  </div>
+                );
+              })}
+            </div>
 
             {/* Factual Mechanics & Privacy Footer */}
             <div className="p-2 sm:p-2.5 bg-[var(--bg-surface-elevated)] border-t border-[var(--border-subtle)] grid grid-cols-1 md:grid-cols-2 gap-1.5 sm:gap-2 text-[11px]">

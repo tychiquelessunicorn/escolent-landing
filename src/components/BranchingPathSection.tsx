@@ -156,150 +156,144 @@ export function BranchingPathSection() {
             className="w-full grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-5 items-start mb-2 sm:mb-3"
           >
             {/* PATH A: Scaffold Ladder for Struggling Student */}
-            {(activeTab === "scaffold" || activeTab === "both") && (
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, ease: EASING }}
-                className={`flex flex-col rounded-[18px] sm:rounded-[20px] bg-[var(--bg-surface)] border border-[var(--border-medium)] shadow-xl overflow-hidden hover:border-[var(--brand-border-strong)] transition-all duration-300 ${
-                  activeTab === "scaffold" ? "lg:col-span-2 max-w-4xl mx-auto w-full" : ""
-                } ${activeTab === "both" && mobileActiveSide === "mastery" ? "hidden lg:flex" : "flex"}`}
-              >
-                {/* Shell Header */}
-                <div className="px-3.5 py-2 bg-[var(--bg-surface-elevated)] border-b border-[var(--border-subtle)] flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="flex gap-1">
-                      <div className="w-2 h-2 rounded-full bg-[var(--border-strong)]" />
-                      <div className="w-2 h-2 rounded-full bg-[var(--border-strong)]" />
-                      <div className="w-2 h-2 rounded-full bg-[var(--border-strong)]" />
-                    </div>
-                    <div>
-                      <span className="text-xs font-semibold text-[var(--text-primary)]">
-                        Path A: Struggling Student
-                      </span>
-                      <span className="text-[10px] sm:text-[11px] text-[var(--text-muted)] ml-1.5">
-                        (Dynamic Scaffold Ladder)
-                      </span>
-                    </div>
+            <div
+              className={`flex flex-col rounded-[18px] sm:rounded-[20px] bg-[var(--bg-surface)] border border-[var(--border-medium)] shadow-xl overflow-hidden hover:border-[var(--brand-border-strong)] transition-all duration-300 ${
+                activeTab === "scaffold" ? "lg:col-span-2 max-w-4xl mx-auto w-full block" : ""
+              } ${activeTab === "both" ? (mobileActiveSide === "mastery" ? "hidden lg:flex" : "flex") : ""} ${
+                activeTab === "mastery" ? "hidden" : ""
+              }`}
+            >
+              {/* Shell Header */}
+              <div className="px-3.5 py-2 bg-[var(--bg-surface-elevated)] border-b border-[var(--border-subtle)] flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="flex gap-1">
+                    <div className="w-2 h-2 rounded-full bg-[var(--border-strong)]" />
+                    <div className="w-2 h-2 rounded-full bg-[var(--border-strong)]" />
+                    <div className="w-2 h-2 rounded-full bg-[var(--border-strong)]" />
                   </div>
-
-                  <div className="flex items-center gap-1.5">
-                    <motion.button
-                      whileTap={{ scale: 0.9, rotate: 180 }}
-                      onClick={() => setScaffoldKey((k) => k + 1)}
-                      title="Reload live instance"
-                      className="p-1 text-[var(--text-muted)] hover:text-[var(--text-primary)] rounded-[6px] hover:bg-[var(--bg-surface-highlight)] transition-colors"
-                    >
-                      <RefreshCw className="w-3 h-3" />
-                    </motion.button>
-                    <a
-                      href={scaffoldUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title="Open live in new tab"
-                      className="p-1 text-[var(--text-muted)] hover:text-[var(--text-primary)] rounded-[6px] hover:bg-[var(--bg-surface-highlight)] transition-colors"
-                    >
-                      <Maximize2 className="w-3 h-3" />
-                    </a>
+                  <div>
+                    <span className="text-xs font-semibold text-[var(--text-primary)]">
+                      Path A: Struggling Student
+                    </span>
+                    <span className="text-[10px] sm:text-[11px] text-[var(--text-muted)] ml-1.5">
+                      (Dynamic Scaffold Ladder)
+                    </span>
                   </div>
                 </div>
 
-                {/* Real Live Iframe Container */}
-                <LiveIframe
-                  src={scaffoldUrl}
-                  title="Live Demo - Scaffold Ladder Mode"
-                  reloadKey={scaffoldKey}
-                  height="h-[360px] xs:h-[400px] sm:h-[480px] lg:h-[540px]"
-                />
-
-                {/* Shell Footer Notes */}
-                <div className="p-2 sm:p-2.5 bg-[var(--bg-surface-elevated)] border-t border-[var(--border-subtle)] flex items-center justify-between text-[11px] text-[var(--text-secondary)]">
-                  <span className="truncate">Step-down scaffolding activates on incorrect attempt</span>
+                <div className="flex items-center gap-1.5">
+                  <motion.button
+                    whileTap={{ scale: 0.9, rotate: 180 }}
+                    onClick={() => setScaffoldKey((k) => k + 1)}
+                    title="Reload live instance"
+                    className="p-1 text-[var(--text-muted)] hover:text-[var(--text-primary)] rounded-[6px] hover:bg-[var(--bg-surface-highlight)] transition-colors"
+                  >
+                    <RefreshCw className="w-3 h-3" />
+                  </motion.button>
                   <a
                     href={scaffoldUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[var(--brand-text)] hover:text-[var(--brand-highlight)] font-medium inline-flex items-center gap-1 shrink-0 ml-2"
+                    title="Open live in new tab"
+                    className="p-1 text-[var(--text-muted)] hover:text-[var(--text-primary)] rounded-[6px] hover:bg-[var(--bg-surface-highlight)] transition-colors"
                   >
-                    <span>Open directly</span>
-                    <ArrowUpRight className="w-3 h-3" />
+                    <Maximize2 className="w-3 h-3" />
                   </a>
                 </div>
-              </motion.div>
-            )}
+              </div>
+
+              {/* Real Live Iframe Container */}
+              <LiveIframe
+                src={scaffoldUrl}
+                title="Live Demo - Scaffold Ladder Mode"
+                reloadKey={scaffoldKey}
+                height="h-[360px] xs:h-[400px] sm:h-[480px] lg:h-[540px]"
+              />
+
+              {/* Shell Footer Notes */}
+              <div className="p-2 sm:p-2.5 bg-[var(--bg-surface-elevated)] border-t border-[var(--border-subtle)] flex items-center justify-between text-[11px] text-[var(--text-secondary)]">
+                <span className="truncate">Step-down scaffolding activates on incorrect attempt</span>
+                <a
+                  href={scaffoldUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[var(--brand-text)] hover:text-[var(--brand-highlight)] font-medium inline-flex items-center gap-1 shrink-0 ml-2"
+                >
+                  <span>Open directly</span>
+                  <ArrowUpRight className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
 
             {/* PATH B: Accelerated Mastery Flow */}
-            {(activeTab === "mastery" || activeTab === "both") && (
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, ease: EASING }}
-                className={`flex flex-col rounded-[18px] sm:rounded-[20px] bg-[var(--bg-surface)] border border-[var(--border-medium)] shadow-xl overflow-hidden hover:border-[var(--teal-border)] transition-all duration-300 ${
-                  activeTab === "mastery" ? "lg:col-span-2 max-w-4xl mx-auto w-full" : ""
-                } ${activeTab === "both" && mobileActiveSide === "scaffold" ? "hidden lg:flex" : "flex"}`}
-              >
-                {/* Shell Header */}
-                <div className="px-3.5 py-2 bg-[var(--bg-surface-elevated)] border-b border-[var(--border-subtle)] flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="flex gap-1">
-                      <div className="w-2 h-2 rounded-full bg-[var(--border-strong)]" />
-                      <div className="w-2 h-2 rounded-full bg-[var(--border-strong)]" />
-                      <div className="w-2 h-2 rounded-full bg-[var(--border-strong)]" />
-                    </div>
-                    <div>
-                      <span className="text-xs font-semibold text-[var(--text-primary)]">
-                        Path B: Advanced Student
-                      </span>
-                      <span className="text-[10px] sm:text-[11px] text-[var(--teal-text)] font-medium ml-1.5">
-                        (Mastered — moving to next skill)
-                      </span>
-                    </div>
+            <div
+              className={`flex flex-col rounded-[18px] sm:rounded-[20px] bg-[var(--bg-surface)] border border-[var(--border-medium)] shadow-xl overflow-hidden hover:border-[var(--teal-border)] transition-all duration-300 ${
+                activeTab === "mastery" ? "lg:col-span-2 max-w-4xl mx-auto w-full block" : ""
+              } ${activeTab === "both" ? (mobileActiveSide === "scaffold" ? "hidden lg:flex" : "flex") : ""} ${
+                activeTab === "scaffold" ? "hidden" : ""
+              }`}
+            >
+              {/* Shell Header */}
+              <div className="px-3.5 py-2 bg-[var(--bg-surface-elevated)] border-b border-[var(--border-subtle)] flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="flex gap-1">
+                    <div className="w-2 h-2 rounded-full bg-[var(--border-strong)]" />
+                    <div className="w-2 h-2 rounded-full bg-[var(--border-strong)]" />
+                    <div className="w-2 h-2 rounded-full bg-[var(--border-strong)]" />
                   </div>
-
-                  <div className="flex items-center gap-1.5">
-                    <motion.button
-                      whileTap={{ scale: 0.9, rotate: 180 }}
-                      onClick={() => setMasteryKey((k) => k + 1)}
-                      title="Reload live instance"
-                      className="p-1 text-[var(--text-muted)] hover:text-[var(--text-primary)] rounded-[6px] hover:bg-[var(--bg-surface-highlight)] transition-colors"
-                    >
-                      <RefreshCw className="w-3 h-3" />
-                    </motion.button>
-                    <a
-                      href={masteryUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title="Open live in new tab"
-                      className="p-1 text-[var(--text-muted)] hover:text-[var(--text-primary)] rounded-[6px] hover:bg-[var(--bg-surface-highlight)] transition-colors"
-                    >
-                      <Maximize2 className="w-3 h-3" />
-                    </a>
+                  <div>
+                    <span className="text-xs font-semibold text-[var(--text-primary)]">
+                      Path B: Advanced Student
+                    </span>
+                    <span className="text-[10px] sm:text-[11px] text-[var(--teal-text)] font-medium ml-1.5">
+                      (Mastered — moving to next skill)
+                    </span>
                   </div>
                 </div>
 
-                {/* Real Live Iframe Container */}
-                <LiveIframe
-                  src={masteryUrl}
-                  title="Live Demo - Accelerated Mastery Mode"
-                  reloadKey={masteryKey}
-                  height="h-[360px] xs:h-[400px] sm:h-[480px] lg:h-[540px]"
-                />
-
-                {/* Shell Footer Notes */}
-                <div className="p-2 sm:p-2.5 bg-[var(--bg-surface-elevated)] border-t border-[var(--border-subtle)] flex items-center justify-between text-[11px] text-[var(--text-secondary)]">
-                  <span className="truncate">Mastery confirmed across checks, advancing instantly</span>
+                <div className="flex items-center gap-1.5">
+                  <motion.button
+                    whileTap={{ scale: 0.9, rotate: 180 }}
+                    onClick={() => setMasteryKey((k) => k + 1)}
+                    title="Reload live instance"
+                    className="p-1 text-[var(--text-muted)] hover:text-[var(--text-primary)] rounded-[6px] hover:bg-[var(--bg-surface-highlight)] transition-colors"
+                  >
+                    <RefreshCw className="w-3 h-3" />
+                  </motion.button>
                   <a
                     href={masteryUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[var(--teal-text)] hover:text-white font-medium inline-flex items-center gap-1 shrink-0 ml-2"
+                    title="Open live in new tab"
+                    className="p-1 text-[var(--text-muted)] hover:text-[var(--text-primary)] rounded-[6px] hover:bg-[var(--bg-surface-highlight)] transition-colors"
                   >
-                    <span>Open directly</span>
-                    <ArrowUpRight className="w-3 h-3" />
+                    <Maximize2 className="w-3 h-3" />
                   </a>
                 </div>
-              </motion.div>
-            )}
+              </div>
+
+              {/* Real Live Iframe Container */}
+              <LiveIframe
+                src={masteryUrl}
+                title="Live Demo - Accelerated Mastery Mode"
+                reloadKey={masteryKey}
+                height="h-[360px] xs:h-[400px] sm:h-[480px] lg:h-[540px]"
+              />
+
+              {/* Shell Footer Notes */}
+              <div className="p-2 sm:p-2.5 bg-[var(--bg-surface-elevated)] border-t border-[var(--border-subtle)] flex items-center justify-between text-[11px] text-[var(--text-secondary)]">
+                <span className="truncate">Mastery confirmed across checks, advancing instantly</span>
+                <a
+                  href={masteryUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[var(--teal-text)] hover:text-white font-medium inline-flex items-center gap-1 shrink-0 ml-2"
+                >
+                  <span>Open directly</span>
+                  <ArrowUpRight className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
           </motion.div>
 
           {/* 5-Stage Cognitive Mastery Strip */}
