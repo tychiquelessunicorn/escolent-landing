@@ -46,7 +46,7 @@ const examples: CommandExample[] = [
     badgeColor: "bg-[var(--brand-subtle)] text-[var(--brand-highlight)] border-[var(--brand-border)]",
     userPrompt: "Which students struggled with variables on both sides in Period 3 today?",
     assistantReply: {
-      lead: "3 students flagged in Grade 8 Algebra (Period 3) based on session diagnostics:",
+      lead: "3 students flagged in Period 3 section based on session diagnostics:",
       items: [
         "Marcus T. — 3 attempts with Sign Inversion on linear constants (3x = 21).",
         "Amara K. — 2 attempts omitting variable division step.",

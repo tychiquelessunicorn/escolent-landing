@@ -161,7 +161,7 @@ export function MisconceptionSection() {
                 }`}
               >
                 <FolderTree className="w-3.5 h-3.5 text-[var(--brand-text)]" />
-                <span>Teacher Spaces & Cohorts</span>
+                <span>Live Teacher Spaces</span>
               </motion.button>
             </div>
           </div>
@@ -291,7 +291,7 @@ export function MisconceptionSection() {
                     </div>
                     <div>
                       <h3 className="text-xs sm:text-sm font-semibold text-[var(--text-primary)]">
-                        Class-Wide Mastery Matrix · Grade 8 Algebra
+                        Class-Wide Mastery Matrix
                       </h3>
                       <p className="text-[10px] sm:text-[11px] text-[var(--text-muted)] mt-0.5">
                         28 Students Total · Live Misconception Clustering across Class Session
@@ -381,7 +381,7 @@ export function MisconceptionSection() {
               </motion.div>
             )}
 
-            {/* TAB 3: Live Embedded Spaces Shell with Interactive Co-Authoring */}
+            {/* TAB 3: Live Embedded Teacher Spaces Overview */}
             {activeTab === "spaces" && (
               <motion.div
                 key="spaces"
@@ -400,14 +400,14 @@ export function MisconceptionSection() {
                     <div>
                       <div className="flex items-center gap-1.5">
                         <h3 className="text-xs sm:text-sm font-semibold text-[var(--text-primary)]">
-                          Teacher Spaces & Cohort Management
+                          Live Teacher Spaces Overview
                         </h3>
                         <span className="text-[9px] font-semibold px-1.5 py-0.5 rounded-[5px] bg-[var(--teal-subtle)] text-[var(--teal-text)] border border-[var(--teal-border)]">
                           Live Embed
                         </span>
                       </div>
                       <p className="text-[10px] sm:text-[11px] text-[var(--text-muted)] mt-0.5 hidden xs:block">
-                        Organize targeted cohorts, assign practice spaces, and monitor student progress groups across the classroom.
+                        Review active learning spaces, track cohort distribution, and inspect student progress groups across the classroom.
                       </p>
                     </div>
                   </div>
@@ -437,7 +437,7 @@ export function MisconceptionSection() {
                 {/* Real Live Iframe Container */}
                 <LiveIframe
                   src={spacesUrl}
-                  title="Live Demo - Teacher Spaces Shell"
+                  title="Live Demo - Teacher Spaces Overview"
                   reloadKey={spacesReloadKey}
                   height="h-[360px] xs:h-[400px] sm:h-[480px] lg:h-[560px]"
                 />
@@ -445,7 +445,7 @@ export function MisconceptionSection() {
                 {/* Shell Footer Notes */}
                 <div className="p-2 sm:p-2.5 bg-[var(--bg-surface-elevated)] border-t border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center justify-between text-[11px] text-[var(--text-secondary)] gap-1">
                   <span className="truncate">
-                    Teachers organize targeted cohorts and monitor group mastery across active spaces.
+                    Teachers review active learning spaces and inspect cohort progress in real time.
                   </span>
                   <a
                     href={spacesUrl}
@@ -453,7 +453,7 @@ export function MisconceptionSection() {
                     rel="noopener noreferrer"
                     className="text-[var(--brand-text)] hover:text-[var(--brand-highlight)] font-semibold inline-flex items-center gap-1 shrink-0 ml-auto sm:ml-0"
                   >
-                    <span>Open Spaces directly</span>
+                    <span>Open Spaces Overview directly</span>
                     <ArrowUpRight className="w-3 h-3" />
                   </a>
                 </div>
