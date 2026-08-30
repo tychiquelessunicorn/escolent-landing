@@ -10,6 +10,7 @@ import { SafetyNetSection } from "@/components/SafetyNetSection";
 import { MisconceptionSection } from "@/components/MisconceptionSection";
 import { EthicalStanceSection } from "@/components/EthicalStanceSection";
 import { OriginsSection } from "@/components/OriginsSection";
+import { ConversationalCommandSection } from "@/components/ConversationalCommandSection";
 import { ConversionSection } from "@/components/ConversionSection";
 import { Footer } from "@/components/Footer";
 import { SectionConnectingPath } from "@/components/motifs/PathMotif";
@@ -156,7 +157,7 @@ export default function Home() {
       {/* Path connecting thread down to the misconception engine */}
       <SectionConnectingPath />
 
-      {/* 6. Misconception Detection (Automatic error pattern recognition in Spaces) */}
+      {/* 6. Misconception Detection & Class Mastery Overview */}
       <MisconceptionSection />
 
       {/* Path connecting thread down to ethical stance */}
@@ -165,10 +166,19 @@ export default function Home() {
       {/* 7. The Ethical Stance (No gamification, calm sanctuary) */}
       <EthicalStanceSection />
 
+      {/* Path connecting thread down to infrastructure */}
+      <SectionConnectingPath />
+
       {/* 8. Where This Runs (Engineering ground truth & infrastructure resilience) */}
       <OriginsSection />
 
-      {/* 9. Convert (Three Tiers) */}
+      {/* Path connecting thread down to conversational command layer */}
+      <SectionConnectingPath />
+
+      {/* 9. Conversational Command Layer (Plain questions, grounded answers, zero guesswork) */}
+      <ConversationalCommandSection />
+
+      {/* 10. Convert (Three Tiers) */}
       <ConversionSection />
 
       {/* Footer */}

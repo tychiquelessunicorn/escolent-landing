@@ -14,6 +14,8 @@ import {
   Lock,
   RefreshCw,
   Maximize2,
+  Download,
+  FileSpreadsheet,
 } from "lucide-react";
 import { StaggeredWords, ScrollHighlightWord } from "./ui/TextReveal";
 import { LiveIframe } from "./ui/LiveIframe";
@@ -204,7 +206,7 @@ export function OriginsSection() {
               </div>
             </motion.div>
 
-            {/* Fact 3: Strict Data Sovereignty Vault */}
+            {/* Fact 3: Strict Data Sovereignty, 72h Hold & 1-Click Export */}
             <motion.div
               whileHover={{ y: -3, borderColor: "var(--brand-border)" }}
               transition={{ duration: 0.2 }}
@@ -215,10 +217,10 @@ export function OriginsSection() {
                   <ShieldCheck className="w-4 h-4" />
                 </div>
                 <h4 className="text-xs font-semibold text-[var(--text-primary)]">
-                  Zero Accidental Wipes · 72h Hold Vault
+                  Data Portability & 72h Hold Vault
                 </h4>
                 <p className="text-xs text-[var(--text-secondary)] mt-2 leading-relaxed">
-                  Full POPIA and GDPR compliance. Student deletion requests trigger a mandatory 72-hour safety buffer and require explicit written phrase confirmation with complete machine-readable audit archives.
+                  Full POPIA and GDPR compliance. School admins retain 1-click complete data export (CSV/JSON performance histories and audit logs), while deletion requests enforce a mandatory 72-hour safety hold and written confirmation. Zero lock-in.
                 </p>
               </div>
             </motion.div>

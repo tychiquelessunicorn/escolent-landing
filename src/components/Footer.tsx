@@ -89,6 +89,9 @@ export function Footer() {
             <a href="#origins" className="hover:text-[var(--text-primary)] transition-colors">
               Infrastructure
             </a>
+            <a href="#command-layer" className="hover:text-[var(--text-primary)] transition-colors">
+              Command Layer
+            </a>
           </div>
         </div>
 
