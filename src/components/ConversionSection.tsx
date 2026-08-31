@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { SparkMotif } from "./motifs/SparkMotif";
 import { StaggeredWords, ScrollHighlightWord } from "./ui/TextReveal";
+import { LoadingIcon } from "./ui/LoadingIcon";
 
 export function ConversionSection() {
   const [email, setEmail] = useState("");
@@ -222,9 +223,16 @@ export function ConversionSection() {
                       disabled={loading}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="px-5 py-2.5 rounded-[14px] bg-[var(--brand-base)] hover:bg-[var(--brand-hover)] border border-[var(--brand-border)] text-xs font-semibold text-white transition-colors"
+                      className="px-5 py-2.5 rounded-[14px] bg-[var(--brand-base)] hover:bg-[var(--brand-hover)] border border-[var(--brand-border)] text-xs font-semibold text-white transition-colors flex items-center justify-center gap-1.5 min-w-[90px]"
                     >
-                      {loading ? "Joining..." : "Join List"}
+                      {loading ? (
+                        <>
+                          <LoadingIcon size="xs" showRing={false} />
+                          <span>Joining...</span>
+                        </>
+                      ) : (
+                        "Join List"
+                      )}
                     </motion.button>
                   </form>
                 )}

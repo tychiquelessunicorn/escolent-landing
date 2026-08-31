@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Loader2, AlertCircle, ArrowUpRight, RefreshCw } from "lucide-react";
+import { AlertCircle, ArrowUpRight } from "lucide-react";
+import { LogoLoader } from "./LoadingIcon";
 
 interface LiveIframeProps {
   src: string;
@@ -37,16 +38,12 @@ export function LiveIframe({
     <div className={`relative w-full ${height} bg-[var(--bg-canvas)] overflow-hidden ${className}`}>
       {/* Graceful Loading State */}
       {isLoading && (
-        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-[var(--bg-surface)] text-[var(--text-secondary)] gap-3 p-6 text-center pointer-events-none">
-          <div className="w-8 h-8 rounded-[8px] bg-[var(--brand-subtle)] border border-[var(--brand-border)] flex items-center justify-center">
-            <Loader2 className="w-4 h-4 text-[var(--brand-text)] animate-spin" />
-          </div>
-          <div className="text-xs font-medium text-[var(--text-primary)]">
-            Loading Live Escolent Sandbox
-          </div>
-          <p className="text-[11px] text-[var(--text-muted)] max-w-xs">
-            Connecting directly to real production instance at demo.escolent.com...
-          </p>
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-[var(--bg-surface)] text-[var(--text-secondary)] pointer-events-none">
+          <LogoLoader
+            size="sm"
+            title="Loading Live Escolent Sandbox"
+            description="Connecting directly to real production instance at demo.escolent.com..."
+          />
         </div>
       )}
 
