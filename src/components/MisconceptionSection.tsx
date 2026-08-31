@@ -25,49 +25,9 @@ import { LiveIframe } from "./ui/LiveIframe";
 
 const EASING = [0.22, 1, 0.36, 1] as const;
 
-interface ClassCluster {
-  id: string;
-  name: string;
-  pattern: string;
-  studentCount: number;
-  students: string[];
-  recommendedAction: string;
-  status: "solid" | "attention" | "review";
-}
-
-const classClusters: ClassCluster[] = [
-  {
-    id: "mastered",
-    name: "Independent Mastery",
-    pattern: "Consistently applying inverse operations across variable sides",
-    studentCount: 18,
-    students: ["Sarah L.", "Tariq K.", "Elena R.", "+15 others"],
-    recommendedAction: "Advanced to multi-step distributive equations.",
-    status: "solid",
-  },
-  {
-    id: "sign_inversion",
-    name: "Sign Inversion on Constants",
-    pattern: "Adding constants instead of subtracting (e.g. 5x + 3 = 2x + 18 → 3x = 21)",
-    studentCount: 6,
-    students: ["Marcus T.", "Aisha D.", "Liam P.", "Zoe M.", "Kabelo N.", "Fatima B."],
-    recommendedAction: "3-minute warm-up on balancing constant terms before individual practice.",
-    status: "attention",
-  },
-  {
-    id: "variable_collection",
-    name: "Variable Term Collection",
-    pattern: "Combining unequal variable terms across the equals sign",
-    studentCount: 4,
-    students: ["Dev P.", "Grace M.", "Sipho Z.", "Ananya S."],
-    recommendedAction: "Assign Balance Scale visual mental model.",
-    status: "review",
-  },
-];
-
 export function MisconceptionSection() {
   const [activeTab, setActiveTab] = useState<"equation" | "classroom_mastery" | "spaces">("equation");
-  const [selectedCluster, setSelectedCluster] = useState<number>(1);
+  const [overviewReloadKey, setOverviewReloadKey] = useState(0);
   const [spacesReloadKey, setSpacesReloadKey] = useState(0);
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -93,6 +53,7 @@ export function MisconceptionSection() {
     }
   });
 
+  const overviewUrl = "https://demo.escolent.com/teacher/overview?embed=1";
   const spacesUrl = "https://demo.escolent.com/teacher/spaces?embed=1";
 
   return (
@@ -274,112 +235,77 @@ export function MisconceptionSection() {
               </motion.div>
             )}
 
-            {/* TAB 2: Class-Wide Mastery Matrix Overview */}
-            {activeTab === "classroom_mastery" && (
-              <motion.div
-                key="classroom_mastery"
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.35, ease: EASING }}
-                className="w-full max-w-4xl rounded-[18px] sm:rounded-[20px] bg-[var(--bg-surface)] border border-[var(--border-medium)] p-3 sm:p-4 md:p-6 shadow-xl relative overflow-hidden"
-              >
-                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-2.5 border-b border-[var(--border-subtle)] gap-2">
+            {/* TAB 2: Live Embedded Mastery Overview */}
+            <div className={activeTab === "classroom_mastery" ? "block w-full max-w-4xl" : "hidden"}>
+              <div className="w-full rounded-[18px] sm:rounded-[20px] bg-[var(--bg-surface)] border border-[var(--brand-border)] shadow-2xl overflow-hidden">
+                {/* Shell Header Bar */}
+                <div className="p-2.5 sm:p-3.5 bg-[var(--bg-surface-elevated)] border-b border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-2.5">
                   <div className="flex items-center gap-2">
-                    <div className="w-6 h-6 rounded-[6px] bg-[var(--brand-subtle)] border border-[var(--brand-border)] flex items-center justify-center text-[var(--brand-text)]">
-                      <Users className="w-3.5 h-3.5" />
+                    <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-[7px] bg-[var(--brand-subtle)] border border-[var(--brand-border)] flex items-center justify-center text-[var(--brand-text)] shrink-0">
+                      <Grid3X3 className="w-3.5 h-3.5" />
                     </div>
                     <div>
-                      <h3 className="text-xs sm:text-sm font-semibold text-[var(--text-primary)]">
-                        Class-Wide Mastery Matrix
-                      </h3>
-                      <p className="text-[10px] sm:text-[11px] text-[var(--text-muted)] mt-0.5">
-                        28 Students Total · Live Misconception Clustering across Class Session
+                      <div className="flex items-center gap-1.5">
+                        <h3 className="text-xs sm:text-sm font-semibold text-[var(--text-primary)]">
+                          Live Mastery Overview
+                        </h3>
+                        <span className="text-[9px] font-semibold px-1.5 py-0.5 rounded-[5px] bg-[var(--teal-subtle)] text-[var(--teal-text)] border border-[var(--teal-border)]">
+                          Live Embed
+                        </span>
+                      </div>
+                      <p className="text-[10px] sm:text-[11px] text-[var(--text-muted)] mt-0.5 hidden xs:block">
+                        Inspect class-wide skill mastery distributions, spot collective misconception clusters, and track individual student trajectories.
                       </p>
                     </div>
                   </div>
-                  <span className="text-[10px] font-semibold px-2 py-0.5 rounded-[6px] bg-[var(--teal-subtle)] text-[var(--teal-text)] border border-[var(--teal-border)]">
-                    Classroom-Wide View
-                  </span>
-                </div>
 
-                {/* Cohort Breakdown Matrix */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 my-3">
-                  {classClusters.map((cluster, idx) => {
-                    const isSelected = selectedCluster === idx;
-                    return (
-                      <motion.button
-                        key={cluster.id}
-                        onClick={() => setSelectedCluster(idx)}
-                        whileHover={{ y: -1 }}
-                        whileTap={{ scale: 0.98 }}
-                        className={`p-2.5 sm:p-3 rounded-[12px] sm:rounded-[14px] text-left border transition-all duration-200 flex flex-col justify-between ${
-                          isSelected
-                            ? "bg-[var(--bg-surface-elevated)] border-[var(--brand-border-strong)] shadow-md"
-                            : "bg-[var(--bg-canvas)] border-[var(--border-subtle)] opacity-80 hover:opacity-100"
-                        }`}
-                      >
-                        <div>
-                          <div className="flex items-center justify-between mb-1">
-                            <span className="text-[11px] sm:text-xs font-semibold text-[var(--text-primary)]">
-                              {cluster.name}
-                            </span>
-                            <span
-                              className={`text-[10px] font-bold px-1.5 py-0.5 rounded-[6px] ${
-                                cluster.status === "solid"
-                                  ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
-                                  : cluster.status === "attention"
-                                  ? "bg-[var(--brand-subtle)] text-[var(--brand-highlight)] border border-[var(--brand-border)]"
-                                  : "bg-amber-500/10 text-amber-400 border border-amber-500/20"
-                              }`}
-                            >
-                              {cluster.studentCount} students
-                            </span>
-                          </div>
-                          <p className="text-[10px] text-[var(--text-muted)] leading-relaxed line-clamp-2">
-                            {cluster.pattern}
-                          </p>
-                        </div>
-
-                        <div className="mt-2 pt-1.5 border-t border-[var(--border-subtle)] text-[9px] text-[var(--text-secondary)] font-mono truncate">
-                          {cluster.students.join(", ")}
-                        </div>
-                      </motion.button>
-                    );
-                  })}
-                </div>
-
-                {/* Selected Cluster Deep-Dive Bar */}
-                <div className="p-3 rounded-[14px] bg-[var(--bg-surface-elevated)] border border-[var(--brand-border)] text-xs">
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="font-semibold text-[var(--brand-text)] text-[11px] sm:text-xs">
-                      Teacher Action for {classClusters[selectedCluster].name}:
-                    </span>
-                    <span className="text-[10px] text-[var(--text-muted)] font-mono">
-                      {classClusters[selectedCluster].studentCount} of 28 students
-                    </span>
+                  <div className="flex items-center gap-1.5 self-end sm:self-auto shrink-0">
+                    <motion.button
+                      whileTap={{ scale: 0.9, rotate: 180 }}
+                      onClick={() => setOverviewReloadKey((k) => k + 1)}
+                      title="Reload live instance"
+                      className="p-1 text-[var(--text-muted)] hover:text-[var(--text-primary)] rounded-[6px] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-highlight)] transition-colors"
+                    >
+                      <RefreshCw className="w-3.5 h-3.5" />
+                    </motion.button>
+                    <a
+                      href={overviewUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title="Open live shell in new tab"
+                      className="flex items-center gap-1 px-2.5 py-1 rounded-[12px] bg-[var(--bg-surface-highlight)] hover:bg-[var(--border-strong)] text-[11px] font-semibold text-[var(--text-primary)] transition-colors"
+                    >
+                      <span>Direct Shell</span>
+                      <Maximize2 className="w-3 h-3" />
+                    </a>
                   </div>
-                  <p className="text-[11px] text-[var(--text-primary)] font-medium">
-                    {classClusters[selectedCluster].recommendedAction}
-                  </p>
                 </div>
 
-                <div className="mt-2.5 pt-2 border-t border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center justify-between text-[11px] text-[var(--text-muted)] gap-1.5">
+                {/* Real Live Iframe Container */}
+                <LiveIframe
+                  src={overviewUrl}
+                  title="Live Demo - Teacher Mastery Overview"
+                  reloadKey={overviewReloadKey}
+                  height="h-[280px] xs:h-[310px] sm:h-[350px] md:h-[380px] lg:h-[400px]"
+                />
+
+                {/* Shell Footer Notes */}
+                <div className="p-2 sm:p-2.5 bg-[var(--bg-surface-elevated)] border-t border-[var(--border-subtle)] flex flex-col sm:flex-row sm:items-center justify-between text-[11px] text-[var(--text-secondary)] gap-1">
                   <span className="truncate">
-                    Spotting class patterns turns 6 isolated student struggles into one 3-minute mini-lesson.
+                    Spotting class patterns turns isolated student struggles into clear instructional insights.
                   </span>
                   <a
-                    href="https://demo.escolent.com/teacher/spaces?embed=1"
+                    href={overviewUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[var(--brand-text)] hover:text-[var(--brand-highlight)] font-semibold inline-flex items-center gap-1 shrink-0 ml-auto sm:ml-0"
                   >
-                    <span>View in Teacher Demo</span>
+                    <span>Open Mastery Overview directly</span>
                     <ArrowUpRight className="w-3 h-3" />
                   </a>
                 </div>
-              </motion.div>
-            )}
+              </div>
+            </div>
 
             {/* TAB 3: Live Embedded Teacher Spaces Overview */}
             <div className={activeTab === "spaces" ? "block w-full max-w-4xl" : "hidden"}>
