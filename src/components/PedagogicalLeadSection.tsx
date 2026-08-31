@@ -126,10 +126,10 @@ export function PedagogicalLeadSection() {
       id="curriculum-lead"
       className="relative min-h-[440vh] bg-[var(--bg-canvas)] border-t border-[var(--border-subtle)]"
     >
-      <div className="sticky top-0 min-h-screen py-4 sm:py-8 md:py-12 px-3 sm:px-6 md:px-8 flex flex-col items-center justify-center overflow-hidden">
+      <div className="sticky top-0 min-h-screen pt-20 sm:pt-24 pb-12 sm:pb-16 px-4 sm:px-6 md:px-8 flex flex-col items-center justify-center overflow-hidden">
         <div className="max-w-7xl mx-auto w-full flex flex-col items-center justify-between">
           {/* Section Header */}
-          <div className="text-center max-w-3xl mb-2.5 sm:mb-4">
+          <div className="text-center max-w-3xl mb-2.5 sm:mb-3">
             <div className="flex items-center justify-center gap-2 mb-1">
               <span className="text-[11px] sm:text-xs font-semibold text-[var(--brand-text)]">
                 Institutional Role 4 · Academic Leadership
@@ -154,7 +154,7 @@ export function PedagogicalLeadSection() {
           </div>
 
           {/* Interactive Role Tabs */}
-          <div className="w-full max-w-4xl grid grid-cols-2 sm:grid-cols-4 gap-1.5 sm:gap-2.5 mb-2.5 sm:mb-3.5">
+          <div className="w-full max-w-4xl grid grid-cols-2 sm:grid-cols-4 gap-1.5 sm:gap-2.5 mb-2.5 sm:mb-3">
             {leadTabs.map((tab) => {
               const isActive = activeTab === tab.id;
               const TabIcon = tab.icon;
@@ -264,7 +264,7 @@ export function PedagogicalLeadSection() {
                       src={tab.iframeUrl}
                       title={`Live Demo - ${tab.title}`}
                       reloadKey={frameKey}
-                      height="h-[360px] xs:h-[400px] sm:h-[480px] lg:h-[560px]"
+                      height="h-[320px] xs:h-[350px] sm:h-[400px] md:h-[440px] lg:h-[470px]"
                     />
                   </div>
                 );

@@ -108,10 +108,10 @@ export function ConversationalCommandSection() {
       id="command-layer"
       className="relative min-h-[320vh] bg-[var(--bg-canvas)] border-t border-[var(--border-subtle)]"
     >
-      <div className="sticky top-0 min-h-screen py-6 sm:py-10 md:py-14 px-3 sm:px-6 md:px-8 flex flex-col items-center justify-center overflow-hidden">
+      <div className="sticky top-0 min-h-screen pt-20 sm:pt-24 pb-12 sm:pb-16 px-4 sm:px-6 md:px-8 flex flex-col items-center justify-center overflow-hidden">
         <div className="max-w-5xl mx-auto w-full flex flex-col items-center justify-between">
           {/* Section Header */}
-          <div className="text-center max-w-3xl mb-3 sm:mb-5">
+          <div className="text-center max-w-3xl mb-3 sm:mb-4">
             <div className="flex items-center justify-center gap-2 mb-1">
               <span className="text-[11px] sm:text-xs font-semibold text-[var(--brand-text)]">
                 Conversational Command Layer
