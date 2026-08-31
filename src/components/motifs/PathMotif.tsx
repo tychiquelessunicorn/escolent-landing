@@ -55,7 +55,7 @@ export function SectionConnectingPath({
   className?: string;
 }) {
   return (
-    <div className={`w-full flex justify-center py-8 pointer-events-none ${className}`}>
+    <div className={`w-full flex justify-center py-16 pointer-events-none ${className}`}>
       <motion.div
         initial={{ opacity: 0, scaleY: 0.8 }}
         whileInView={{ opacity: 1, scaleY: 1 }}
@@ -63,7 +63,7 @@ export function SectionConnectingPath({
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className="flex flex-col items-center gap-2"
       >
-        <div className="w-[1px] h-8 bg-gradient-to-b from-transparent to-[var(--border-medium)]" />
+        <div className="w-[1px] h-10 bg-gradient-to-b from-transparent to-[var(--border-medium)]" />
         <div className="w-1.5 h-1.5 rounded-full bg-[var(--border-strong)]" />
         <motion.div
           animate={{ scale: [1, 1.25, 1], opacity: [0.8, 1, 0.8] }}
@@ -71,7 +71,7 @@ export function SectionConnectingPath({
           className="w-2.5 h-2.5 rounded-full bg-[var(--brand-base)] ring-4 ring-[var(--brand-subtle)] shadow-[0_0_12px_rgba(30,107,255,0.35)]"
         />
         <div className="w-1.5 h-1.5 rounded-full bg-[var(--border-strong)]" />
-        <div className="w-[1px] h-8 bg-gradient-to-b from-[var(--border-medium)] to-transparent" />
+        <div className="w-[1px] h-10 bg-gradient-to-b from-[var(--border-medium)] to-transparent" />
       </motion.div>
     </div>
   );

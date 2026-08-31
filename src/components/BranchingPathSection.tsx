@@ -207,7 +207,7 @@ export function BranchingPathSection() {
                 src={scaffoldUrl}
                 title="Live Demo - Scaffold Ladder Mode"
                 reloadKey={scaffoldKey}
-                height="h-[320px] xs:h-[350px] sm:h-[400px] md:h-[440px] lg:h-[470px]"
+                height="h-[280px] xs:h-[310px] sm:h-[350px] md:h-[380px] lg:h-[400px]"
               />
 
               {/* Shell Footer Notes */}
@@ -277,7 +277,7 @@ export function BranchingPathSection() {
                 src={masteryUrl}
                 title="Live Demo - Accelerated Mastery Mode"
                 reloadKey={masteryKey}
-                height="h-[320px] xs:h-[350px] sm:h-[400px] md:h-[440px] lg:h-[470px]"
+                height="h-[280px] xs:h-[310px] sm:h-[350px] md:h-[380px] lg:h-[400px]"
               />
 
               {/* Shell Footer Notes */}

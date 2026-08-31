@@ -264,7 +264,7 @@ export function PedagogicalLeadSection() {
                       src={tab.iframeUrl}
                       title={`Live Demo - ${tab.title}`}
                       reloadKey={frameKey}
-                      height="h-[320px] xs:h-[350px] sm:h-[400px] md:h-[440px] lg:h-[470px]"
+                      height="h-[280px] xs:h-[310px] sm:h-[350px] md:h-[380px] lg:h-[400px]"
                     />
                   </div>
                 );
