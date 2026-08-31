@@ -53,6 +53,15 @@ export function Footer() {
               <ArrowUpRight className="w-3 h-3 text-[var(--text-muted)]" />
             </a>
             <a
+              href="https://demo.escolent.com/pedlead/briefing?embed=1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[var(--brand-text)] transition-colors flex items-center gap-1"
+            >
+              <span>Pedagogical Lead Shell</span>
+              <ArrowUpRight className="w-3 h-3 text-[var(--text-muted)]" />
+            </a>
+            <a
               href="https://demo.escolent.com/admin/briefing?embed=1"
               target="_blank"
               rel="noopener noreferrer"

@@ -16,6 +16,8 @@ import {
   Maximize2,
   Download,
   FileSpreadsheet,
+  FileSearch,
+  Compass,
 } from "lucide-react";
 import { StaggeredWords, ScrollHighlightWord } from "./ui/TextReveal";
 import { LiveIframe } from "./ui/LiveIframe";
@@ -167,61 +169,127 @@ export function OriginsSection() {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-            {/* Fact 1: Real Curriculum Standards Capability */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+            {/* Fact 1: Curriculum Standards & Lead Authoring Studio */}
             <motion.div
               whileHover={{ y: -3, borderColor: "var(--brand-border)" }}
               transition={{ duration: 0.2 }}
-              className="p-5 rounded-[18px] bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] flex flex-col justify-between"
+              className="p-6 rounded-[18px] bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] flex flex-col justify-between"
             >
               <div>
-                <div className="w-8 h-8 rounded-[10px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex items-center justify-center text-[var(--brand-text)] mb-3">
-                  <BookOpen className="w-4 h-4" />
+                <div className="flex items-center justify-between mb-3">
+                  <div className="w-8 h-8 rounded-[10px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex items-center justify-center text-[var(--brand-text)]">
+                    <BookOpen className="w-4 h-4" />
+                  </div>
+                  <span className="text-[10px] font-semibold px-2 py-0.5 rounded-[6px] bg-[var(--brand-subtle)] text-[var(--brand-highlight)] border border-[var(--brand-border)]">
+                    Curriculum Intelligence
+                  </span>
                 </div>
-                <h4 className="text-xs font-semibold text-[var(--text-primary)]">
-                  Curriculum-Agnostic Standards Engine
+                <h4 className="text-sm font-semibold text-[var(--text-primary)]">
+                  Standards Graph & Pedagogical Lead Authoring
                 </h4>
                 <p className="text-xs text-[var(--text-secondary)] mt-2 leading-relaxed">
-                  The diagnostic skill graph maps directly to national and regional syllabus requirements (such as CAPS, IEB, Cambridge, and common core standards), keeping instruction aligned with mandated goals.
+                  The diagnostic skill graph maps directly to national and regional syllabus requirements (CAPS, IEB, Cambridge, Common Core). Pedagogical leads use dedicated authoring tools to structure 4-level rubrics, configure misconception taxonomies, and split or merge skill nodes across schools.
                 </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-[var(--border-subtle)] flex items-center justify-between">
+                <span className="text-[11px] text-[var(--text-muted)]">Cross-school coverage tracking</span>
+                <a
+                  href="https://demo.escolent.com/pedlead/briefing?embed=1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[11px] font-semibold text-[var(--brand-text)] hover:text-[var(--brand-highlight)] inline-flex items-center gap-1 transition-colors"
+                >
+                  <span>Pedagogical Lead Shell</span>
+                  <ArrowUpRight className="w-3 h-3" />
+                </a>
               </div>
             </motion.div>
 
-            {/* Fact 2: Offline & Load Shedding Resilience */}
+            {/* Fact 2: Automated Diagram OCR & LMS Ingestion */}
             <motion.div
               whileHover={{ y: -3, borderColor: "var(--brand-border)" }}
               transition={{ duration: 0.2 }}
-              className="p-5 rounded-[18px] bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] flex flex-col justify-between"
+              className="p-6 rounded-[18px] bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] flex flex-col justify-between"
             >
               <div>
-                <div className="w-8 h-8 rounded-[10px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex items-center justify-center text-[var(--brand-text)] mb-3">
-                  <WifiOff className="w-4 h-4" />
+                <div className="flex items-center justify-between mb-3">
+                  <div className="w-8 h-8 rounded-[10px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex items-center justify-center text-[var(--brand-text)]">
+                    <FileSearch className="w-4 h-4" />
+                  </div>
+                  <span className="text-[10px] font-semibold px-2 py-0.5 rounded-[6px] bg-[var(--bg-surface)] text-[var(--text-secondary)] border border-[var(--border-subtle)]">
+                    Vision OCR Ingestion
+                  </span>
                 </div>
-                <h4 className="text-xs font-semibold text-[var(--text-primary)]">
+                <h4 className="text-sm font-semibold text-[var(--text-primary)]">
+                  Automated Diagram OCR & Course Material Parsing
+                </h4>
+                <p className="text-xs text-[var(--text-secondary)] mt-2 leading-relaxed">
+                  Pulls syllabus content and textbook assignments directly from connected Canvas LMS courses. Built-in vision OCR automatically parses diagrams, trophic pyramids, and geometric figures into structured skill evaluations without manual data entry.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-[var(--border-subtle)] flex items-center justify-between">
+                <span className="text-[11px] text-[var(--text-muted)]">Zero manual syllabus transcription</span>
+                <span className="text-[11px] font-medium text-[var(--text-secondary)]">Canvas · Classroom · Moodle</span>
+              </div>
+            </motion.div>
+
+            {/* Fact 3: Offline & Load Shedding Resilience */}
+            <motion.div
+              whileHover={{ y: -3, borderColor: "var(--brand-border)" }}
+              transition={{ duration: 0.2 }}
+              className="p-6 rounded-[18px] bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <div className="w-8 h-8 rounded-[10px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex items-center justify-center text-[var(--brand-text)]">
+                    <WifiOff className="w-4 h-4" />
+                  </div>
+                  <span className="text-[10px] font-semibold px-2 py-0.5 rounded-[6px] bg-[var(--bg-surface)] text-[var(--text-secondary)] border border-[var(--border-subtle)]">
+                    Low-Bandwidth
+                  </span>
+                </div>
+                <h4 className="text-sm font-semibold text-[var(--text-primary)]">
                   Works through power cuts and lost connections
                 </h4>
                 <p className="text-xs text-[var(--text-secondary)] mt-2 leading-relaxed">
-                  Engineered for load shedding and spotty 3G. The platform saves student progress locally on the device and resumes automatically the moment power or signal returns without lost work.
+                  Engineered for load shedding and spotty 3G. The platform saves student practice progress locally on the device and resumes automatically the moment power or network connection returns without lost work.
                 </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-[var(--border-subtle)] flex items-center justify-between">
+                <span className="text-[11px] text-[var(--text-muted)]">Local-first client queue</span>
+                <span className="text-[11px] font-medium text-emerald-400 flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                  Zero Work Loss
+                </span>
               </div>
             </motion.div>
 
-            {/* Fact 3: Strict Data Sovereignty, 72h Hold & 1-Click Export */}
+            {/* Fact 4: Strict Data Sovereignty, 72h Hold & Zero-PII Firewall */}
             <motion.div
               whileHover={{ y: -3, borderColor: "var(--brand-border)" }}
               transition={{ duration: 0.2 }}
-              className="p-5 rounded-[18px] bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] flex flex-col justify-between"
+              className="p-6 rounded-[18px] bg-[var(--bg-surface-elevated)] border border-[var(--border-subtle)] flex flex-col justify-between"
             >
               <div>
-                <div className="w-8 h-8 rounded-[10px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex items-center justify-center text-[var(--brand-text)] mb-3">
-                  <ShieldCheck className="w-4 h-4" />
+                <div className="flex items-center justify-between mb-3">
+                  <div className="w-8 h-8 rounded-[10px] bg-[var(--bg-surface)] border border-[var(--border-subtle)] flex items-center justify-center text-[var(--brand-text)]">
+                    <ShieldCheck className="w-4 h-4" />
+                  </div>
+                  <span className="text-[10px] font-semibold px-2 py-0.5 rounded-[6px] bg-[var(--bg-surface)] text-[var(--text-secondary)] border border-[var(--border-subtle)]">
+                    POPIA & GDPR
+                  </span>
                 </div>
-                <h4 className="text-xs font-semibold text-[var(--text-primary)]">
-                  Data Portability & 72h Hold Vault
+                <h4 className="text-sm font-semibold text-[var(--text-primary)]">
+                  Data Portability, 72h Hold & Privacy Firewalls
                 </h4>
                 <p className="text-xs text-[var(--text-secondary)] mt-2 leading-relaxed">
-                  Full POPIA and GDPR compliance. School admins retain 1-click complete data export (CSV/JSON performance histories and audit logs), while deletion requests enforce a mandatory 72-hour safety hold and written confirmation. Zero lock-in.
+                  School admins retain 1-click complete data export (CSV/JSON performance histories and audit logs). Deletion requests enforce a mandatory 72-hour safety hold. Pedagogical leads operate under a strict zero-student-data firewall (Req 21.5), inspecting only anonymized taxonomy graphs.
                 </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-[var(--border-subtle)] flex items-center justify-between">
+                <span className="text-[11px] text-[var(--text-muted)]">Zero vendor lock-in</span>
+                <span className="text-[11px] font-medium text-[var(--text-secondary)]">Strict Role Isolation</span>
               </div>
             </motion.div>
           </div>
