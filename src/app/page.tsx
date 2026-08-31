@@ -8,6 +8,7 @@ import { PedagogySection } from "@/components/PedagogySection";
 import { ThreeRolesSection } from "@/components/ThreeRolesSection";
 import { SafetyNetSection } from "@/components/SafetyNetSection";
 import { MisconceptionSection } from "@/components/MisconceptionSection";
+import { PedagogicalLeadSection } from "@/components/PedagogicalLeadSection";
 import { EthicalStanceSection } from "@/components/EthicalStanceSection";
 import { OriginsSection } from "@/components/OriginsSection";
 import { ConversationalCommandSection } from "@/components/ConversationalCommandSection";
@@ -160,25 +161,31 @@ export default function Home() {
       {/* 6. Misconception Detection & Class Mastery Overview */}
       <MisconceptionSection />
 
+      {/* Path connecting thread down to pedagogical lead & curriculum intelligence */}
+      <SectionConnectingPath />
+
+      {/* 7. Pedagogical Lead & Curriculum Intelligence (Briefing, Coverage Analytics & Diagram OCR) */}
+      <PedagogicalLeadSection />
+
       {/* Path connecting thread down to ethical stance */}
       <SectionConnectingPath />
 
-      {/* 7. The Ethical Stance (No gamification, calm sanctuary) */}
+      {/* 8. The Ethical Stance (No gamification, calm sanctuary) */}
       <EthicalStanceSection />
 
       {/* Path connecting thread down to infrastructure */}
       <SectionConnectingPath />
 
-      {/* 8. Where This Runs (Engineering ground truth & infrastructure resilience) */}
+      {/* 9. Where This Runs (Engineering ground truth & infrastructure resilience) */}
       <OriginsSection />
 
       {/* Path connecting thread down to conversational command layer */}
       <SectionConnectingPath />
 
-      {/* 9. Conversational Command Layer (Plain questions, grounded answers, zero guesswork) */}
+      {/* 10. Conversational Command Layer (Plain questions, grounded answers, zero guesswork) */}
       <ConversationalCommandSection />
 
-      {/* 10. Convert (Three Tiers) */}
+      {/* 11. Convert (Three Tiers) */}
       <ConversionSection />
 
       {/* Footer */}

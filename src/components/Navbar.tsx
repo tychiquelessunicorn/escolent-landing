@@ -68,6 +68,9 @@ export function Navbar() {
           <a href="#misconceptions" className="hover:text-[var(--text-primary)] transition-colors">
             Error Detection
           </a>
+          <a href="#curriculum-lead" className="hover:text-[var(--text-primary)] transition-colors">
+            Curriculum Lead
+          </a>
           <a href="#philosophy" className="hover:text-[var(--text-primary)] transition-colors">
             Ethical Design
           </a>
@@ -153,6 +156,13 @@ export function Navbar() {
                 className="py-2 hover:text-[var(--text-primary)]"
               >
                 Error Detection
+              </a>
+              <a
+                href="#curriculum-lead"
+                onClick={() => setMobileOpen(false)}
+                className="py-2 hover:text-[var(--text-primary)]"
+              >
+                Curriculum Lead
               </a>
               <a
                 href="#philosophy"

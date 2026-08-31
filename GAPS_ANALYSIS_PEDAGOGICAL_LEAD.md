@@ -26,13 +26,13 @@ Introducing the Pedagogical Lead narrative bridges the final institutional gap: 
 
 ## 2. Deep-Dive Matrix: Built Demo Capabilities vs. Landing Page Coverage
 
-| Built Demo Capability (demo.escolent.com) | Route / Feature in Product | Current Landing Page Coverage | Gap Level | Recommended Enhancement |
-| :--- | :--- | :--- | :--- | :--- |
-| **Pedagogical Lead Morning Briefing** | `/pedlead/briefing` | ❌ Not covered | **High Gap** | Introduce in role architecture or curriculum intelligence section showing how academic leads triage thin coverage and cross-school misconception patterns. |
-| **Cross-Tenant Curriculum Coverage Intelligence** | `/pedlead/coverage` | ⚠️ Partially mentioned in text ("Curriculum-Agnostic Standards Engine"), no visual or interactive proof | **Moderate Gap** | Showcase curriculum graph completeness metrics and priority authoring queues (identifying thin/gap/rich coverage). |
-| **LMS Content & Diagram OCR Ingestion** | `/pedlead/lms` | ⚠️ LMS mentioned as LTI 1.3 embed preview; OCR parsing & diagram vision unmentioned | **Moderate Gap** | Highlight automated syllabus extraction and diagram vision OCR that turns school textbook illustrations into diagnostic skill nodes. |
-| **Curriculum Graph Authoring Studio (Split/Merge/Rubrics)** | `/pedlead/authoring` | ❌ Not covered | **High Gap** | Demonstrate how curriculum specialists author 4-level rubrics, configure misconception taxonomies, and split/merge skill nodes with multi-tenant isolation. |
-| **Strict Privacy Boundary (Zero Student Data for Ped Leads)** | Req 21.5 / `lib/shared-record-views.ts` | ⚠️ Admin privacy covered; Ped Lead separation not mentioned | **Low Gap** | Explicitly state the data firewall: Pedagogical Leads only inspect anonymized taxonomy graphs and aggregate diagnostic patterns—never student personal data. |
+| Built Demo Capability (demo.escolent.com) | Route / Feature in Product | Landing Page Coverage Status | Resolution & Implementation |
+| :--- | :--- | :--- | :--- |
+| **Pedagogical Lead Morning Briefing** | `/pedlead/briefing` | ✅ **100% Live Interactive Showcase** | Featured in dedicated `#curriculum-lead` section with live pre-mounted iframe demonstrating daily triage of thin coverage, pending review queues, and cross-school pattern detection. |
+| **Cross-Tenant Curriculum Coverage Intelligence** | `/pedlead/coverage` | ✅ **100% Live Interactive Showcase** | Featured in dedicated `#curriculum-lead` section with live pre-mounted iframe displaying synthesized graph completeness metrics across schools and priority authoring queues. |
+| **LMS Content & Diagram OCR Ingestion** | `/pedlead/lms` | ✅ **100% Live Interactive Showcase** | Featured in dedicated `#curriculum-lead` section with live pre-mounted iframe demonstrating automated Canvas LMS course ingestion and vision OCR diagram parsing. |
+| **Curriculum Graph Authoring Studio (Split/Merge/Rubrics)** | `/pedlead/authoring` | ✅ **100% Live Interactive Showcase** | Featured in dedicated `#curriculum-lead` section with live pre-mounted iframe demonstrating 4-level rubric authoring, misconception taxonomies, and split/merge operations. |
+| **Strict Privacy Boundary (Zero Student Data for Ped Leads)** | Req 21.5 / `lib/shared-record-views.ts` | ✅ **100% Documented & Enforced** | Highlighted across the dedicated section header, footer badge, and architecture cards: Pedagogical Leads only inspect anonymized taxonomy graphs—never student personal data. |
 
 ---
 

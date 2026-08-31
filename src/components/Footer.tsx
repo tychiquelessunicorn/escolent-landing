@@ -92,6 +92,9 @@ export function Footer() {
             <a href="#misconceptions" className="hover:text-[var(--text-primary)] transition-colors">
               Error Detection
             </a>
+            <a href="#curriculum-lead" className="hover:text-[var(--text-primary)] transition-colors">
+              Curriculum Lead
+            </a>
             <a href="#philosophy" className="hover:text-[var(--text-primary)] transition-colors">
               Ethical Design
             </a>
